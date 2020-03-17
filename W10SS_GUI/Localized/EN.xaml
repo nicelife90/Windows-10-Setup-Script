@@ -2,16 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="textWindowTitle">Windows 10 Setup Script</system:String>
-    
-    <system:String x:Key="HamburgerPrivacy">Privacy &amp; Telemetry</system:String>
-    <system:String x:Key="HamburgerUi">UI &amp; Personalization</system:String>
+
+    <system:String x:Key="HamburgerOpen">Open me</system:String>
+    <system:String x:Key="HamburgerPrivacy">Privacy</system:String>
+    <system:String x:Key="HamburgerUi">UI</system:String>
     <system:String x:Key="HamburgerOneDrive">OneDrive</system:String>
     <system:String x:Key="HamburgerSystem">System</system:String>
     <system:String x:Key="HamburgerStartMenu">Start Menu</system:String>
     <system:String x:Key="HamburgerUwp">UWP Apps</system:String>
     <system:String x:Key="HamburgerWinGame">Gaming</system:String>
     <system:String x:Key="HamburgerTaskScheduler">Task Scheduler</system:String>
-    <system:String x:Key="HamburgerDefender">Defender &amp; Security</system:String>
+    <system:String x:Key="HamburgerDefender">Security</system:String>
     <system:String x:Key="HamburgerContextMenu">Context Menu</system:String>
     
     <system:String x:Key="textHamburgerApply">Apply</system:String>

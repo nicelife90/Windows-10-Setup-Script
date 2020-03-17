@@ -34,21 +34,17 @@
         <Canvas Name="panelHamburger"                
                 MinWidth="{StaticResource panelHamburgerMinWidth}" 
                 Width="{StaticResource panelHamburgerMinWidth}"
-                MaxWidth="{DynamicResource panelHamburgerMaxWidth}" 
+                MaxWidth="{DynamicResource panelHamburgerMaxWidth}"                
                 Background="{DynamicResource colorButtonHamburgerBackground}"
-                HorizontalAlignment="Left"
-                Panel.ZIndex="10">            
-            <Canvas.Effect>
-                <DropShadowEffect Direction="380" BlurRadius="10" Opacity="0.6"/>
-            </Canvas.Effect>
-            <Canvas.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard Storyboard="{StaticResource animationHamburgerOpen}"/>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard Storyboard="{StaticResource animationHamburgerClose}"/>
-                </EventTrigger>
-            </Canvas.Triggers>
+                HorizontalAlignment="Left">            
+
+            <uc:HamburgerCategoryButton x:Name="HamburgerMenu"
+                                        Icon="{StaticResource iconHamburgerMenu}"  
+                                        Text="{DynamicResource HamburgerOpen}" 
+                                        Width="40"
+                                        ViewboxPathVisibility="Collapsed"
+                                        Canvas.Top="0" Canvas.Left="0" 
+                                        MouseLeftButtonDown="ButtonHamburgerMenu_Click"/>
 
             <uc:HamburgerCategoryButton x:Name="HamburgerPrivacy"
                                         Icon="{StaticResource iconHamburgerPrivacy}" 
@@ -57,8 +53,9 @@
                                         TextMargin="0 0 10 3"
                                         Tag="{StaticResource tagCategoryPrivacy}"
                                         ViewboxPathVisibility="Collapsed"
-                                        Canvas.Top="0" Canvas.Left="0" 
-                                        MouseLeftButtonDown="ButtonHamburger_Click"/>
+                                        Canvas.Top="40" Canvas.Left="0" 
+                                        MouseLeftButtonDown="ButtonHamburger_Click"
+                                        />
 
             <uc:HamburgerCategoryButton x:Name="HamburgerUi"
                                         Icon="{StaticResource iconHamburgerUi}" 
@@ -67,25 +64,15 @@
                                         TextMargin="0 0 10 -2"
                                         Tag="{StaticResource tagCategoryUi}"
                                         ViewboxPathVisibility="Collapsed"
-                                        Canvas.Top="40" Canvas.Left="0"
-                                        MouseLeftButtonDown="ButtonHamburger_Click"/>
-
-            <uc:HamburgerCategoryButton x:Name="HamburgerOneDrive"
-                                        IconVisibility="Collapsed"
-                                        ViewboxPathData="{StaticResource iconHamburgerOneDrive}"
-                                        Text="{DynamicResource HamburgerOneDrive}" 
-                                        Width="{Binding ElementName=panelHamburger, Path=Width}"
-                                        TextMargin="0 0 10 3"
-                                        Tag="{StaticResource tagCategoryOneDrive}"
                                         Canvas.Top="80" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-            <uc:HamburgerCategoryButton x:Name="HamburgerSystem"
-                                        Icon="{StaticResource iconHamburgerSystem}" 
-                                        Text="{DynamicResource HamburgerSystem}" 
+            <uc:HamburgerCategoryButton x:Name="HamburgerContextMenu"
+                                        Icon="{StaticResource iconHamburgerContextMenu}" 
+                                        Text="{DynamicResource HamburgerContextMenu}" 
                                         Width="{Binding ElementName=panelHamburger, Path=Width}"
-                                        TextMargin="0 0 10 1"
-                                        Tag="{StaticResource tagCategorySystem}"
+                                        TextMargin="0 0 10 3"
+                                        Tag="{StaticResource tagCategoryContextMenu}"
                                         ViewboxPathVisibility="Collapsed"
                                         Canvas.Top="120" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -100,24 +87,14 @@
                                         Canvas.Top="160" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-            <uc:HamburgerCategoryButton x:Name="HamburgerUwp"
-                                        Icon="{StaticResource iconHamburgerUwp}" 
-                                        Text="{DynamicResource HamburgerUwp}" 
+            <uc:HamburgerCategoryButton x:Name="HamburgerSystem"
+                                        Icon="{StaticResource iconHamburgerSystem}" 
+                                        Text="{DynamicResource HamburgerSystem}" 
                                         Width="{Binding ElementName=panelHamburger, Path=Width}"
                                         TextMargin="0 0 10 1"
-                                        Tag="{StaticResource tagCategoryUwp}"
+                                        Tag="{StaticResource tagCategorySystem}"
                                         ViewboxPathVisibility="Collapsed"
                                         Canvas.Top="200" Canvas.Left="0"
-                                        MouseLeftButtonDown="ButtonHamburger_Click"/>
-
-            <uc:HamburgerCategoryButton x:Name="HamburgerWinGame"
-                                        IconVisibility="Collapsed"
-                                        ViewboxPathData="{StaticResource iconHamburgerWinGame}"
-                                        Text="{DynamicResource HamburgerWinGame}" 
-                                        Width="{Binding ElementName=panelHamburger, Path=Width}"
-                                        TextMargin="0 0 10 4"
-                                        Tag="{StaticResource tagCategoryWinGame}"                                        
-                                        Canvas.Top="240" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
             <uc:HamburgerCategoryButton x:Name="HamburgerTaskScheduler"
@@ -127,37 +104,57 @@
                                         Width="{Binding ElementName=panelHamburger, Path=Width}"
                                         TextMargin="0 0 10 2"
                                         Tag="{StaticResource tagCategoryTaskScheduler}"
-                                        Canvas.Top="280" Canvas.Left="0"
+                                        Canvas.Top="240" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-            <uc:HamburgerCategoryButton x:Name="HamburgerDefender"
+            <uc:HamburgerCategoryButton x:Name="HamburgerSecurity"
                                         Icon="{StaticResource iconHamburgerDefender}" 
                                         Text="{DynamicResource HamburgerDefender}" 
                                         Width="{Binding ElementName=panelHamburger, Path=Width}"
                                         TextMargin="0 0 10 4"
                                         Tag="{StaticResource tagCategoryDefender}"
                                         ViewboxPathVisibility="Collapsed"
+                                        Canvas.Top="280" Canvas.Left="0"
+                                        MouseLeftButtonDown="ButtonHamburger_Click"/>
+
+            <uc:HamburgerCategoryButton x:Name="HamburgerGaming"
+                                        IconVisibility="Collapsed"
+                                        ViewboxPathData="{StaticResource iconHamburgerWinGame}"
+                                        Text="{DynamicResource HamburgerWinGame}" 
+                                        Width="{Binding ElementName=panelHamburger, Path=Width}"
+                                        TextMargin="0 0 10 4"
+                                        Tag="{StaticResource tagCategoryWinGame}"                                        
                                         Canvas.Top="320" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-            <uc:HamburgerCategoryButton x:Name="HamburgerContextMenu"
-                                        Icon="{StaticResource iconHamburgerContextMenu}" 
-                                        Text="{DynamicResource HamburgerContextMenu}" 
+            <uc:HamburgerCategoryButton x:Name="HamburgerUwp"
+                                        Icon="{StaticResource iconHamburgerUwp}" 
+                                        Text="{DynamicResource HamburgerUwp}" 
                                         Width="{Binding ElementName=panelHamburger, Path=Width}"
-                                        TextMargin="0 0 10 3"
-                                        Tag="{StaticResource tagCategoryContextMenu}"
+                                        TextMargin="0 0 10 1"
+                                        Tag="{StaticResource tagCategoryUwp}"
                                         ViewboxPathVisibility="Collapsed"
                                         Canvas.Top="360" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-            <uc:HamburgerCategoryFlashButton x:Name="HamburgerApplySettings"
-                                             IsEnabled="False"
-                                             IconVisibility="Collapsed"
-                                             ViewboxPathData="{StaticResource iconHamburgerApplySettings}"
-                                             Text="{DynamicResource textHamburgerApply}" 
-                                             Width="{Binding ElementName=panelHamburger, Path=Width}"
-                                             TextMargin="0 0 10 1"                                             
-                                             Canvas.Bottom="0" Canvas.Left="0"/>
+            <uc:HamburgerCategoryButton x:Name="HamburgerOneDrive"
+                                        IconVisibility="Collapsed"
+                                        ViewboxPathData="{StaticResource iconHamburgerOneDrive}"
+                                        Text="{DynamicResource HamburgerOneDrive}" 
+                                        Width="{Binding ElementName=panelHamburger, Path=Width}"
+                                        TextMargin="0 0 10 3"
+                                        Tag="{StaticResource tagCategoryOneDrive}"
+                                        Canvas.Top="400" Canvas.Left="0"
+                                        MouseLeftButtonDown="ButtonHamburger_Click"/>
+
+            <uc:HamburgerCategoryButton x:Name="HamburgerApplySettings"
+                                        IsEnabled="False"
+                                        IconVisibility="Collapsed"
+                                        ViewboxPathData="{StaticResource iconHamburgerApplySettings}"
+                                        Text="{DynamicResource textHamburgerApply}" 
+                                        Width="{Binding ElementName=panelHamburger, Path=Width}"
+                                        TextMargin="0 0 10 1"                                             
+                                        Canvas.Bottom="0" Canvas.Left="0"/>
 
             <uc:HamburgerCategoryButton x:Name="HamburgerSaveSettings"
                                         IsEnabled="False"

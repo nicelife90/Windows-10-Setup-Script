@@ -9,6 +9,7 @@ using System.Windows.Input;
 using W10SS_GUI.Controls;
 using System.IO;
 using System.Windows.Media.Animation;
+using System.Windows.Controls.Primitives;
 
 namespace W10SS_GUI
 {
@@ -21,21 +22,22 @@ namespace W10SS_GUI
         {
             internal const string EN = "en";
             internal const string RU = "ru";
-        }       
+        }
 
         private static string culture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == Culture.RU ? Culture.RU : Culture.EN;
-        private HamburgerCategoryButton lastclickedbutton;
+        private HamburgerCategoryButton lastclickedbutton;        
         private Dictionary<string, StackPanel> togglesCategoryAndPanels = new Dictionary<string, StackPanel>();
-
-        internal string LastClickedButtonName => lastclickedbutton.Name as string;
-        private uint TogglesCounter = default(uint);                
         private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();
+        private uint TogglesCounter = default(uint);
+        private uint activeToggles = default(uint);
         private static ResourceDictionary resourceDictionaryEn = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Localized/EN.xaml", UriKind.Absolute) };
-        private static ResourceDictionary resourceDictionaryRu = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Localized/RU.xaml", UriKind.Absolute) };
+        private static ResourceDictionary resourceDictionaryRu = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Localized/RU.xaml", UriKind.Absolute) };       
 
+        internal string LastClickedButtonName => lastclickedbutton.Name as string;        
+                
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void InitializeVariables()
@@ -45,10 +47,10 @@ namespace W10SS_GUI
                 togglesCategoryAndPanels.Add(tagValue.ToString(), panelTogglesCategoryContainer.Children.OfType<StackPanel>().Where(p => p.Tag == tagValue).First());
             }
         }
-        
+
         private void SetUiLanguage()
         {
-            Resources.MergedDictionaries.Add(GetCurrentCulture());                
+            Resources.MergedDictionaries.Add(GetCurrentCulture());
         }
 
         internal static ResourceDictionary GetCurrentCulture() => culture == Culture.RU ? resourceDictionaryRu : resourceDictionaryEn;
@@ -80,8 +82,19 @@ namespace W10SS_GUI
                                .ToList()
                     : null;
 
-                togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s => categoryPanel.Children.Add(s));
+                togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s =>
+                {
+                    s.IsSwitched += SetApplyButtonState;
+                    categoryPanel.Children.Add(s);
+                });
             }
+        }
+
+        private void SetApplyButtonState(object senderIsChecked, EventArgs e)
+        {
+            if ((bool)senderIsChecked) activeToggles++;            
+            else activeToggles--;
+            HamburgerApplySettings.IsEnabled = activeToggles > 0 ? true : false ;                
         }
 
         private ToggleSwitch CreateToogleSwitchFromPsFiles(string scriptPath)
@@ -89,7 +102,7 @@ namespace W10SS_GUI
             string dictionaryHeaderID = $"ToggleHeader-{TogglesCounter}";
             string dictionaryDescriptionID = $"ToggleDescription-{TogglesCounter}";
             string[] arrayLines = new string[4];
-            
+
             ToggleSwitch toggleSwitch = new ToggleSwitch()
             {
                 ScriptPath = scriptPath
@@ -163,25 +176,32 @@ namespace W10SS_GUI
         }
 
         private void ButtonHamburger_Click(object sender, MouseButtonEventArgs e)
-        {            
+        {
             SetActivePanel(sender as HamburgerCategoryButton);
         }
 
         private void ButtonHamburgerLanguageSettings_Click(object sender, MouseButtonEventArgs e)
-        {            
+        {
             Resources.MergedDictionaries.Add(ChangeCulture());
             SetHamburgerWidth(GetCurrentCultureName());
             RefreshHamburgerWidth();
-            textTogglesHeader.Text = Convert.ToString(Resources[LastClickedButtonName]);            
+            textTogglesHeader.Text = Convert.ToString(Resources[LastClickedButtonName]);
         }
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            InitializeVariables();            
+            InitializeVariables();
             SetUiLanguage();
             InitializeToggles();
-            SetHamburgerWidth(GetCurrentCultureName());            
+            SetHamburgerWidth(GetCurrentCultureName());
             SetActivePanel(HamburgerPrivacy);
-        }        
+        }
+
+        private void ButtonHamburgerMenu_Click(object sender, MouseButtonEventArgs e)
+        {
+            Storyboard storyboard = panelHamburger.ActualWidth == panelHamburger.MinWidth
+                ? Window.TryFindResource("animationHamburgerOpen")
+                : Window.TryFindResource("animationHamburgerClose");
+        }
     }
 }

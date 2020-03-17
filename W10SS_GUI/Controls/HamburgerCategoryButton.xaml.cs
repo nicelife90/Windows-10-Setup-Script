@@ -20,9 +20,11 @@ namespace W10SS_GUI.Controls
     /// </summary>
     public partial class HamburgerCategoryButton : UserControl
     {
+        private static MainWindow Main = (MainWindow)Application.Current.MainWindow;
+
         public HamburgerCategoryButton()
         {
-            InitializeComponent();
+            InitializeComponent();                         
         }
 
 
@@ -89,5 +91,12 @@ namespace W10SS_GUI.Controls
         // Using a DependencyProperty as the backing store for ViewboxPathVisibility.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ViewboxPathVisibilityProperty =
             DependencyProperty.Register("ViewboxPathVisibility", typeof(Visibility), typeof(HamburgerCategoryButton), new PropertyMetadata(default(Visibility)));
+
+        private void HamburgerButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            hamburgerButton.ToolTip = Main.panelHamburger.ActualWidth == Main.panelHamburger.MinWidth
+                ? Text.ToString()
+                : null;            
+        }
     }
 }

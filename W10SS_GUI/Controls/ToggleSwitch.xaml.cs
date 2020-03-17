@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
+
 
 namespace W10SS_GUI.Controls
 {
@@ -22,7 +24,7 @@ namespace W10SS_GUI.Controls
     {
         private Brush brushBackground { get; set; } = Application.Current.TryFindResource("colorToggleBackground") as Brush;
         private Brush brushBackgroundHover { get; set; } = Application.Current.TryFindResource("colorToggleBackgroundHover") as Brush;
-
+        
         public ToggleSwitch()
         {
             InitializeComponent();
@@ -37,17 +39,7 @@ namespace W10SS_GUI.Controls
         // Using a DependencyProperty as the backing store for IsChecked.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsCheckedProperty =
             DependencyProperty.Register("IsChecked", typeof(bool), typeof(ToggleSwitch), new PropertyMetadata(default(bool)));
-
-        //public string Icon
-        //{
-        //    get { return (string)GetValue(IconProperty); }
-        //    set { SetValue(IconProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty IconProperty =
-        //    DependencyProperty.Register("Icon", typeof(string), typeof(ToggleSwitch), new PropertyMetadata(default(string)));
-
+                
         public string Header
         {
             get { return (string)GetValue(HeaderProperty); }
@@ -89,20 +81,22 @@ namespace W10SS_GUI.Controls
         public static readonly DependencyProperty ScriptPathProperty =
             DependencyProperty.Register("ScriptPath", typeof(string), typeof(ToggleSwitch), new PropertyMetadata(default(string)));
 
+        public EventHandler IsSwitched;
 
         private void ToggleSwitch_Click(object sender, RoutedEventArgs e)
         {
-            gridToggleSwitch.Background = toggleSwitch.IsChecked == true ? brushBackgroundHover : brushBackground ;
+            ToggleButton senderState = sender as ToggleButton;
+            IsSwitched?.Invoke(senderState.IsChecked, new RoutedEventArgs());
         }
 
         private void GridToggleSwitch_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (toggleSwitch.IsChecked == false) gridToggleSwitch.Background = brushBackgroundHover;
+            gridToggleSwitch.Background = brushBackgroundHover;
         }
 
         private void GridToggleSwitch_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (toggleSwitch.IsChecked == false) gridToggleSwitch.Background = brushBackground;
+            gridToggleSwitch.Background = brushBackground;
         }
     }
 }

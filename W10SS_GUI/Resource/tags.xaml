@@ -2,14 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:String x:Key="tagCategoryPrivacy">1. Privacy &amp; Telemetry</system:String>
-    <system:String x:Key="tagCategoryUi">2. UI &amp; Personalization</system:String>
-    <system:String x:Key="tagCategoryOneDrive">3. OneDrive</system:String>
-    <system:String x:Key="tagCategorySystem">4. System</system:String>
-    <system:String x:Key="tagCategoryStartMenu">5. Start Menu</system:String>
-    <system:String x:Key="tagCategoryUwp">6. UWP Apps</system:String>
-    <system:String x:Key="tagCategoryWinGame">7. Gaming</system:String>
-    <system:String x:Key="tagCategoryTaskScheduler">8. Task Scheduler</system:String>
-    <system:String x:Key="tagCategoryDefender">9. Defender &amp; Security</system:String>
-    <system:String x:Key="tagCategoryContextMenu">10. Context Menu</system:String>
+    <system:String x:Key="tagCategoryPrivacy">1. Privacy</system:String>
+    <system:String x:Key="tagCategoryUi">2. UI</system:String>
+    <system:String x:Key="tagCategoryOneDrive">3. Context Menu</system:String>
+    <system:String x:Key="tagCategorySystem">4. Start Menu</system:String>
+    <system:String x:Key="tagCategoryStartMenu">5. System</system:String>
+    <system:String x:Key="tagCategoryUwp">6. Task Scheduler</system:String>
+    <system:String x:Key="tagCategoryWinGame">7. Security</system:String>
+    <system:String x:Key="tagCategoryTaskScheduler">8. Gaming</system:String>
+    <system:String x:Key="tagCategoryDefender">9. UWP Apps</system:String>
+    <system:String x:Key="tagCategoryContextMenu">10. OneDrive</system:String>
 </ResourceDictionary>

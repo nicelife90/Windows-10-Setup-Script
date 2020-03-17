@@ -33,7 +33,9 @@
                     Width="{DynamicResource panelHamburgerMaxWidth}" 
                     Height="{DynamicResource buttonHamburgerHeight}" 
                     Orientation="Horizontal"
-                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Tag}">
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Tag}" 
+                    ToolTip="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Text}"
+                    MouseEnter="HamburgerButton_MouseEnter">
             <StackPanel.Background>
                 <SolidColorBrush Color="{DynamicResource buttonHamburgerBackgroundColor }" x:Name="buttonHamburgerBackgroundColor"/>                
             </StackPanel.Background>

@@ -8,7 +8,6 @@
              d:DesignHeight="{StaticResource toggleSwitchHeight}" d:DesignWidth="{StaticResource toggleSwitchMinWidth}">
     <UserControl.Resources>
         <!--#region Brushes -->
-
         <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FFFFFFFF"/>
         <SolidColorBrush x:Key="RadioButton.Static.Border" Color="#FF333333"/>
         <SolidColorBrush x:Key="RadioButton.Static.Glyph" Color="#FF333333"/>
@@ -36,7 +35,6 @@
         <SolidColorBrush x:Key="RadioButton.Checked.Background" Color="#00B0FF"/>
         <SolidColorBrush x:Key="RadioButton.Checked.Border" Color="#00B0FF"/>
         <SolidColorBrush x:Key="RadioButton.Checked.Glyph" Color="#FFFFFFFF"/>
-
         <!--#endregion-->
         
         <!--#region Toggle Switch Style-->
@@ -182,22 +180,11 @@
           MinWidth="{StaticResource toggleSwitchMinWidth}"         
           Height="{StaticResource toggleSwitchHeight}"
           Margin="10 0 10 0" 
-          MouseEnter="GridToggleSwitch_MouseEnter" MouseLeave="GridToggleSwitch_MouseLeave"
-          >                   
-
-        <!--<TextBlock Name="iconToggleSwitch" 
-                   FontFamily="{StaticResource fontToggleIcon}"
-                   Width="{StaticResource toggleSwitchIconsWidth}"
-                   FontSize="{DynamicResource toggleSwitchIconsFontSize}"
-                   Margin="10 0 5 0"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Icon}"/>-->
+          MouseEnter="GridToggleSwitch_MouseEnter" MouseLeave="GridToggleSwitch_MouseLeave">                           
 
         <StackPanel VerticalAlignment="Center" 
                     HorizontalAlignment="Left"
-                    Margin="10 5 60 5">
-                    <!--Margin="45 5 60 5">-->
+                    Margin="10 5 60 5">                    
         
             <TextBlock Name="textToggleSwitchHeader" 
                        FontFamily="{StaticResource fontToggleSwitchHeader}"                                      
