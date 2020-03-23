@@ -20,14 +20,12 @@ namespace W10SS_GUI.Controls
     /// </summary>
     public partial class HamburgerCategoryButton : UserControl
     {
-        private static MainWindow Main = (MainWindow)Application.Current.MainWindow;
+        private static MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
 
         public HamburgerCategoryButton()
         {
             InitializeComponent();                         
         }
-
-
 
         public string Text
         {
@@ -94,8 +92,8 @@ namespace W10SS_GUI.Controls
 
         private void HamburgerButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            hamburgerButton.ToolTip = Main.panelHamburger.ActualWidth == Main.panelHamburger.MinWidth
-                ? Text.ToString()
+            hamburgerButton.ToolTip = MainWindow.panelHamburger.ActualWidth == MainWindow.panelHamburger.MinWidth
+                ? Text?.ToString()
                 : null;            
         }
     }

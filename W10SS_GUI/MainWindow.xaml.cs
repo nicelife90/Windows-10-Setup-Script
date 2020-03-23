@@ -148,31 +148,13 @@ namespace W10SS_GUI
             }
 
             textTogglesHeader.Text = Resources[button.Name] as string;
-        }
-
-        internal void RefreshHamburgerWidth()
-        {
-            MouseEventArgs mouseLeaveArgs = new MouseEventArgs(Mouse.PrimaryDevice, 0)
-            {
-                RoutedEvent = Mouse.MouseLeaveEvent
-            };
-
-            MouseEventArgs mouseEnterArgs = new MouseEventArgs(Mouse.PrimaryDevice, 0)
-            {
-                RoutedEvent = Mouse.MouseEnterEvent
-            };
-
-            panelHamburger.RaiseEvent(mouseLeaveArgs);
-            panelHamburger.RaiseEvent(mouseEnterArgs);
-        }
+        }        
 
         internal void SetHamburgerWidth(string cultureName)
-        {
-            Storyboard hamburgerOpen = this.TryFindResource("animationHamburgerOpen") as Storyboard;
-            DoubleAnimation animation = hamburgerOpen.Children[0] as DoubleAnimation;
-            animation.To = cultureName == "ru"
-                ? Convert.ToDouble(this.TryFindResource("panelHamburgerRuMaxWidth"))
-                : Convert.ToDouble(this.TryFindResource("panelHamburgerEnMaxWidth"));
+        {            
+            panelHamburger.MaxWidth = cultureName == "ru"
+                ? Convert.ToDouble(TryFindResource("panelHamburgerRuMaxWidth"))
+                : Convert.ToDouble(TryFindResource("panelHamburgerEnMaxWidth"));            
         }
 
         private void ButtonHamburger_Click(object sender, MouseButtonEventArgs e)
@@ -182,10 +164,16 @@ namespace W10SS_GUI
 
         private void ButtonHamburgerLanguageSettings_Click(object sender, MouseButtonEventArgs e)
         {
-            Resources.MergedDictionaries.Add(ChangeCulture());
+            Resources.MergedDictionaries.Add(ChangeCulture());            
+            HamburgerReOpenAnimation();
             SetHamburgerWidth(GetCurrentCultureName());
-            RefreshHamburgerWidth();
             textTogglesHeader.Text = Convert.ToString(Resources[LastClickedButtonName]);
+        }
+
+        private void HamburgerReOpenAnimation()
+        {
+            if (panelHamburger.ActualWidth == panelHamburger.MaxWidth)
+                ShowAnimation(storyboardName: "animationHamburgerReOpenPanel", animationTo: panelHamburger.MinWidth, element: panelHamburger);            
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -199,9 +187,23 @@ namespace W10SS_GUI
 
         private void ButtonHamburgerMenu_Click(object sender, MouseButtonEventArgs e)
         {
-            Storyboard storyboard = panelHamburger.ActualWidth == panelHamburger.MinWidth
-                ? Window.TryFindResource("animationHamburgerOpen")
-                : Window.TryFindResource("animationHamburgerClose");
+            Double animationTo = panelHamburger.ActualWidth == panelHamburger.MaxWidth
+                ? panelHamburger.MinWidth
+                : panelHamburger.MaxWidth;
+            ShowAnimation(storyboardName: "animationHamburgerPanel", animationTo: animationTo, element: panelHamburger);
+        }
+
+        private void ShowAnimation(String storyboardName, Double animationTo, FrameworkElement element)
+        {
+            Storyboard storyboard = TryFindResource(storyboardName) as Storyboard;
+            DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;
+            animation.To = animationTo;            
+            storyboard.Begin(element);
+        }
+
+        private void PanelHamburger_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

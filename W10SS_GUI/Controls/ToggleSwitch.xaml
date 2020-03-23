@@ -179,8 +179,8 @@
     <Grid Name="gridToggleSwitch"
           MinWidth="{StaticResource toggleSwitchMinWidth}"         
           Height="{StaticResource toggleSwitchHeight}"
-          Margin="10 0 10 0" 
-          MouseEnter="GridToggleSwitch_MouseEnter" MouseLeave="GridToggleSwitch_MouseLeave">                           
+          Margin="5 2 5 2" >
+        <!--MouseEnter="GridToggleSwitch_MouseEnter" MouseLeave="GridToggleSwitch_MouseLeave">-->                           
 
         <StackPanel VerticalAlignment="Center" 
                     HorizontalAlignment="Left"

@@ -70,10 +70,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\HamburgerCategoryFlashButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ToggleSwitch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,9 +108,6 @@
     </Compile>
     <Compile Include="Controls\HamburgerCategoryButton.xaml.cs">
       <DependentUpon>HamburgerCategoryButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\HamburgerCategoryFlashButton.xaml.cs">
-      <DependentUpon>HamburgerCategoryFlashButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ToggleSwitch.xaml.cs">
       <DependentUpon>ToggleSwitch.xaml</DependentUpon>

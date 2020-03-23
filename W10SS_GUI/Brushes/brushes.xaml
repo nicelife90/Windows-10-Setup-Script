@@ -16,4 +16,6 @@
     <SolidColorBrush x:Key="colorToggleBackgroundHover" Color="#F2F2F2"/>
     <SolidColorBrush x:Key="colorToggleDescription" Color="#616161"/>
 
+    <SolidColorBrush x:Key="colorCategoryPanelHeaderBackground" Color="#F5F5F5"/>
+
 </ResourceDictionary>

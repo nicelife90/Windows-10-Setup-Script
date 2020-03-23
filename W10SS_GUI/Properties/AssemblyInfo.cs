@@ -7,8 +7,8 @@ using System.Windows;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Set of tweaks for OS fine-tuning and automating the routine tasks")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Windows 10 Setup Script")]
+[assembly: AssemblyDescription("Set of tweaks for OS fine-tuning and automating the routine tasks")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Windows 10 Setup Script")]
