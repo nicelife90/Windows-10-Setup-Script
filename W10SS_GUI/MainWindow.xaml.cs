@@ -84,23 +84,24 @@ namespace W10SS_GUI
 
                 togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s =>
                 {
-                    s.IsSwitched += SetApplyButtonState;
+                    s.IsSwitched += SetButtonsStateIfToggleIsSwitched;
                     categoryPanel.Children.Add(s);
                 });
             }
         }
 
-        private void SetApplyButtonState(object senderIsChecked, EventArgs e)
+        private void SetButtonsStateIfToggleIsSwitched(object IsChecked, EventArgs e)
         {
-            if ((bool)senderIsChecked) activeToggles++;            
+            if ((bool)IsChecked) activeToggles++;            
             else activeToggles--;
-            HamburgerApplySettings.IsEnabled = activeToggles > 0 ? true : false ;                
+            HamburgerApplySettings.IsEnabled = activeToggles > 0 ? true : false ;
+            HamburgerSaveSettings.IsEnabled = activeToggles > 0 ? true : false;
         }
 
         private ToggleSwitch CreateToogleSwitchFromPsFiles(string scriptPath)
         {
-            string dictionaryHeaderID = $"ToggleHeader-{TogglesCounter}";
-            string dictionaryDescriptionID = $"ToggleDescription-{TogglesCounter}";
+            string dictionaryHeaderID = $"TH_{TogglesCounter}";
+            string dictionaryDescriptionID = $"TD_{TogglesCounter}";
             string[] arrayLines = new string[4];
 
             ToggleSwitch toggleSwitch = new ToggleSwitch()
