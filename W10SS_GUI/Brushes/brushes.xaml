@@ -12,9 +12,9 @@
     <Color x:Key="buttonHamburgerHoverColor">#4A4A4A</Color>    
     <Color x:Key="buttonHamburgerApplyHoverColor">#e81123</Color>
 
-    <SolidColorBrush x:Key="colorToggleBackground" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="colorToggleBackgroundHover" Color="#F2F2F2"/>
-    <SolidColorBrush x:Key="colorToggleDescription" Color="#616161"/>
+    <SolidColorBrush x:Key="colorToggleSwitchBackground" Color="#FFFFFF"/>
+    <!--<SolidColorBrush x:Key="colorToggleBackgroundHover" Color="#F2F2F2"/>-->
+    <SolidColorBrush x:Key="colorToggleSwitchDescription" Color="#616161"/>
 
     <SolidColorBrush x:Key="colorCategoryPanelHeaderBackground" Color="#F5F5F5"/>
 

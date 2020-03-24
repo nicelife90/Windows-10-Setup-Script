@@ -267,7 +267,9 @@
 
                 <StackPanel Name="panelTogglesCategoryContextMenu"
                             Tag="{StaticResource tagCategoryContextMenu}"
-                            Visibility="Collapsed"/>
+                            Visibility="Collapsed">                    
+
+                </StackPanel>                            
 
             </StackPanel>
             

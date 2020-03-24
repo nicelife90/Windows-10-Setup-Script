@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
-
+using System.Windows.Media.Animation;
 
 namespace W10SS_GUI.Controls
 {
@@ -21,10 +21,7 @@ namespace W10SS_GUI.Controls
     /// Логика взаимодействия для ToggleSwitch.xaml
     /// </summary>
     public partial class ToggleSwitch : UserControl
-    {
-        private Brush brushBackground { get; set; } = Application.Current.TryFindResource("colorToggleBackground") as Brush;
-        private Brush brushBackgroundHover { get; set; } = Application.Current.TryFindResource("colorToggleBackgroundHover") as Brush;
-        
+    {        
         public ToggleSwitch()
         {
             InitializeComponent();
@@ -86,17 +83,34 @@ namespace W10SS_GUI.Controls
         private void ToggleSwitch_Click(object sender, RoutedEventArgs e)
         {
             ToggleButton senderState = sender as ToggleButton;
+            textToggleSwitchDescription.Foreground = senderState.IsChecked == true
+                ? textToggleSwitchHeader.Foreground
+                : (Brush)TryFindResource("colorToggleSwitchDescription");
             IsSwitched?.Invoke(senderState.IsChecked, new RoutedEventArgs());
+
         }
 
         private void GridToggleSwitch_MouseEnter(object sender, MouseEventArgs e)
         {
-            gridToggleSwitch.Background = brushBackgroundHover;
+            if (!(bool)toggleSwitch.IsChecked)
+            {
+                ShowAnimation(storyboardName: "animationToggleWidthToMaxHeight", element: gridToggleSwitch);
+            }
         }
 
         private void GridToggleSwitch_MouseLeave(object sender, MouseEventArgs e)
         {
-            gridToggleSwitch.Background = brushBackground;
+            if (!(bool)toggleSwitch.IsChecked)
+            {
+                ShowAnimation(storyboardName: "animationToggleWidthToMinHeight", element: gridToggleSwitch);
+            }
+        }
+
+        private void ShowAnimation(String storyboardName, FrameworkElement element)
+        {
+            Storyboard storyboard = TryFindResource(storyboardName) as Storyboard;
+            DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;            
+            storyboard.Begin(element);
         }
     }
 }

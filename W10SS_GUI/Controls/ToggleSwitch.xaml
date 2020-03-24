@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:W10SS_GUI.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="{StaticResource toggleSwitchHeight}" d:DesignWidth="{StaticResource toggleSwitchMinWidth}">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <!--#region Brushes -->
         <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FFFFFFFF"/>
@@ -16,8 +15,8 @@
         <SolidColorBrush x:Key="RadioButton.MouseOver.Border" Color="#FF000000"/>
         <SolidColorBrush x:Key="RadioButton.MouseOver.Glyph" Color="#FF000000"/>
 
-        <SolidColorBrush x:Key="RadioButton.MouseOver.On.Background" Color="#3F51B5"/>
-        <SolidColorBrush x:Key="RadioButton.MouseOver.On.Border" Color="#3F51B5"/>
+        <SolidColorBrush x:Key="RadioButton.MouseOver.On.Background" Color="#00B0FF"/>
+        <SolidColorBrush x:Key="RadioButton.MouseOver.On.Border" Color="#00B0FF"/>
         <SolidColorBrush x:Key="RadioButton.MouseOver.On.Glyph" Color="#FFFFFFFF"/>
 
         <SolidColorBrush x:Key="RadioButton.Disabled.Background" Color="#FFFFFFFF"/>
@@ -28,8 +27,8 @@
         <SolidColorBrush x:Key="RadioButton.Disabled.On.Border" Color="#FFCCCCCC"/>
         <SolidColorBrush x:Key="RadioButton.Disabled.On.Glyph" Color="#FFA3A3A3"/>
 
-        <SolidColorBrush x:Key="RadioButton.Pressed.Background" Color="#FF999999"/>
-        <SolidColorBrush x:Key="RadioButton.Pressed.Border" Color="#FF999999"/>
+        <SolidColorBrush x:Key="RadioButton.Pressed.Background" Color="#00B0FF"/>
+        <SolidColorBrush x:Key="RadioButton.Pressed.Border" Color="#00B0FF"/>
         <SolidColorBrush x:Key="RadioButton.Pressed.Glyph" Color="#FFFFFFFF"/>
 
         <SolidColorBrush x:Key="RadioButton.Checked.Background" Color="#00B0FF"/>
@@ -172,19 +171,32 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--#endregion Toggle Switch Style-->          
-        
+        <!--#endregion Toggle Switch Style-->
+
+        <Storyboard x:Key="animationToggleWidthToMaxHeight" >
+            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Height)" To="{DynamicResource toggleSwitchMaxHeight}" 
+                             Duration="0:0:0.30" AutoReverse="False"/>
+        </Storyboard>
+
+        <Storyboard x:Key="animationToggleWidthToMinHeight" >
+            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Height)" To="{DynamicResource toggleSwitchMinHeight}" 
+                             Duration="0:0:0.30" AutoReverse="False" BeginTime="0:0:0.15"/>
+        </Storyboard>
+
     </UserControl.Resources>
 
     <Grid Name="gridToggleSwitch"
-          MinWidth="{StaticResource toggleSwitchMinWidth}"         
-          Height="{StaticResource toggleSwitchHeight}"
-          Margin="5 2 5 2" >
-        <!--MouseEnter="GridToggleSwitch_MouseEnter" MouseLeave="GridToggleSwitch_MouseLeave">-->                           
+          MinWidth="{StaticResource toggleSwitchMinWidth}"          
+          MinHeight="{StaticResource toggleSwitchMinHeight}"
+          Height="{StaticResource toggleSwitchMinHeight}"   
+          MaxHeight="{StaticResource toggleSwitchMaxHeight}"
+          MouseEnter="GridToggleSwitch_MouseEnter" 
+          MouseLeave="GridToggleSwitch_MouseLeave"
+          Background="{DynamicResource colorToggleSwitchBackground}">                           
 
-        <StackPanel VerticalAlignment="Center" 
+        <StackPanel VerticalAlignment="Top" 
                     HorizontalAlignment="Left"
-                    Margin="10 5 60 5">                    
+                    Margin="10 5 75 5">                    
         
             <TextBlock Name="textToggleSwitchHeader" 
                        FontFamily="{StaticResource fontToggleSwitchHeader}"                                      
@@ -196,8 +208,8 @@
             <TextBlock Name="textToggleSwitchDescription" 
                        FontFamily="{StaticResource fontToggleSwitchDescription}"                   
                        FontSize="{StaticResource fontSizeToggleSwitchDescription}"
-                       Foreground="{DynamicResource colorToggleDescription}" 
-                       Padding="0 3 0 3"
+                       Foreground="{DynamicResource colorToggleSwitchDescription}" 
+                       Padding="0 5 0 5"
                        MaxHeight="{StaticResource toggleSwitchDescriptionMaxHeight}"                       
                        TextWrapping="Wrap"                            
                        Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Description}" />
