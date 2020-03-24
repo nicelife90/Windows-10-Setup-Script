@@ -87,7 +87,6 @@ namespace W10SS_GUI.Controls
                 ? textToggleSwitchHeader.Foreground
                 : (Brush)TryFindResource("colorToggleSwitchDescription");
             IsSwitched?.Invoke(senderState.IsChecked, new RoutedEventArgs());
-
         }
 
         private void GridToggleSwitch_MouseEnter(object sender, MouseEventArgs e)

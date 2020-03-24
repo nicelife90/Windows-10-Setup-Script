@@ -10,6 +10,9 @@ using W10SS_GUI.Controls;
 using System.IO;
 using System.Windows.Media.Animation;
 using System.Windows.Controls.Primitives;
+using Windows10SetupScript.Classes;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace W10SS_GUI
 {
@@ -205,6 +208,13 @@ namespace W10SS_GUI
         private void PanelHamburger_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }        
+
+        private void ButtonHamburgerOpenGithub_Click(object sender, MouseButtonEventArgs e)
+        {
+            Task.Run(() => StartProcessFactory.NewProcess(fileName:CONST.OS_Explorer, arguments:CONST.W10SS_GitHub));           
         }
+
+        
     }
 }

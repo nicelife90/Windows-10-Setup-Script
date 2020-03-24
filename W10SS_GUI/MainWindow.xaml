@@ -194,7 +194,8 @@
                                         Text="{DynamicResource textHamburgerOpenGithub}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
                                         TextMargin="0 0 10 3"
-                                        Canvas.Bottom="200" Canvas.Left="0"/>
+                                        Canvas.Bottom="200" Canvas.Left="0"
+                                        MouseLeftButtonDown="ButtonHamburgerOpenGithub_Click"/>
 
         </Canvas>
         <!--#endregion Hamburger Panel-->
