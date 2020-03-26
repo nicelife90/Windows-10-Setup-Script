@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Resource/animations.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resource/tags.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Resource/fonts.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resource/shared.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

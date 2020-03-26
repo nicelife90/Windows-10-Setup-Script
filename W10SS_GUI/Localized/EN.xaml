@@ -13,7 +13,10 @@
     <system:String x:Key="HamburgerTaskScheduler">Task Scheduler</system:String>
     <system:String x:Key="HamburgerSecurity">Security</system:String>
     <system:String x:Key="HamburgerContextMenu">Context Menu</system:String>
-    
+
+    <system:String x:Key="ToggleSwitchStateOn">On</system:String>
+    <system:String x:Key="ToggleSwitchStateOff">Off</system:String>
+
     <system:String x:Key="textHamburgerApply">Apply</system:String>
     <system:String x:Key="textHamburgerSave">Save</system:String>
     <system:String x:Key="textHamburgerLoad">Import</system:String>

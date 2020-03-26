@@ -14,27 +14,20 @@ using Windows10SetupScript.Classes;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
+
 namespace W10SS_GUI
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        internal class Culture
-        {
-            internal const string EN = "en";
-            internal const string RU = "ru";
-        }
-
-        private static string culture = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == Culture.RU ? Culture.RU : Culture.EN;
+    {        
         private HamburgerCategoryButton lastclickedbutton;        
         private Dictionary<string, StackPanel> togglesCategoryAndPanels = new Dictionary<string, StackPanel>();
         private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();
         private uint TogglesCounter = default(uint);
         private uint activeToggles = default(uint);
-        private static ResourceDictionary resourceDictionaryEn = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Localized/EN.xaml", UriKind.Absolute) };
-        private static ResourceDictionary resourceDictionaryRu = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Localized/RU.xaml", UriKind.Absolute) };       
+               
 
         internal string LastClickedButtonName => lastclickedbutton.Name as string;        
                 
@@ -45,7 +38,7 @@ namespace W10SS_GUI
 
         private void InitializeVariables()
         {
-            foreach (var tagValue in Application.Current.Resources.MergedDictionaries.Where(r => r.Source.LocalPath == "/Resource/tags.xaml").First().Values)
+            foreach (var tagValue in Application.Current.Resources.MergedDictionaries.Where(r => r.Source.LocalPath == CONST.Resources_Dictionaries_TAGS).First().Values)
             {
                 togglesCategoryAndPanels.Add(tagValue.ToString(), panelTogglesCategoryContainer.Children.OfType<StackPanel>().Where(p => p.Tag == tagValue).First());
             }
@@ -53,18 +46,10 @@ namespace W10SS_GUI
 
         private void SetUiLanguage()
         {
-            Resources.MergedDictionaries.Add(GetCurrentCulture());
+            Resources.MergedDictionaries.Add(Culture.GetCultureDictionary());
         }
 
-        internal static ResourceDictionary GetCurrentCulture() => culture == Culture.RU ? resourceDictionaryRu : resourceDictionaryEn;
-
-        internal static string GetCurrentCultureName() => culture == Culture.RU ? Culture.RU : Culture.EN;
-
-        internal static ResourceDictionary ChangeCulture()
-        {
-            culture = culture == Culture.RU ? Culture.EN : Culture.RU;
-            return culture == Culture.RU ? resourceDictionaryRu : resourceDictionaryEn;
-        }
+        
 
         private void InitializeToggles()
         {
@@ -76,11 +61,11 @@ namespace W10SS_GUI
 
                 List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
                     && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-                                .Where(f => f.EndsWith(".ps1"))
+                                .Where(f => f.EndsWith(CONST.PS_EXTENSION))
                                 .Count() > 0
 
                     ? Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-                               .Where(f => f.EndsWith(".ps1"))
+                               .Where(f => f.EndsWith(CONST.PS_EXTENSION))
                                .Select(f => CreateToogleSwitchFromPsFiles(f))
                                .ToList()
                     : null;
@@ -126,13 +111,15 @@ namespace W10SS_GUI
             }
             catch (Exception)
             {
-
+                // Do Nothing
             }
 
-            resourceDictionaryEn[dictionaryHeaderID] = arrayLines[0];
-            resourceDictionaryEn[dictionaryDescriptionID] = arrayLines[1];
-            resourceDictionaryRu[dictionaryHeaderID] = arrayLines[2];
-            resourceDictionaryRu[dictionaryDescriptionID] = arrayLines[3];
+            string[] keys = { dictionaryHeaderID, dictionaryDescriptionID };
+            string[] valuesEN = { arrayLines[0], arrayLines[1] };
+            string[] valuesRU = { arrayLines[2], arrayLines[3]};
+
+            Culture.SetCultureDictionaryKeyValue(CONST.LANG_EN, keys, valuesEN);
+            Culture.SetCultureDictionaryKeyValue(CONST.LANG_RU, keys, valuesRU);            
 
             toggleSwitch.SetResourceReference(ToggleSwitch.HeaderProperty, dictionaryHeaderID);
             toggleSwitch.SetResourceReference(ToggleSwitch.DescriptionProperty, dictionaryDescriptionID);
@@ -152,13 +139,14 @@ namespace W10SS_GUI
             }
 
             textTogglesHeader.Text = Resources[button.Name] as string;
+            scrollTogglesCategoryPrivacy.ScrollToTop();
         }        
 
-        internal void SetHamburgerWidth(string cultureName)
+        internal void SetHamburgerWidth()
         {            
-            panelHamburger.MaxWidth = cultureName == "ru"
-                ? Convert.ToDouble(TryFindResource("panelHamburgerRuMaxWidth"))
-                : Convert.ToDouble(TryFindResource("panelHamburgerEnMaxWidth"));            
+            panelHamburger.MaxWidth = Culture.IsRU
+                ? Convert.ToDouble(TryFindResource(CONST.Hamburger_MaxWidth_RU))
+                : Convert.ToDouble(TryFindResource(CONST.Hamburger_MaxWidth_EN));            
         }
 
         private void ButtonHamburger_Click(object sender, MouseButtonEventArgs e)
@@ -168,16 +156,22 @@ namespace W10SS_GUI
 
         private void ButtonHamburgerLanguageSettings_Click(object sender, MouseButtonEventArgs e)
         {
-            Resources.MergedDictionaries.Add(ChangeCulture());            
+            Resources.MergedDictionaries.Add(Culture.ChangeCultureDictionary());            
             HamburgerReOpenAnimation();
-            SetHamburgerWidth(GetCurrentCultureName());
-            textTogglesHeader.Text = Convert.ToString(Resources[LastClickedButtonName]);
+            SetHamburgerWidth();
+            SetTogglesStateTextFormCurrentCulture();
+            textTogglesHeader.Text = Convert.ToString(Resources[LastClickedButtonName]);            
+        }
+
+        private void SetTogglesStateTextFormCurrentCulture()
+        {
+            TogglesSwitches.ForEach(t => t.SetToggleStateText());
         }
 
         private void HamburgerReOpenAnimation()
         {
             if (panelHamburger.ActualWidth == panelHamburger.MaxWidth)
-                ShowAnimation(storyboardName: "animationHamburgerReOpenPanel", animationTo: panelHamburger.MinWidth, element: panelHamburger);            
+                ShowAnimation(storyboardName: CONST.Animation_Hamburger_REOPEN, animationTo: panelHamburger.MinWidth, element: panelHamburger);            
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -185,7 +179,7 @@ namespace W10SS_GUI
             InitializeVariables();
             SetUiLanguage();
             InitializeToggles();
-            SetHamburgerWidth(GetCurrentCultureName());
+            SetHamburgerWidth();
             SetActivePanel(HamburgerPrivacy);
         }
 
@@ -194,7 +188,7 @@ namespace W10SS_GUI
             Double animationTo = panelHamburger.ActualWidth == panelHamburger.MaxWidth
                 ? panelHamburger.MinWidth
                 : panelHamburger.MaxWidth;
-            ShowAnimation(storyboardName: "animationHamburgerPanel", animationTo: animationTo, element: panelHamburger);
+            ShowAnimation(storyboardName: CONST.Animation_Hamburger, animationTo: animationTo, element: panelHamburger);
         }
 
         private void ShowAnimation(String storyboardName, Double animationTo, FrameworkElement element)
@@ -212,7 +206,7 @@ namespace W10SS_GUI
 
         private void ButtonHamburgerOpenGithub_Click(object sender, MouseButtonEventArgs e)
         {
-            Task.Run(() => StartProcessFactory.NewProcess(fileName:CONST.OS_Explorer, arguments:CONST.W10SS_GitHub));           
+            Task.Run(() => Process.Start(CONST.W10SS_GitHub));
         }
 
         

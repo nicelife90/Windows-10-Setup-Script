@@ -28,14 +28,17 @@
     <system:Double x:Key="toggleSwitchMinWidth">550</system:Double>
     <system:Double x:Key="toggleSwitchMaxWidth">1050</system:Double>
     <system:Double x:Key="toggleSwitchMinHeight">55</system:Double>
+    <system:Double x:Key="toggleSwitchHeight">300</system:Double>
     <system:Double x:Key="toggleSwitchMaxHeight">100</system:Double>
     <system:Double x:Key="toggleSwitchIconsFontSize">24</system:Double>
     <system:Double x:Key="toggleSwitchIconsWidth">25</system:Double>    
     <system:Double x:Key="toggleSwitchHeaderMaxHeight">44</system:Double>
-    <system:Double x:Key="toggleSwitchDescriptionMaxHeight">44</system:Double>
+    <system:Double x:Key="toggleSwitchDescriptionMaxHeight">60</system:Double>
     <system:Double x:Key="toggleSwitchTextMaxWidth">421</system:Double>    
     <system:Double x:Key="fontSizeToggleSwitchDescription">16</system:Double>
     <system:Double x:Key="fontSizeToggleSwitchHeader">18</system:Double>
+    <system:Double x:Key="fontSizeToggleSwitchState">18</system:Double>
+    
 
 
 

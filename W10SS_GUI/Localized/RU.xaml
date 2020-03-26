@@ -14,6 +14,9 @@
     <system:String x:Key="HamburgerSecurity">Безопасность</system:String>
     <system:String x:Key="HamburgerContextMenu">Контекстное меню</system:String>
 
+    <system:String x:Key="ToggleSwitchStateOn">Вкл</system:String>
+    <system:String x:Key="ToggleSwitchStateOff">Выкл</system:String>
+
     <system:String x:Key="textHamburgerApply">Применить</system:String>
     <system:String x:Key="textHamburgerSave">Сохранить</system:String>
     <system:String x:Key="textHamburgerLoad">Импортировать</system:String>

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Animation;
+using Windows10SetupScript.Classes;
 
 namespace W10SS_GUI.Controls
 {
@@ -25,6 +26,7 @@ namespace W10SS_GUI.Controls
         public ToggleSwitch()
         {
             InitializeComponent();
+            SetToggleStateText();
         }
 
         public bool IsChecked
@@ -78,38 +80,35 @@ namespace W10SS_GUI.Controls
         public static readonly DependencyProperty ScriptPathProperty =
             DependencyProperty.Register("ScriptPath", typeof(string), typeof(ToggleSwitch), new PropertyMetadata(default(string)));
 
+        public string StateText
+        {
+            get { return (string)GetValue(StateTextProperty); }
+            set { SetValue(StateTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for StateText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StateTextProperty =
+            DependencyProperty.Register("StateText", typeof(string), typeof(ToggleSwitch), new PropertyMetadata(default(string)));
+
         public EventHandler IsSwitched;
 
         private void ToggleSwitch_Click(object sender, RoutedEventArgs e)
         {
-            ToggleButton senderState = sender as ToggleButton;
-            textToggleSwitchDescription.Foreground = senderState.IsChecked == true
-                ? textToggleSwitchHeader.Foreground
-                : (Brush)TryFindResource("colorToggleSwitchDescription");
-            IsSwitched?.Invoke(senderState.IsChecked, new RoutedEventArgs());
+            ToggleButton toggle = sender as ToggleButton;
+            SetToggleStateText();
+            IsSwitched?.Invoke(toggle.IsChecked, new RoutedEventArgs());
         }
-
-        private void GridToggleSwitch_MouseEnter(object sender, MouseEventArgs e)
+        
+        public void SetToggleStateText()
         {
-            if (!(bool)toggleSwitch.IsChecked)
+            if (Culture.IsRU)
             {
-                ShowAnimation(storyboardName: "animationToggleWidthToMaxHeight", element: gridToggleSwitch);
+                StateText = IsChecked ? (string)Application.Current.TryFindResource(CONST.ToggleSwitch_State_RU_ON) : (string)Application.Current.TryFindResource(CONST.ToggleSwitch_State_RU_OFF);
             }
-        }
-
-        private void GridToggleSwitch_MouseLeave(object sender, MouseEventArgs e)
-        {
-            if (!(bool)toggleSwitch.IsChecked)
+            else
             {
-                ShowAnimation(storyboardName: "animationToggleWidthToMinHeight", element: gridToggleSwitch);
+                StateText = IsChecked ? (string)Application.Current.TryFindResource(CONST.ToggleSwitch_State_EN_ON) : (string)Application.Current.TryFindResource(CONST.ToggleSwitch_State_EN_OFF);
             }
-        }
-
-        private void ShowAnimation(String storyboardName, FrameworkElement element)
-        {
-            Storyboard storyboard = TryFindResource(storyboardName) as Storyboard;
-            DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;            
-            storyboard.Begin(element);
         }
     }
 }

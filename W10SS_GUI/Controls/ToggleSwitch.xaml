@@ -186,40 +186,55 @@
     </UserControl.Resources>
 
     <Grid Name="gridToggleSwitch"
-          MinWidth="{StaticResource toggleSwitchMinWidth}"          
-          MinHeight="{StaticResource toggleSwitchMinHeight}"
-          Height="{StaticResource toggleSwitchMinHeight}"   
-          MaxHeight="{StaticResource toggleSwitchMaxHeight}"
-          MouseEnter="GridToggleSwitch_MouseEnter" 
-          MouseLeave="GridToggleSwitch_MouseLeave"
-          Background="{DynamicResource colorToggleSwitchBackground}">                           
+          MinWidth="{StaticResource toggleSwitchMinWidth}"                    
+          Height="Auto"
+          Margin="10 5 5 5">                           
 
         <StackPanel VerticalAlignment="Top" 
                     HorizontalAlignment="Left"
-                    Margin="10 5 75 5">                    
+                    Margin="0 0 0 10">                    
         
             <TextBlock Name="textToggleSwitchHeader" 
                        FontFamily="{StaticResource fontToggleSwitchHeader}"                                      
                        FontSize="{StaticResource fontSizeToggleSwitchHeader}"                       
-                       TextWrapping="Wrap"   
-                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Header}"                       
-                       MaxHeight="{StaticResource toggleSwitchHeaderMaxHeight}"/>
+                       TextWrapping="Wrap"                       
+                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Header}"
+                       Height="Auto"
+                       MaxHeight="{StaticResource toggleSwitchHeaderMaxHeight}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"/>
 
             <TextBlock Name="textToggleSwitchDescription" 
                        FontFamily="{StaticResource fontToggleSwitchDescription}"                   
                        FontSize="{StaticResource fontSizeToggleSwitchDescription}"
-                       Foreground="{DynamicResource colorToggleSwitchDescription}" 
-                       Padding="0 5 0 5"
+                       Foreground="{DynamicResource colorToggleSwitchDescription}"                        
+                       Height="Auto"
                        MaxHeight="{StaticResource toggleSwitchDescriptionMaxHeight}"                       
-                       TextWrapping="Wrap"                            
-                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Description}" />
-        </StackPanel>
-        
-        <ToggleButton Name="toggleSwitch"
-                      VerticalAlignment="Center" 
-                      HorizontalAlignment="Right"
-                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=IsChecked}" 
-                      Click="ToggleSwitch_Click" />
+                       TextWrapping="Wrap"      
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"                       
+                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Description}"/>
+
+            <StackPanel Orientation="Horizontal">
+                
+                <ToggleButton Name="toggleSwitch"
+                          VerticalAlignment="Center" 
+                          HorizontalAlignment="Left"
+                          Margin="0 10 0 0"
+                          IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=IsChecked}" 
+                          Click="ToggleSwitch_Click"/>
+
+                <TextBlock Name="textToggleSwitchState" 
+                       FontFamily="{StaticResource fontToggleSwitchState}"                                      
+                       FontSize="{StaticResource fontSizeToggleSwitchState}"                       
+                       TextWrapping="NoWrap"
+                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=StateText}"
+                       Height="Auto"                       
+                       Margin="10 7 20 0"/>
+
+            </StackPanel>
+            
+        </StackPanel>        
 
     </Grid>
 </UserControl>

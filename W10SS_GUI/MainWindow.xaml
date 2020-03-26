@@ -268,7 +268,17 @@
 
                 <StackPanel Name="panelTogglesCategoryContextMenu"
                             Tag="{StaticResource tagCategoryContextMenu}"
-                            Visibility="Collapsed">                    
+                            Visibility="Visible">
+
+                    <uc:ToggleSwitch
+                        Header="Do not use sign-in info to automatically finish setting up device after an update or restart"
+                        Description="Do not use sign-in info to automatically finish setting up device after an update or restart"
+                        />
+                    
+                    <uc:ToggleSwitch
+                        Header="Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart"
+                        Description="Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart"
+                        />
 
                 </StackPanel>                            
 
@@ -276,7 +286,7 @@
             
         </ScrollViewer>
 
-        <!--#endregion TToggles Category Panels-->
+        <!--#endregion Toggles Category Panels-->
 
     </Grid>
 </Window>

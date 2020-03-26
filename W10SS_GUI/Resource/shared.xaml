@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Windows10SetupScript.Resource"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ToggleSwitchStateRuOn">Вкл</system:String>
+    <system:String x:Key="ToggleSwitchStateRuOff">Выкл</system:String>
+    <system:String x:Key="ToggleSwitchStateEnOn">On</system:String>
+    <system:String x:Key="ToggleSwitchStateEnOff">Off</system:String>
+    
+</ResourceDictionary>
