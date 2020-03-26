@@ -38,7 +38,12 @@
     <system:Double x:Key="fontSizeToggleSwitchDescription">16</system:Double>
     <system:Double x:Key="fontSizeToggleSwitchHeader">18</system:Double>
     <system:Double x:Key="fontSizeToggleSwitchState">18</system:Double>
-    
+
+    <system:Double x:Key="gridInfoPanelMinWidth">750</system:Double>
+    <system:Double x:Key="gridlInfoPanelMinHeight">800</system:Double>
+    <system:Double x:Key="viewboxlInfoPanelMinHeight">128</system:Double>
+    <system:Double x:Key="viewboxlInfoPanelMinWidth">128</system:Double>
+
 
 
 
