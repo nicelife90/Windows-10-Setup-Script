@@ -13,7 +13,7 @@ using System.Windows.Controls.Primitives;
 using Windows10SetupScript.Classes;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
+using Windows10SetupScript.Controls;
 
 namespace W10SS_GUI
 {
@@ -47,9 +47,7 @@ namespace W10SS_GUI
         private void SetUiLanguage()
         {
             Resources.MergedDictionaries.Add(Culture.GetCultureDictionary());
-        }
-
-        
+        }        
 
         private void InitializeToggles()
         {
@@ -75,6 +73,18 @@ namespace W10SS_GUI
                     s.IsSwitched += SetButtonsStateIfToggleIsSwitched;
                     categoryPanel.Children.Add(s);
                 });
+
+                SetInfoPanelElement(categoryPanel);
+            }
+        }
+
+        private void SetInfoPanelElement(StackPanel panel)
+        {
+            if (panel.Children.Count == 0)
+            {
+                InfoPanel info = new InfoPanel();
+                info.Height = Window.Height / 2;
+                panel.Children.Add(info);                
             }
         }
 
@@ -208,7 +218,6 @@ namespace W10SS_GUI
         {
             Task.Run(() => Process.Start(CONST.W10SS_GitHub));
         }
-
         
     }
 }

@@ -21,6 +21,8 @@
     <system:String x:Key="textHamburgerSave">Сохранить</system:String>
     <system:String x:Key="textHamburgerLoad">Импортировать</system:String>
     <system:String x:Key="textHamburgerLanguage">English</system:String>
-    <system:String x:Key="textHamburgerOpenGithub">GitHub</system:String>    
+    <system:String x:Key="textHamburgerOpenGithub">GitHub</system:String>
+
+    <system:String x:Key="textInfoPanelMessage">Файлы PowerShell для этой категории не найдены</system:String>
 
 </ResourceDictionary>

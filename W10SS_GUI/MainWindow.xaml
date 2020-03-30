@@ -231,7 +231,7 @@
             <StackPanel Name="panelTogglesCategoryContainer">
 
                 <StackPanel Name="panelTogglesCategoryPrivacy"
-                            Tag="{StaticResource tagCategoryPrivacy}"
+                            Tag="{StaticResource tagCategoryPrivacy}"                            
                             Visibility="Collapsed" />
 
                 <StackPanel Name="panelTogglesCategoryUi"
@@ -268,18 +268,8 @@
 
                 <StackPanel Name="panelTogglesCategoryContextMenu"
                             Tag="{StaticResource tagCategoryContextMenu}"
-                            Visibility="Visible">
-
-                    <uc:ToggleSwitch
-                        Header="Do not use sign-in info to automatically finish setting up device after an update or restart"
-                        Description="Do not use sign-in info to automatically finish setting up device after an update or restart"
-                        />
+                            Visibility="Collapsed">
                     
-                    <uc:ToggleSwitch
-                        Header="Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart"
-                        Description="Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart Do not use sign-in info to automatically finish setting up device after an update or restart"
-                        />
-
                 </StackPanel>                            
 
             </StackPanel>

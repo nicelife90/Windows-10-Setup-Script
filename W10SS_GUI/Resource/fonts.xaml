@@ -13,4 +13,6 @@
     <FontFamily x:Key="fontToggleSwitchDescription">Segoe UI</FontFamily>
     <FontFamily x:Key="fontToggleSwitchState">Segoe UI</FontFamily>
 
+    <FontFamily x:Key="fontInfoPanelText">Segoe UI</FontFamily>
+
 </ResourceDictionary>

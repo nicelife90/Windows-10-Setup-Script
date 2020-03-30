@@ -4,23 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Windows10SetupScript.Controls"
+             xmlns:gui="clr-namespace:W10SS_GUI" 
              mc:Ignorable="d">
-    
-    <Grid Name="gridInfoPanel" 
-          MinHeight="{DynamicResource gridlInfoPanelMinHeight}"
-          MinWidth="{DynamicResource gridInfoPanelMinWidth}">
 
-        <Viewbox Name="viewboxInfoPanel" 
-                 Width="{DynamicResource viewboxlInfoPanelMinWidth}" 
-                 Height="{DynamicResource viewboxlInfoPanelMinHeight}" 
-                 VerticalAlignment="Center" 
-                 HorizontalAlignment="Center">
-            <Canvas Width="24" Height="24">
-                <Path Fill="White" Data="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" />
-            </Canvas>
-        </Viewbox>
+    <Grid Name="gridInfoPanel">
 
+        <StackPanel Name="panelIfoPanel"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Background="Transparent">
 
+            <Viewbox Name="viewboxInfoPanel" 
+                 Width="{StaticResource viewboxlInfoPanelWidth}" 
+                 Height="{StaticResource viewboxlInfoPanelHeight}">
+                <Canvas Width="24" Height="24">
+                    <Path Fill="{Binding ElementName=textInfoPanel, Path=Foreground}" Data="{StaticResource iconInfoPanelWarning}"/>
+                </Canvas>
+            </Viewbox>
+
+            <TextBlock Name="textInfoPanel" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" 
+                       Foreground="{Binding ElementName=Window, Path=Foreground}"
+                       TextWrapping="Wrap"
+                       FontFamily="{StaticResource fontInfoPanelText}"
+                       FontSize="{StaticResource fontSizeInfoPanelText}"
+                       FontWeight="Bold"
+                       Margin="5"
+                       Text="{DynamicResource textInfoPanelMessage}"/>
+        </StackPanel>
 
     </Grid>
 </UserControl>
