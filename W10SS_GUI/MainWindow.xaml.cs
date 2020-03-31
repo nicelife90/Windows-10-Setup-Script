@@ -187,10 +187,18 @@ namespace W10SS_GUI
         private void Window_Initialized(object sender, EventArgs e)
         {
             InitializeVariables();
+            SetMainWindowHeight();
             SetUiLanguage();
             InitializeToggles();
             SetHamburgerWidth();
             SetActivePanel(HamburgerPrivacy);
+        }
+
+        private void SetMainWindowHeight()
+        {
+            Window.Height = SystemParameters.WorkArea.Height > CONST.Window_MinHeight
+                ? SystemParameters.WorkArea.Height
+                : Window.MinHeight;
         }
 
         private void ButtonHamburgerMenu_Click(object sender, MouseButtonEventArgs e)

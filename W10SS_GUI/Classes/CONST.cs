@@ -28,8 +28,6 @@ namespace Windows10SetupScript.Classes
 
         internal static readonly string Resources_Dictionaries_TAGS = "/Resource/tags.xaml";
 
-        
-
-
+        internal static readonly int Window_MinHeight = 728;
     }
 }
