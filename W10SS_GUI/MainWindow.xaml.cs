@@ -28,7 +28,15 @@ namespace W10SS_GUI
         private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();
         private uint TogglesCounter = default(uint);
         private uint activeToggles = default(uint);
-               
+
+        private OpenFileDialog ofd = new OpenFileDialog
+        {
+            DefaultExt = CONST.Ofd_Ext,
+            Filter = CONST.Ofd_Filter,
+            FileName = Environment.GetEnvironmentVariable("COMPUTERNAME"),
+            Multiselect = false
+        };
+
 
         internal string LastClickedButtonName => lastclickedbutton.Name as string;        
                 
@@ -225,18 +233,17 @@ namespace W10SS_GUI
 
         private void ButtonHamburgerLoadSettings_Click(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog
-            {
-                DefaultExt = CONST.Ofd_Ext,
-                Filter = CONST.Ofd_Filter,
-                FileName = Environment.GetEnvironmentVariable("COMPUTERNAME"),
-                Multiselect = false
-            };           
-
             if (ofd.ShowDialog() == true)
             {
+                //TODO Load Settings Logics !!!
                 throw new NotImplementedException();
             }
-        }           
+        }
+
+        private void PanelHamburger_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+                DragMove();
+        }       
     }
 }

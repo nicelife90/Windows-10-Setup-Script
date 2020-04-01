@@ -41,7 +41,9 @@
                 Width="{StaticResource panelHamburgerMinWidth}"
                 MaxWidth="{DynamicResource panelHamburgerMaxWidth}"                
                 Background="{DynamicResource colorButtonHamburgerBackground}"
-                HorizontalAlignment="Left">
+                HorizontalAlignment="Left"
+                MouseLeftButtonDown="PanelHamburger_MouseLeftButtonDown"
+                >
 
             <!--#region Panel Hamburger Top Container-->            
             <StackPanel x:Name="panelHamburgerTopContainer"
@@ -54,8 +56,7 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         ViewboxPathVisibility="Collapsed"                                        
-                                        MouseLeftButtonDown="ButtonHamburgerMenu_Click"                                 
-                                        />
+                                        MouseLeftButtonDown="ButtonHamburgerMenu_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="HamburgerPrivacy"
                                         Icon="{StaticResource iconHamburgerPrivacy}" 
@@ -64,8 +65,7 @@
                                         TextMargin="0 0 10 3"
                                         Tag="{StaticResource tagCategoryPrivacy}"
                                         ViewboxPathVisibility="Collapsed"                                         
-                                        MouseLeftButtonDown="ButtonHamburger_Click"
-                                        />
+                                        MouseLeftButtonDown="ButtonHamburger_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="HamburgerUi"
                                         Icon="{StaticResource iconHamburgerUi}" 
