@@ -20,6 +20,7 @@
         Background="{DynamicResource colorWindowBackground}"
         Foreground="{DynamicResource colorWindowForeground}"                        
         SizeToContent="Manual" Initialized="Window_Initialized">
+    
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
@@ -40,8 +41,7 @@
                 Width="{StaticResource panelHamburgerMinWidth}"
                 MaxWidth="{DynamicResource panelHamburgerMaxWidth}"                
                 Background="{DynamicResource colorButtonHamburgerBackground}"
-                HorizontalAlignment="Left" 
-                MouseLeftButtonDown="PanelHamburger_MouseLeftButtonDown">
+                HorizontalAlignment="Left">
 
             <!--#region Panel Hamburger Top Container-->            
             <StackPanel x:Name="panelHamburgerTopContainer"
@@ -183,7 +183,8 @@
                                         ViewboxPathData="{StaticResource iconHamburgerLoadSettings}"
                                         Text="{DynamicResource textHamburgerLoad}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"/>
+                                        TextMargin="0 0 10 3"
+                                        MouseLeftButtonDown="ButtonHamburgerLoadSettings_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="HamburgerSaveSettings"
                                         IsEnabled="False"

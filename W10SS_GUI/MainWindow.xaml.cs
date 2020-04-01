@@ -14,6 +14,7 @@ using Windows10SetupScript.Classes;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows10SetupScript.Controls;
+using Microsoft.Win32;
 
 namespace W10SS_GUI
 {
@@ -186,13 +187,13 @@ namespace W10SS_GUI
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            InitializeVariables();
+            InitializeVariables();            
             SetMainWindowHeight();
             SetUiLanguage();
             InitializeToggles();
             SetHamburgerWidth();
             SetActivePanel(HamburgerPrivacy);
-        }
+        }        
 
         private void SetMainWindowHeight()
         {
@@ -216,16 +217,26 @@ namespace W10SS_GUI
             animation.To = animationTo;            
             storyboard.Begin(element);
         }
-
-        private void PanelHamburger_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }        
-
+        
         private void ButtonHamburgerOpenGithub_Click(object sender, MouseButtonEventArgs e)
         {
             Task.Run(() => Process.Start(CONST.W10SS_GitHub));
         }
-        
+
+        private void ButtonHamburgerLoadSettings_Click(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                DefaultExt = CONST.Ofd_Ext,
+                Filter = CONST.Ofd_Filter,
+                FileName = Environment.GetEnvironmentVariable("COMPUTERNAME"),
+                Multiselect = false
+            };           
+
+            if (ofd.ShowDialog() == true)
+            {
+                throw new NotImplementedException();
+            }
+        }           
     }
 }
