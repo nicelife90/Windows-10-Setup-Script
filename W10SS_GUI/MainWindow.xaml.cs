@@ -33,8 +33,15 @@ namespace W10SS_GUI
         {
             DefaultExt = CONST.Ofd_Ext,
             Filter = CONST.Ofd_Filter,
-            FileName = Environment.GetEnvironmentVariable("COMPUTERNAME"),
+            FileName = CONST.Ofd_FileName,
             Multiselect = false
+        };
+
+        private SaveFileDialog sfd = new SaveFileDialog
+        {
+            DefaultExt = CONST.Ofd_Ext,
+            Filter = CONST.Ofd_Filter,
+            FileName = CONST.Sfd_FileName
         };
 
 
@@ -244,6 +251,15 @@ namespace W10SS_GUI
         {
             if (e.ButtonState == MouseButtonState.Pressed)
                 DragMove();
-        }       
+        }
+
+        private void ButtonHamburgerSaveSettings_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (sfd.ShowDialog() == true)
+            {
+                //TODO Save Settings Logics !!!
+                throw new NotImplementedException();
+            }
+        }
     }
 }

@@ -178,7 +178,7 @@
                                         IsEnabled="False"
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"/>
 
-                <uc:HamburgerCategoryButton x:Name="buttonHamburgerLoadSettings"                                        
+                <uc:HamburgerCategoryButton x:Name="HamburgerLoadSettings"                                        
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerLoadSettings}"
                                         Text="{DynamicResource textHamburgerLoad}" 
@@ -192,7 +192,8 @@
                                         ViewboxPathData="{StaticResource iconHamburgerSaveSettings}"
                                         Text="{DynamicResource textHamburgerSave}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"/>
+                                        TextMargin="0 0 10 3"
+                                        MouseLeftButtonDown="ButtonHamburgerSaveSettings_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="HamburgerApplySettings"
                                         IsEnabled="False"
