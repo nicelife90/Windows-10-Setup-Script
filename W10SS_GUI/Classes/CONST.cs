@@ -35,5 +35,10 @@ namespace Windows10SetupScript.Classes
         internal static readonly string Ofd_FileName = null;
 
         internal static readonly string Sfd_FileName = $"*.{Ofd_Ext}";
+        internal static readonly string InfoPanel_WarningTriangle = "iconInfoPanelWarningTriangle";
+        internal static readonly object InfoPanel_NoPsFilesFound = "textInfoPanelPsFilesNotFound";
+
+        internal static readonly int Win10_Major = 10;
+        internal static readonly int Win10_Build = 15063;
     }
 }

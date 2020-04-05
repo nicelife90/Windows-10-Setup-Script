@@ -23,6 +23,8 @@
     <system:String x:Key="textHamburgerLanguage">Русский</system:String>
     <system:String x:Key="textHamburgerOpenGithub">GitHub</system:String>
 
-    <system:String x:Key="textInfoPanelMessage">No Powershell files found for this category</system:String>
+    <system:String x:Key="textInfoPanelPsFilesNotFound">No Powershell files found for this category</system:String>
+
+    <system:String x:Key="textWarningPanelOsVersionNotSupported">Unfortunately, this version of Windows is not supported, use Windows 10 version 1703 and higher.</system:String>    
 
 </ResourceDictionary>

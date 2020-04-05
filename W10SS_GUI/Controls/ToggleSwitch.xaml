@@ -197,7 +197,8 @@
             <TextBlock Name="textToggleSwitchHeader" 
                        FontFamily="{StaticResource fontToggleSwitchHeader}"                                      
                        FontSize="{StaticResource fontSizeToggleSwitchHeader}"                       
-                       TextWrapping="Wrap"                       
+                       TextWrapping="Wrap"
+                       TextTrimming="WordEllipsis"
                        Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Header}"
                        Height="Auto"
                        MaxHeight="{StaticResource toggleSwitchHeaderMaxHeight}"
@@ -211,6 +212,7 @@
                        Height="Auto"
                        MaxHeight="{StaticResource toggleSwitchDescriptionMaxHeight}"                       
                        TextWrapping="Wrap"      
+                       TextTrimming="WordEllipsis"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"                       
                        Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Description}"/>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
         xmlns:local="clr-namespace:W10SS_GUI"        
         xmlns:uc="clr-namespace:W10SS_GUI.Controls"
+        xmlns:ub="clr-namespace:Windows10SetupScript.Controls"
         mc:Ignorable="d"
         Name="Window" Title="{StaticResource textWindowTitle}"         
         MinHeight="{StaticResource windowMinHeight}"
@@ -277,8 +278,8 @@
 
                 <StackPanel Name="panelTogglesCategoryContextMenu"
                             Tag="{StaticResource tagCategoryContextMenu}"
-                            Visibility="Collapsed">
-                    
+                            Visibility="Collapsed">                    
+
                 </StackPanel>                            
 
             </StackPanel>

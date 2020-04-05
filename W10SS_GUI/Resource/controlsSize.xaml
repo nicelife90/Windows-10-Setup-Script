@@ -39,5 +39,10 @@
     <system:Double x:Key="viewboxlInfoPanelHeight">64</system:Double>
     <system:Double x:Key="viewboxlInfoPanelWidth">64</system:Double>
     <system:Double x:Key="fontSizeInfoPanelText">22</system:Double>
+    <system:Double x:Key="fontSizeInfoPanelIcon">44</system:Double>
+
+    <system:Double x:Key="fontSizeWarningPanelText">32</system:Double>
+    <system:Double x:Key="viewboxWarningPanelWidth">96</system:Double>
+    <system:Double x:Key="viewboxWarningPanelHeight">96</system:Double>
 
 </ResourceDictionary>

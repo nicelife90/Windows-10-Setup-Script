@@ -22,7 +22,39 @@ namespace Windows10SetupScript.Controls
     {
         public InfoPanel()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            Application.Current.MainWindow.SizeChanged += OnMainWindow_SizeChanged;
+            Application.Current.MainWindow.StateChanged += OnMainWindow_SizeChanged;
         }
+
+        private void SetActualHeight()
+        {            
+            gridInfoPanel.Height = Application.Current.MainWindow.ActualHeight / 2;
+        }
+
+        private void OnMainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            SetActualHeight();
+        }
+
+        public string Icon
+        {
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(string), typeof(InfoPanel), new PropertyMetadata(default(string)));
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(InfoPanel), new PropertyMetadata(default(string)));
     }
 }

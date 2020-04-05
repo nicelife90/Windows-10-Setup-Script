@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows10SetupScript.Controls;
 using Microsoft.Win32;
+using System.Windows.Media;
 
 namespace W10SS_GUI
 {
@@ -45,7 +46,7 @@ namespace W10SS_GUI
         };
 
 
-        internal string LastClickedButtonName => lastclickedbutton.Name as string;        
+        internal string LastClickedButtonName => lastclickedbutton?.Name as string;        
                 
         public MainWindow()
         {
@@ -90,16 +91,21 @@ namespace W10SS_GUI
                     categoryPanel.Children.Add(s);
                 });
 
-                SetInfoPanelElement(categoryPanel);
+                AddInfoPanelControls(categoryPanel);
             }
         }
 
-        private void SetInfoPanelElement(StackPanel panel)
+        private void AddInfoPanelControls(StackPanel panel)
         {
             if (panel.Children.Count == 0)
             {
-                InfoPanel info = new InfoPanel();
-                info.Height = Window.Height / 2;
+                InfoPanel info = new InfoPanel
+                {
+                    Icon = Application.Current.Resources[CONST.InfoPanel_WarningTriangle] as string,                    
+                    Foreground = Application.Current.Resources["colorToggleSwitchDescription"] as Brush                    
+                };
+
+                info.SetResourceReference(InfoPanel.TextProperty, CONST.InfoPanel_NoPsFilesFound);
                 panel.Children.Add(info);                
             }
         }
@@ -183,7 +189,7 @@ namespace W10SS_GUI
         private void ButtonHamburgerLanguageSettings_Click(object sender, MouseButtonEventArgs e)
         {
             Resources.MergedDictionaries.Add(Culture.ChangeCultureDictionary());            
-            HamburgerReOpenAnimation();
+            ShowHamburgerReOpenAnimation();
             SetHamburgerWidth();
             SetTogglesStateTextFormCurrentCulture();
             textTogglesHeader.Text = Convert.ToString(Resources[LastClickedButtonName]);            
@@ -194,7 +200,7 @@ namespace W10SS_GUI
             TogglesSwitches.ForEach(t => t.SetToggleStateText());
         }
 
-        private void HamburgerReOpenAnimation()
+        private void ShowHamburgerReOpenAnimation()
         {
             if (panelHamburger.ActualWidth == panelHamburger.MaxWidth)
                 ShowAnimation(storyboardName: CONST.Animation_Hamburger_REOPEN, animationTo: panelHamburger.MinWidth, element: panelHamburger);            
@@ -202,13 +208,34 @@ namespace W10SS_GUI
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            InitializeVariables();            
+            InitializeVariables();
             SetMainWindowHeight();
             SetUiLanguage();
-            InitializeToggles();
-            SetHamburgerWidth();
-            SetActivePanel(HamburgerPrivacy);
-        }        
+
+            if (GetOsVersion())
+            {                
+                InitializeToggles();
+                SetHamburgerWidth();
+                SetActivePanel(HamburgerPrivacy);
+            }
+
+            else
+            {
+                AddWarningPanelControls();
+            }
+        }
+
+        private void AddWarningPanelControls()
+        {
+            gridWindow.Children.Clear();
+            gridWindow.Children.Add(new WarningPanel());
+        }
+
+        private bool GetOsVersion()
+        {
+            return Environment.OSVersion.Version.Build >= CONST.Win10_Build && Environment.OSVersion.Version.Major == CONST.Win10_Major
+                ? true : false;            
+        }
 
         private void SetMainWindowHeight()
         {
