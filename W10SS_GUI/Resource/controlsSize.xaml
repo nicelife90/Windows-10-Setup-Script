@@ -4,7 +4,7 @@
                     xmlns:local="clr-namespace:W10SS_GUI.Controls">
     
     <system:Double x:Key="windowMinHeight">728</system:Double>
-    <system:Double x:Key="windowMinWidth">824</system:Double>
+    <system:Double x:Key="windowMinWidth">828</system:Double>
     <system:Double x:Key="windowFontSize">18</system:Double>
 
     <system:Double x:Key="buttonHamburgerWidth">40</system:Double>    

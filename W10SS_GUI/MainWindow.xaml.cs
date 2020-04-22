@@ -208,8 +208,7 @@ namespace W10SS_GUI
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            InitializeVariables();
-            SetMainWindowHeight();
+            InitializeVariables();            
             SetUiLanguage();
 
             if (GetOsVersion())
@@ -235,14 +234,7 @@ namespace W10SS_GUI
         {
             return Environment.OSVersion.Version.Build >= CONST.Win10_Build && Environment.OSVersion.Version.Major == CONST.Win10_Major
                 ? true : false;            
-        }
-
-        private void SetMainWindowHeight()
-        {
-            Window.Height = SystemParameters.WorkArea.Height > CONST.Window_MinHeight
-                ? SystemParameters.WorkArea.Height
-                : Window.MinHeight;
-        }
+        }        
 
         private void ButtonHamburgerMenu_Click(object sender, MouseButtonEventArgs e)
         {

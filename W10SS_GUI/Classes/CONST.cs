@@ -27,9 +27,7 @@ namespace Windows10SetupScript.Classes
         internal static readonly string Animation_Hamburger = "animationHamburgerPanel";
 
         internal static readonly string Resources_Dictionaries_TAGS = "/Resource/tags.xaml";
-
-        internal static readonly int Window_MinHeight = 728;
-                
+                        
         internal static readonly string Ofd_Ext = "w10ss";
         internal static readonly string Ofd_Filter = $"Win10 Setup Script Settings (*.{Ofd_Ext})|*.{Ofd_Ext}";
         internal static readonly string Ofd_FileName = null;

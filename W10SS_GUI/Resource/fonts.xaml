@@ -3,19 +3,19 @@
                     xmlns:local="clr-namespace:W10SS_GUI.Resource"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <FontFamily x:Key="fontTogglesPanelHeader">Calibri</FontFamily>
+    <FontFamily x:Key="fontTogglesPanelHeader">"./texgyreheros-regular.otf"</FontFamily>
     <FontFamily x:Key="fontHamburgerCategoryButtonIcon">Segoe MDL2 Assets</FontFamily>
     <FontFamily x:Key="fontHamburgerCategoryFlashButtonIcon">Segoe MDL2 Assets</FontFamily>
-    <FontFamily x:Key="fontWindow">Segoe UI</FontFamily>
+    <FontFamily x:Key="fontWindow">"./texgyreheros-regular.otf"</FontFamily>
 
     <FontFamily x:Key="fontToggleIcon">Segoe MDL2 Assets</FontFamily>
-    <FontFamily x:Key="fontToggleSwitchHeader">Calibri</FontFamily>
-    <FontFamily x:Key="fontToggleSwitchDescription">Segoe UI</FontFamily>
-    <FontFamily x:Key="fontToggleSwitchState">Segoe UI</FontFamily>
+    <FontFamily x:Key="fontToggleSwitchHeader">"./texgyreheros-regular.otf"</FontFamily>
+    <FontFamily x:Key="fontToggleSwitchDescription">"./texgyreheros-regular.otf"</FontFamily>
+    <FontFamily x:Key="fontToggleSwitchState">"./texgyreheros-regular.otf"</FontFamily>
 
-    <FontFamily x:Key="fontInfoPanelText">Calibri</FontFamily>
+    <FontFamily x:Key="fontInfoPanelText">"./texgyreheros-regular.otf"</FontFamily>
     <FontFamily x:Key="fontInfoPanelIcon">Segoe MDL2 Assets</FontFamily>
 
-    <FontFamily x:Key="fontWarningPanelText">Segoe UI</FontFamily>
+    <FontFamily x:Key="fontWarningPanelText">"./texgyreheros-regular.otf"</FontFamily>
 
 </ResourceDictionary>

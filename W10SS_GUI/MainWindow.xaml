@@ -7,20 +7,13 @@
         xmlns:uc="clr-namespace:W10SS_GUI.Controls"
         xmlns:ub="clr-namespace:Windows10SetupScript.Controls"
         mc:Ignorable="d"
-        Name="Window" Title="{StaticResource textWindowTitle}"         
-        MinHeight="{StaticResource windowMinHeight}"
-        Height="{StaticResource windowMinHeight}"            
-        MinWidth="{StaticResource windowMinWidth}"        
-        Width="{StaticResource windowMinWidth}"         
-        FontFamily="{StaticResource fontWindow}"
-        FontSize="{DynamicResource windowFontSize}"         
-        WindowStartupLocation="CenterScreen" 
-        SnapsToDevicePixels="True" 
-        ResizeMode="CanResize" 
-        ShowInTaskbar="True"
-        Background="{DynamicResource colorWindowBackground}"
-        Foreground="{DynamicResource colorWindowForeground}"                        
-        SizeToContent="Manual" Initialized="Window_Initialized">
+        Name="Window" Title="{StaticResource textWindowTitle}"
+        MinHeight="{StaticResource windowMinHeight}" MinWidth="{StaticResource windowMinWidth}"
+        Width="{StaticResource windowMinWidth}" FontFamily="{StaticResource fontWindow}"
+        FontSize="{DynamicResource windowFontSize}" WindowStartupLocation="CenterScreen" 
+        SnapsToDevicePixels="True" ResizeMode="CanResize" SizeToContent="Height"
+        ShowInTaskbar="True" Background="{DynamicResource colorWindowBackground}"
+        Foreground="{DynamicResource colorWindowForeground}" Initialized="Window_Initialized">
     
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -43,9 +36,8 @@
                 MaxWidth="{DynamicResource panelHamburgerMaxWidth}"                
                 Background="{DynamicResource colorButtonHamburgerBackground}"
                 HorizontalAlignment="Left"
-                MouseLeftButtonDown="PanelHamburger_MouseLeftButtonDown"
-                >
-
+                MouseLeftButtonDown="PanelHamburger_MouseLeftButtonDown">
+            
             <!--#region Panel Hamburger Top Container-->            
             <StackPanel x:Name="panelHamburgerTopContainer"
                         Height="440"
@@ -63,7 +55,7 @@
                                         Icon="{StaticResource iconHamburgerPrivacy}" 
                                         Text="{DynamicResource HamburgerPrivacy}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"
+                                        TextMargin="0 1 10 0"
                                         Tag="{StaticResource tagCategoryPrivacy}"
                                         ViewboxPathVisibility="Collapsed"                                         
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -72,7 +64,7 @@
                                         Icon="{StaticResource iconHamburgerUi}" 
                                         Text="{DynamicResource HamburgerUi}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 0"
+                                        TextMargin="0 6 10 0"
                                         Tag="{StaticResource tagCategoryUi}"
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -81,7 +73,7 @@
                                         Icon="{StaticResource iconHamburgerContextMenu}" 
                                         Text="{DynamicResource HamburgerContextMenu}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"
+                                        TextMargin="0 5 10 3"
                                         Tag="{StaticResource tagCategoryContextMenu}"
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -90,7 +82,7 @@
                                         Icon="{StaticResource iconHamburgerStartMenu}" 
                                         Text="{DynamicResource HamburgerStartMenu}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 5"
+                                        TextMargin="0 5 10 5"
                                         Tag="{StaticResource tagCategoryStartMenu}"
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -99,7 +91,7 @@
                                         Icon="{StaticResource iconHamburgerSystem}" 
                                         Text="{DynamicResource HamburgerSystem}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 1"
+                                        TextMargin="0 3 10 1"
                                         Tag="{StaticResource tagCategorySystem}"
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -109,7 +101,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerTaskScheduler}"
                                         Text="{DynamicResource HamburgerTaskScheduler}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 2"
+                                        TextMargin="0 4 10 0"
                                         Tag="{StaticResource tagCategoryTaskScheduler}"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
@@ -117,7 +109,7 @@
                                         Icon="{StaticResource iconHamburgerDefender}" 
                                         Text="{DynamicResource HamburgerSecurity}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 4"
+                                        TextMargin="0 5 10 4"
                                         Tag="{StaticResource tagCategoryDefender}"
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -127,7 +119,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerWinGame}"
                                         Text="{DynamicResource HamburgerGaming}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 4"
+                                        TextMargin="0 5 10 3"
                                         Tag="{StaticResource tagCategoryWinGame}"                                                                                
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
@@ -135,7 +127,7 @@
                                         Icon="{StaticResource iconHamburgerUwp}" 
                                         Text="{DynamicResource HamburgerUwp}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 1"
+                                        TextMargin="0 3 10 1"
                                         Tag="{StaticResource tagCategoryUwp}"
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -145,7 +137,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerOneDrive}"
                                         Text="{DynamicResource HamburgerOneDrive}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"
+                                        TextMargin="0 5 10 3"
                                         Tag="{StaticResource tagCategoryOneDrive}"
                                         Canvas.Top="400" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
@@ -162,7 +154,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerOpenGithub}"
                                         Text="{DynamicResource textHamburgerOpenGithub}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"                                        
+                                        TextMargin="0 6 10 2"                                        
                                         MouseLeftButtonDown="ButtonHamburgerOpenGithub_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="buttonHamburgerLanguageSettings"                                        
@@ -170,7 +162,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerLanguageSettings}"
                                         Text="{DynamicResource textHamburgerLanguage}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"                                        
+                                        TextMargin="0 5 10 3"                                        
                                         MouseLeftButtonDown="ButtonHamburgerLanguageSettings_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="buttonPlaceholder"                                        
@@ -184,7 +176,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerLoadSettings}"
                                         Text="{DynamicResource textHamburgerLoad}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"
+                                        TextMargin="0 5 10 3" 
                                         MouseLeftButtonDown="ButtonHamburgerLoadSettings_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="HamburgerSaveSettings"
@@ -193,7 +185,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerSaveSettings}"
                                         Text="{DynamicResource textHamburgerSave}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 3"
+                                        TextMargin="0 5 10 3"
                                         MouseLeftButtonDown="ButtonHamburgerSaveSettings_Click"/>
 
                 <uc:HamburgerCategoryButton x:Name="HamburgerApplySettings"
@@ -202,7 +194,7 @@
                                         ViewboxPathData="{StaticResource iconHamburgerApplySettings}"
                                         Text="{DynamicResource textHamburgerApply}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
-                                        TextMargin="0 0 10 1"/>
+                                        TextMargin="0 5 10 1"/>
                 
             </StackPanel>
             <!--#endregion Panel Hamburger Bottom Container-->

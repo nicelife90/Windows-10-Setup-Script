@@ -25,6 +25,6 @@
 
     <system:String x:Key="textInfoPanelPsFilesNotFound">No Powershell files found for this category</system:String>
 
-    <system:String x:Key="textWarningPanelOsVersionNotSupported">Unfortunately, this version of Windows is not supported, use Windows 10 version 1703 and higher.</system:String>    
+    <system:String x:Key="textWarningPanelOsVersionNotSupported">Unfortunately, we do not support this version of Windows</system:String>    
 
 </ResourceDictionary>
