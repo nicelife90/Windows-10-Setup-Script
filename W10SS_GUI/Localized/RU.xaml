@@ -23,8 +23,7 @@
     <system:String x:Key="textHamburgerLanguage">English</system:String>
     <system:String x:Key="textHamburgerOpenGithub">GitHub</system:String>
 
-    <system:String x:Key="textInfoPanelPsFilesNotFound">Файлы PowerShell для этой категории не найдены</system:String>
-
-    <system:String x:Key="textWarningPanelOsVersionNotSupported">К сожалению, мы не поддерживаем эту версию Windows</system:String>
+    <system:String x:Key="Error.PsFilesNotFound">Файлы PowerShell для этой категории не найдены</system:String>
+    <system:String x:Key="Error.OsVersionNotSupported">К сожалению, мы не поддерживаем эту версию Windows</system:String>
 
 </ResourceDictionary>

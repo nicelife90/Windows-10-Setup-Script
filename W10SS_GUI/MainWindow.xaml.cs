@@ -23,9 +23,11 @@ namespace W10SS_GUI
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {        
+    {
+        private string AppBaseDir = AppDomain.CurrentDomain.BaseDirectory;
         private HamburgerCategoryButton lastclickedbutton;        
         private Dictionary<string, StackPanel> togglesCategoryAndPanels = new Dictionary<string, StackPanel>();
+        private ErrorsHelper ErrorsHelper = new ErrorsHelper();
         private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();
         private uint TogglesCounter = default(uint);
         private uint activeToggles = default(uint);
@@ -72,7 +74,7 @@ namespace W10SS_GUI
             {
                 string categoryName = togglesCategoryAndPanels.Keys.ToList()[i];
                 StackPanel categoryPanel = togglesCategoryAndPanels[categoryName];
-                string psScriptsDir = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, categoryName);
+                string psScriptsDir = System.IO.Path.Combine(AppBaseDir, categoryName);
 
                 List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
                     && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
@@ -211,7 +213,7 @@ namespace W10SS_GUI
             InitializeVariables();            
             SetUiLanguage();
 
-            if (GetOsVersion())
+            if (!ErrorsHelper.HasErrors)
             {                
                 InitializeToggles();
                 SetHamburgerWidth();
@@ -220,7 +222,7 @@ namespace W10SS_GUI
 
             else
             {
-                AddWarningPanelControls();
+                ErrorsHelper.FixErrors();
             }
         }
 
@@ -228,13 +230,7 @@ namespace W10SS_GUI
         {
             gridWindow.Children.Clear();
             gridWindow.Children.Add(new WarningPanel());
-        }
-
-        private bool GetOsVersion()
-        {
-            return Environment.OSVersion.Version.Build >= CONST.Win10_Build && Environment.OSVersion.Version.Major == CONST.Win10_Major
-                ? true : false;            
-        }        
+        }           
 
         private void ButtonHamburgerMenu_Click(object sender, MouseButtonEventArgs e)
         {

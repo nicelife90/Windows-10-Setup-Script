@@ -38,5 +38,7 @@ namespace Windows10SetupScript.Classes
 
         internal static readonly int Win10_Major = 10;
         internal static readonly int Win10_Build = 15063;
+
+        internal static readonly string Error_OsVersionNotSupported = "Error.OsVersionNotSupported";
     }
 }

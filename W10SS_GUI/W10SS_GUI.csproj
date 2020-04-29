@@ -120,6 +120,8 @@
     </Compile>
     <Compile Include="Classes\CONST.cs" />
     <Compile Include="Classes\Culture.cs" />
+    <Compile Include="Classes\ErrorsHelper.cs" />
+    <Compile Include="Classes\TestErrors.cs" />
     <Compile Include="Controls\HamburgerCategoryButton.xaml.cs">
       <DependentUpon>HamburgerCategoryButton.xaml</DependentUpon>
     </Compile>

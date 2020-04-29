@@ -45,8 +45,8 @@
                 </Canvas>
             </Viewbox>
 
-            <TextBlock Name="textWarningPanel"                                            
-                       Text="{DynamicResource textWarningPanelOsVersionNotSupported}"/>
+            <TextBlock Name="textWarningPanel"/>
+            <!--Text="{DynamicResource textWarningPanelOsVersionNotSupported}"/>-->
         </StackPanel>
 
     </Grid>
