@@ -14,7 +14,7 @@
         SnapsToDevicePixels="True" ResizeMode="CanResize" SizeToContent="Height"
         ShowInTaskbar="True" Background="{DynamicResource colorWindowBackground}"
         Foreground="{DynamicResource colorWindowForeground}" Initialized="Window_Initialized">
-    
+
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
@@ -22,14 +22,16 @@
         </Style>
     </Window.Style>
 
-    <Grid Name="gridWindow">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Name="gridContainer">
+        
+        <Grid Name="gridWindow">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>            
 
-        <!--#region Hamburger Panel-->
-        <Canvas Name="panelHamburger"
+            <!--#region Hamburger Panel-->
+            <Canvas Name="panelHamburger"
                 Grid.Column="0"
                 MinWidth="{StaticResource panelHamburgerMinWidth}" 
                 Width="{StaticResource panelHamburgerMinWidth}"
@@ -37,13 +39,13 @@
                 Background="{DynamicResource colorButtonHamburgerBackground}"
                 HorizontalAlignment="Left"
                 MouseLeftButtonDown="PanelHamburger_MouseLeftButtonDown">
-            
-            <!--#region Panel Hamburger Top Container-->            
-            <StackPanel x:Name="panelHamburgerTopContainer"
+
+                <!--#region Panel Hamburger Top Container-->
+                <StackPanel x:Name="panelHamburgerTopContainer"
                         Height="440"
                         Canvas.Top="0" Canvas.Left="0">
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerMenu"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerMenu"
                                         Icon="{StaticResource iconHamburgerMenu}"                                          
                                         Width="40"
                                         VerticalAlignment="Center"
@@ -51,7 +53,7 @@
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburgerMenu_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerPrivacy"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerPrivacy"
                                         Icon="{StaticResource iconHamburgerPrivacy}" 
                                         Text="{DynamicResource HamburgerPrivacy}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
@@ -60,7 +62,7 @@
                                         ViewboxPathVisibility="Collapsed"                                         
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerUi"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerUi"
                                         Icon="{StaticResource iconHamburgerUi}" 
                                         Text="{DynamicResource HamburgerUi}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
@@ -69,7 +71,7 @@
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerContextMenu"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerContextMenu"
                                         Icon="{StaticResource iconHamburgerContextMenu}" 
                                         Text="{DynamicResource HamburgerContextMenu}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
@@ -78,7 +80,7 @@
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerStartMenu"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerStartMenu"
                                         Icon="{StaticResource iconHamburgerStartMenu}" 
                                         Text="{DynamicResource HamburgerStartMenu}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
@@ -87,7 +89,7 @@
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerSystem"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerSystem"
                                         Icon="{StaticResource iconHamburgerSystem}" 
                                         Text="{DynamicResource HamburgerSystem}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
@@ -96,7 +98,7 @@
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerTaskScheduler"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerTaskScheduler"
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerTaskScheduler}"
                                         Text="{DynamicResource HamburgerTaskScheduler}" 
@@ -105,7 +107,7 @@
                                         Tag="{StaticResource tagCategoryTaskScheduler}"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerSecurity"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerSecurity"
                                         Icon="{StaticResource iconHamburgerDefender}" 
                                         Text="{DynamicResource HamburgerSecurity}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
@@ -114,7 +116,7 @@
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerGaming"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerGaming"
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerWinGame}"
                                         Text="{DynamicResource HamburgerGaming}" 
@@ -123,7 +125,7 @@
                                         Tag="{StaticResource tagCategoryWinGame}"                                                                                
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerUwp"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerUwp"
                                         Icon="{StaticResource iconHamburgerUwp}" 
                                         Text="{DynamicResource HamburgerUwp}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
@@ -132,7 +134,7 @@
                                         ViewboxPathVisibility="Collapsed"                                        
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerOneDrive"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerOneDrive"
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerOneDrive}"
                                         Text="{DynamicResource HamburgerOneDrive}" 
@@ -141,15 +143,15 @@
                                         Tag="{StaticResource tagCategoryOneDrive}"
                                         Canvas.Top="400" Canvas.Left="0"
                                         MouseLeftButtonDown="ButtonHamburger_Click"/>
-            </StackPanel>
-            <!--#endregion Panel Hamburger Top Container-->
+                </StackPanel>
+                <!--#endregion Panel Hamburger Top Container-->
 
-            <!--#region Panel Hamburger Bottom Container-->
-            <StackPanel x:Name="panelHamburgerBottomContainer"
+                <!--#region Panel Hamburger Bottom Container-->
+                <StackPanel x:Name="panelHamburgerBottomContainer"
                         Height="240"
                         Canvas.Bottom="0" Canvas.Left="0">
 
-                <uc:HamburgerCategoryButton x:Name="buttonHamburgerOpenGithub"                                        
+                    <uc:HamburgerCategoryButton x:Name="buttonHamburgerOpenGithub"                                        
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerOpenGithub}"
                                         Text="{DynamicResource textHamburgerOpenGithub}" 
@@ -157,7 +159,7 @@
                                         TextMargin="0 6 10 2"                                        
                                         MouseLeftButtonDown="ButtonHamburgerOpenGithub_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="buttonHamburgerLanguageSettings"                                        
+                    <uc:HamburgerCategoryButton x:Name="buttonHamburgerLanguageSettings"                                        
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerLanguageSettings}"
                                         Text="{DynamicResource textHamburgerLanguage}" 
@@ -165,13 +167,13 @@
                                         TextMargin="0 5 10 3"                                        
                                         MouseLeftButtonDown="ButtonHamburgerLanguageSettings_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="buttonPlaceholder"                                        
+                    <uc:HamburgerCategoryButton x:Name="buttonPlaceholder"                                        
                                         IconVisibility="Hidden"
                                         ViewboxPathVisibility="Hidden"
                                         IsEnabled="False"
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerLoadSettings"                                        
+                    <uc:HamburgerCategoryButton x:Name="HamburgerLoadSettings"                                        
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerLoadSettings}"
                                         Text="{DynamicResource textHamburgerLoad}" 
@@ -179,7 +181,7 @@
                                         TextMargin="0 5 10 3" 
                                         MouseLeftButtonDown="ButtonHamburgerLoadSettings_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerSaveSettings"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerSaveSettings"
                                         IsEnabled="False"
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerSaveSettings}"
@@ -188,97 +190,99 @@
                                         TextMargin="0 5 10 3"
                                         MouseLeftButtonDown="ButtonHamburgerSaveSettings_Click"/>
 
-                <uc:HamburgerCategoryButton x:Name="HamburgerApplySettings"
+                    <uc:HamburgerCategoryButton x:Name="HamburgerApplySettings"
                                         IsEnabled="False"
                                         IconVisibility="Collapsed"
                                         ViewboxPathData="{StaticResource iconHamburgerApplySettings}"
                                         Text="{DynamicResource textHamburgerApply}" 
                                         Width="{Binding ElementName=panelHamburger, Path=ActualWidth}"
                                         TextMargin="0 5 10 1"/>
-                
-            </StackPanel>
-            <!--#endregion Panel Hamburger Bottom Container-->
 
-        </Canvas>
-        <!--#endregion Hamburger Panel-->
+                </StackPanel>
+                <!--#endregion Panel Hamburger Bottom Container-->
 
-        <!--#region Toggles Header-->
+            </Canvas>
+            <!--#endregion Hamburger Panel-->
 
-        <StackPanel Name="panelTogglesHeader"
+            <!--#region Toggles Header-->
+
+            <StackPanel Name="panelTogglesHeader"
                     Grid.Column="1"
                     Height="{StaticResource togglesCategoryPanelHeaderHeight}"
                     Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Background="{DynamicResource colorCategoryPanelHeaderBackground}">
 
-            <TextBlock Name="textTogglesHeader" 
+                <TextBlock Name="textTogglesHeader" 
                        FontSize="{StaticResource fontSizeTogglesCategoryPanelHeader}"
                        FontFamily="{StaticResource fontTogglesPanelHeader}"
                        VerticalAlignment="Center"
                        Margin="10 5 0 5"
                        Text=""/>
 
-        </StackPanel>
+            </StackPanel>
 
-        <!--#endregion Toggles Header-->
-        
-        <!--#region Toggles Category Panels-->
+            <!--#endregion Toggles Header-->
 
-        <ScrollViewer Name="scrollTogglesCategoryPrivacy"
+            <!--#region Toggles Category Panels-->
+
+            <ScrollViewer Name="scrollTogglesCategoryPrivacy"
                       Grid.Column="1"
                       Margin="0 40 0 0"
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto" >
 
-            <StackPanel Name="panelTogglesCategoryContainer">
+                <StackPanel Name="panelTogglesCategoryContainer">
 
-                <StackPanel Name="panelTogglesCategoryPrivacy"
+                    <StackPanel Name="panelTogglesCategoryPrivacy"
                             Tag="{StaticResource tagCategoryPrivacy}"                            
                             Visibility="Collapsed" />
 
-                <StackPanel Name="panelTogglesCategoryUi"
+                    <StackPanel Name="panelTogglesCategoryUi"
                             Tag="{StaticResource tagCategoryUi}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategoryOneDrive"
+                    <StackPanel Name="panelTogglesCategoryOneDrive"
                             Tag="{StaticResource tagCategoryOneDrive}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategorySystem"
+                    <StackPanel Name="panelTogglesCategorySystem"
                             Tag="{StaticResource tagCategorySystem}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategoryStartMenu"
+                    <StackPanel Name="panelTogglesCategoryStartMenu"
                             Tag="{StaticResource tagCategoryStartMenu}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategoryUwp"
+                    <StackPanel Name="panelTogglesCategoryUwp"
                             Tag="{StaticResource tagCategoryUwp}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategoryWinGame"
+                    <StackPanel Name="panelTogglesCategoryWinGame"
                             Tag="{StaticResource tagCategoryWinGame}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategoryTaskScheduler"
+                    <StackPanel Name="panelTogglesCategoryTaskScheduler"
                             Tag="{StaticResource tagCategoryTaskScheduler}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategoryDefender"
+                    <StackPanel Name="panelTogglesCategoryDefender"
                             Tag="{StaticResource tagCategoryDefender}"
                             Visibility="Collapsed"/>
 
-                <StackPanel Name="panelTogglesCategoryContextMenu"
+                    <StackPanel Name="panelTogglesCategoryContextMenu"
                             Tag="{StaticResource tagCategoryContextMenu}"
-                            Visibility="Collapsed">                    
+                            Visibility="Collapsed">
 
-                </StackPanel>                            
+                    </StackPanel>
 
-            </StackPanel>
-            
-        </ScrollViewer>
+                </StackPanel>
 
-        <!--#endregion Toggles Category Panels-->
+            </ScrollViewer>
 
+            <!--#endregion Toggles Category Panels-->
+
+        </Grid>
+        
     </Grid>
 </Window>

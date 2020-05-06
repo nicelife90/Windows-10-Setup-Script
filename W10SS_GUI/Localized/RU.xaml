@@ -25,5 +25,7 @@
 
     <system:String x:Key="Error.PsFilesNotFound">Файлы PowerShell для этой категории не найдены</system:String>
     <system:String x:Key="Error.OsVersionNotSupported">К сожалению, мы не поддерживаем эту версию Windows</system:String>
+    <system:String x:Key="Error.SettingsFileNotExist">Файл "Settings.json" не найден</system:String>
+    <system:String x:Key="Error.SettingsFileModified">Файл "Settings.json" был изменён</system:String>
 
 </ResourceDictionary>

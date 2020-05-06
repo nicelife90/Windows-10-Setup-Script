@@ -24,10 +24,9 @@ namespace W10SS_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string AppBaseDir = AppDomain.CurrentDomain.BaseDirectory;
         private HamburgerCategoryButton lastclickedbutton;        
         private Dictionary<string, StackPanel> togglesCategoryAndPanels = new Dictionary<string, StackPanel>();
-        private ErrorsHelper ErrorsHelper = new ErrorsHelper();
+        private ErrorsHelper ErrorsHelper;
         private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();
         private uint TogglesCounter = default(uint);
         private uint activeToggles = default(uint);
@@ -48,11 +47,14 @@ namespace W10SS_GUI
         };
 
 
-        internal string LastClickedButtonName => lastclickedbutton?.Name as string;        
-                
+        internal string LastClickedButtonName => lastclickedbutton?.Name as string;
+
+        internal string AppBaseDir { get; } = AppDomain.CurrentDomain.BaseDirectory;
+
         public MainWindow()
         {
-            InitializeComponent();
+            ErrorsHelper = new ErrorsHelper(this);
+            InitializeComponent();            
         }
 
         private void InitializeVariables()
@@ -74,7 +76,7 @@ namespace W10SS_GUI
             {
                 string categoryName = togglesCategoryAndPanels.Keys.ToList()[i];
                 StackPanel categoryPanel = togglesCategoryAndPanels[categoryName];
-                string psScriptsDir = System.IO.Path.Combine(AppBaseDir, categoryName);
+                string psScriptsDir = Path.Combine(AppBaseDir, categoryName);
 
                 List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
                     && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
@@ -103,11 +105,10 @@ namespace W10SS_GUI
             {
                 InfoPanel info = new InfoPanel
                 {
-                    Icon = Application.Current.Resources[CONST.InfoPanel_WarningTriangle] as string,                    
-                    Foreground = Application.Current.Resources["colorToggleSwitchDescription"] as Brush                    
+                    Icon = Application.Current.Resources[CONST.InfoPanel_WarningTriangle] as string                    
                 };
 
-                info.SetResourceReference(InfoPanel.TextProperty, CONST.InfoPanel_NoPsFilesFound);
+                info.SetResourceReference(InfoPanel.TextProperty, CONST.Error_NoPsFilesFound);
                 panel.Children.Add(info);                
             }
         }
@@ -213,25 +214,19 @@ namespace W10SS_GUI
             InitializeVariables();            
             SetUiLanguage();
 
-            if (!ErrorsHelper.HasErrors)
-            {                
-                InitializeToggles();
-                SetHamburgerWidth();
-                SetActivePanel(HamburgerPrivacy);
+            if (ErrorsHelper.HasErrors)
+            {
+                ErrorsHelper.FixErrors();                
             }
 
             else
             {
-                ErrorsHelper.FixErrors();
+                InitializeToggles();
+                SetHamburgerWidth();
+                SetActivePanel(HamburgerPrivacy);
             }
         }
-
-        private void AddWarningPanelControls()
-        {
-            gridWindow.Children.Clear();
-            gridWindow.Children.Add(new WarningPanel());
-        }           
-
+        
         private void ButtonHamburgerMenu_Click(object sender, MouseButtonEventArgs e)
         {
             Double animationTo = panelHamburger.ActualWidth == panelHamburger.MaxWidth

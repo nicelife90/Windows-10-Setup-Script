@@ -1,52 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using W10SS_GUI;
+using Windows10SetupScript.Controls;
 
 namespace Windows10SetupScript.Classes
 {
     class ErrorsHelper
     {
+        private MainWindow MainWindow;
         public bool HasErrors { get; private set; } = false;
-        
+                        
         public Action FixErrors { get; private set;}
 
         private void WatchDog(Test result)
         {
-            if (HasErrors != result.Result)
+            HasErrors = result.Result;
+
+            if (result.Description == CONST.Error_OsVersionNotSupported)
             {
-                HasErrors = result.Result;
+                FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_WarningRobot] as string, 
+                    InfoPanelText: CONST.Error_OsVersionNotSupported, 
+                    ParentElement: MainWindow.gridContainer,
+                    ChildrenClear: true);
+            }
 
-                if (result.Description == CONST.Error_OsVersionNotSupported)
-                {
-                    FixErrors = () => FixOsVersion();
-                }
-            };
+            else if (result.Description == CONST.Error_SettingsFileNotExist)
+            {
+                FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_Magnifier] as string,
+                    InfoPanelText: CONST.Error_SettingsFileNotExist,
+                    ParentElement:MainWindow.gridContainer,
+                    ChildrenClear:true);
+            }
+
+            else if (result.Description == CONST.Error_SettingsFileModified)
+            {
+                FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_Modify] as string,
+                    InfoPanelText: CONST.Error_SettingsFileModified,
+                    ParentElement: MainWindow.gridContainer,
+                    ChildrenClear: true);
+            }
         }
 
-        private void FixOsVersion()
+        private void AddInfoPanelControls(string InfoPanelIcon, string InfoPanelText, Panel ParentElement, bool ChildrenClear)
         {
-            throw new NotImplementedException();
-        }
+            InfoPanel infoPanel = new InfoPanel();
+            infoPanel.Icon = InfoPanelIcon;
+            infoPanel.SetResourceReference(InfoPanel.TextProperty, InfoPanelText);            
 
-        public ErrorsHelper()
+            if (ChildrenClear)
+                ParentElement.Children.Clear();
+
+            ParentElement.Children.Add(infoPanel);            
+        }
+        
+        public ErrorsHelper(MainWindow mainWindow)            
         {
-            
+            MainWindow = mainWindow;
             Queue<Func<Test>> funcQueue = new Queue<Func<Test>>();
             funcQueue.Enqueue(() => TestOsVersion());
+            funcQueue.Enqueue(() => TestSettingsFileExist());
+            funcQueue.Enqueue(() => TestSettingsFileHash(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)));
 
-
-
-            for (int i = 0; i < funcQueue.Count; i++)
+            int countQueue = funcQueue.Count;
+            for (int i = 0; i < countQueue; i++)
             {
                 WatchDog(funcQueue.Dequeue().Invoke());
 
                 if (HasErrors)
                     break;
             }
-        }        
+        }
+
+        private Test TestSettingsFileHash(string filePath)
+        {
+            return new Test()
+            {
+                Result = FileHash.SHA256Compare(filePath, CONST.Settings_Json_Sha256) ? false : true,
+                Description = CONST.Error_SettingsFileModified
+            };
+        }
+
+        private Test TestSettingsFileExist()
+        {
+            return new Test()
+            {
+                Result = File.Exists(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)) ? false :true,
+                Description = CONST.Error_SettingsFileNotExist            
+            };
+        }
 
         private Test TestOsVersion()
         {

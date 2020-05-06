@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace Windows10SetupScript.Controls
 {
     /// <summary>
-    /// Логика взаимодействия для InfoPanel.xaml
+    /// Логика взаимодействия для PanelInfo.xaml
     /// </summary>
-    public partial class InfoPanel : UserControl
+    public partial class PanelInfo : UserControl
     {
-        public InfoPanel()
+        public PanelInfo()
         {
-            InitializeComponent();            
-        }        
+            InitializeComponent();
+        }
 
         public string Icon
         {
@@ -33,7 +33,9 @@ namespace Windows10SetupScript.Controls
 
         // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(string), typeof(InfoPanel), new PropertyMetadata(default(string)));
+            DependencyProperty.Register("Icon", typeof(string), typeof(PanelInfo), new PropertyMetadata(default(string)));
+
+
 
         public string Text
         {
@@ -43,6 +45,8 @@ namespace Windows10SetupScript.Controls
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(InfoPanel), new PropertyMetadata(default(string)));
+            DependencyProperty.Register("Text", typeof(string), typeof(PanelInfo), new PropertyMetadata(default(string)));
+
+
     }
 }
