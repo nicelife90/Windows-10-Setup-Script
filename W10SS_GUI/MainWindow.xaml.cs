@@ -1,21 +1,19 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using W10SS_GUI.Controls;
-using System.IO;
 using System.Windows.Media.Animation;
-using System.Windows.Controls.Primitives;
+using W10SS_GUI.Controls;
 using Windows10SetupScript.Classes;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Windows10SetupScript.Controls;
-using Microsoft.Win32;
-using System.Windows.Media;
 
 namespace W10SS_GUI
 {
@@ -25,11 +23,12 @@ namespace W10SS_GUI
     public partial class MainWindow : Window
     {
         private HamburgerCategoryButton lastclickedbutton;        
-        private Dictionary<string, StackPanel> togglesCategoryAndPanels = new Dictionary<string, StackPanel>();
         private ErrorsHelper ErrorsHelper;
         private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();
         private uint TogglesCounter = default(uint);
         private uint activeToggles = default(uint);
+        private List<StackPanel> CategoryPanels { get; set; }
+        internal List<PowerScript> PowerScriptsData { get; set; }
 
         private OpenFileDialog ofd = new OpenFileDialog
         {
@@ -53,16 +52,13 @@ namespace W10SS_GUI
 
         public MainWindow()
         {
-            ErrorsHelper = new ErrorsHelper(this);
+            ErrorsHelper = new ErrorsHelper(this);            
             InitializeComponent();            
         }
 
         private void InitializeVariables()
         {
-            foreach (var tagValue in Application.Current.Resources.MergedDictionaries.Where(r => r.Source.LocalPath == CONST.Resources_Dictionaries_TAGS).First().Values)
-            {
-                togglesCategoryAndPanels.Add(tagValue.ToString(), panelTogglesCategoryContainer.Children.OfType<StackPanel>().Where(p => p.Tag == tagValue).First());
-            }
+            CategoryPanels = panelTogglesCategoryContainer.Children.OfType<StackPanel>().ToList();            
         }
 
         private void SetUiLanguage()
@@ -72,31 +68,61 @@ namespace W10SS_GUI
 
         private void InitializeToggles()
         {
-            for (int i = 0; i < togglesCategoryAndPanels.Keys.Count; i++)
-            {
-                string categoryName = togglesCategoryAndPanels.Keys.ToList()[i];
-                StackPanel categoryPanel = togglesCategoryAndPanels[categoryName];
-                string psScriptsDir = Path.Combine(AppBaseDir, categoryName);
+            //string jsonString = File.ReadAllText(Path.Combine(AppBaseDir, CONST.Settings_Json_File));
+            //List<PowerScript> powerScripts = JsonConvert.DeserializeObject<List<PowerScript>>(jsonString);
 
-                List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
-                    && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-                                .Where(f => f.EndsWith(CONST.PS_EXTENSION))
-                                .Count() > 0
 
-                    ? Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-                               .Where(f => f.EndsWith(CONST.PS_EXTENSION))
-                               .Select(f => CreateToogleSwitchFromPsFiles(f))
-                               .ToList()
-                    : null;
+            //for (int i = 0; i < togglesCategoryAndPanels.Keys.Count; i++)
+            //{
+            //    string categoryName = togglesCategoryAndPanels.Keys.ToList()[i];
+            //    StackPanel categoryPanel = togglesCategoryAndPanels[categoryName];
+            //    string psScriptsDir = Path.Combine(AppBaseDir, categoryName);
 
-                togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s =>
-                {
-                    s.IsSwitched += SetButtonsStateIfToggleIsSwitched;
-                    categoryPanel.Children.Add(s);
-                });
+            //    List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
+            //        && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
+            //                    .Where(f => f.EndsWith(CONST.PS_EXTENSION))
+            //                    .Count() > 0
 
-                AddInfoPanelControls(categoryPanel);
-            }
+            //        ? Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
+            //                   .Where(f => f.EndsWith(CONST.PS_EXTENSION))
+            //                   .Select(f => CreateToogleSwitchFromPsFiles(f))
+            //                   .ToList()
+            //        : null;
+
+            //    togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s =>
+            //    {
+            //        s.IsSwitched += SetButtonsStateIfToggleIsSwitched;
+            //        categoryPanel.Children.Add(s);
+            //    });
+
+            //    AddInfoPanelControls(categoryPanel);
+            //}
+
+            //for (int i = 0; i < togglesCategoryAndPanels.Keys.Count; i++)
+            //{
+            //    string categoryName = togglesCategoryAndPanels.Keys.ToList()[i];
+            //    StackPanel categoryPanel = togglesCategoryAndPanels[categoryName];
+            //    string psScriptsDir = Path.Combine(AppBaseDir, categoryName);
+
+            //    List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
+            //        && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
+            //                    .Where(f => f.EndsWith(CONST.PS_EXTENSION))
+            //                    .Count() > 0
+
+            //        ? Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
+            //                   .Where(f => f.EndsWith(CONST.PS_EXTENSION))
+            //                   .Select(f => CreateToogleSwitchFromPsFiles(f))
+            //                   .ToList()
+            //        : null;
+
+            //    togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s =>
+            //    {
+            //        s.IsSwitched += SetButtonsStateIfToggleIsSwitched;
+            //        categoryPanel.Children.Add(s);
+            //    });
+
+            //    AddInfoPanelControls(categoryPanel);
+            //}
         }
 
         private void AddInfoPanelControls(StackPanel panel)
@@ -167,12 +193,7 @@ namespace W10SS_GUI
         internal void SetActivePanel(HamburgerCategoryButton button)
         {
             lastclickedbutton = button;
-
-            foreach (KeyValuePair<string, StackPanel> kvp in togglesCategoryAndPanels)
-            {
-                kvp.Value.Visibility = kvp.Key == button.Tag as string ? Visibility.Visible : Visibility.Collapsed;
-            }
-
+            CategoryPanels.ForEach(p => p.Visibility = p.Tag == button.Tag ? Visibility.Visible : Visibility.Collapsed);
             textTogglesHeader.Text = Resources[button.Name] as string;
             scrollTogglesCategoryPrivacy.ScrollToTop();
         }        

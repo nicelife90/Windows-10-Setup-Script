@@ -38,16 +38,19 @@ namespace Windows10SetupScript.Classes
         internal static readonly string InfoPanel_WarningRobot = "iconInfoPanelWarningRobot";
         internal static readonly string InfoPanel_Magnifier = "iconInfoPanelMagnifier";
         internal static readonly string InfoPanel_Modify = "iconInfoPanelModify";
+        internal static readonly string InfoPanel_OpenBook = "iconInfoPanelOpenBook";
 
         internal static readonly int Win10_Major = 10;
-        internal static readonly int Win10_Build = 15063;
+        internal static readonly int Win10_Build = 17763;
 
         internal static readonly string Settings_Json_File = "Settings.json";
-        internal static readonly string Settings_Json_Sha256 = "F58E1496D0826C2C9A78EB0E3794C44E0B10D2550ED6C63B29AC186F42682475";
+        internal static readonly string Settings_Json_Sha256 = "DB7663711387F58BF2CAD9278F1D1205313C4011E4FBD27205DEF06163EEC632";
 
         internal static readonly string Error_OsVersionNotSupported = "Error.OsVersionNotSupported";
         internal static readonly string Error_NoPsFilesFound = "Error.PsFilesNotFound";
         internal static readonly string Error_SettingsFileNotExist = "Error.SettingsFileNotExist";
         internal static readonly string Error_SettingsFileModified = "Error.SettingsFileModified";
+        internal static readonly string Error_SettingsFileNotRead = "Error.SettingsFileNotRead";
+
     }
 }

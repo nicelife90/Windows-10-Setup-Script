@@ -25,7 +25,8 @@
 
     <system:String x:Key="Error.PsFilesNotFound">No Powershell files found for this category</system:String>
     <system:String x:Key="Error.OsVersionNotSupported">Unfortunately, we do not support this version of Windows</system:String>
-    <system:String x:Key="Error.SettingsFileNotExist">File "Settings.json" not found</system:String>
-    <system:String x:Key="Error.SettingsFileModified">File "Settings.json" has been modified</system:String>
+    <system:String x:Key="Error.SettingsFileNotExist">File Settings.json not found</system:String>
+    <system:String x:Key="Error.SettingsFileModified">File Settings.json has been modified</system:String>
+    <system:String x:Key="Error.SettingsFileNotRead">File Settings.json cannot be read</system:String>
 
 </ResourceDictionary>

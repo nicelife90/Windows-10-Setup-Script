@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,34 +19,7 @@ namespace Windows10SetupScript.Classes
                         
         public Action FixErrors { get; private set;}
 
-        private void WatchDog(Test result)
-        {
-            HasErrors = result.Result;
-
-            if (result.Description == CONST.Error_OsVersionNotSupported)
-            {
-                FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_WarningRobot] as string, 
-                    InfoPanelText: CONST.Error_OsVersionNotSupported, 
-                    ParentElement: MainWindow.gridContainer,
-                    ChildrenClear: true);
-            }
-
-            else if (result.Description == CONST.Error_SettingsFileNotExist)
-            {
-                FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_Magnifier] as string,
-                    InfoPanelText: CONST.Error_SettingsFileNotExist,
-                    ParentElement:MainWindow.gridContainer,
-                    ChildrenClear:true);
-            }
-
-            else if (result.Description == CONST.Error_SettingsFileModified)
-            {
-                FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_Modify] as string,
-                    InfoPanelText: CONST.Error_SettingsFileModified,
-                    ParentElement: MainWindow.gridContainer,
-                    ChildrenClear: true);
-            }
-        }
+        private Queue<Func<Test>> FuncQueue = new Queue<Func<Test>>();
 
         private void AddInfoPanelControls(string InfoPanelIcon, string InfoPanelText, Panel ParentElement, bool ChildrenClear)
         {
@@ -62,52 +36,60 @@ namespace Windows10SetupScript.Classes
         public ErrorsHelper(MainWindow mainWindow)            
         {
             MainWindow = mainWindow;
-            Queue<Func<Test>> funcQueue = new Queue<Func<Test>>();
-            funcQueue.Enqueue(() => TestOsVersion());
-            funcQueue.Enqueue(() => TestSettingsFileExist());
-            funcQueue.Enqueue(() => TestSettingsFileHash(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)));
+            FillingQueue();
+            FuncDequeue();            
+        }
 
-            int countQueue = funcQueue.Count;
+        private void FillingQueue()
+        {
+            FuncQueue.Enqueue(() => Test.OsVersion());
+            FuncQueue.Enqueue(() => Test.SettingsJsonExist(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)));
+            FuncQueue.Enqueue(() => Test.SettingsJsonHash(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)));
+            FuncQueue.Enqueue(() => Test.SettingsJsonReadData(MainWindow));
+        }
+
+        private void FuncDequeue()
+        {
+            int countQueue = FuncQueue.Count;
+
             for (int i = 0; i < countQueue; i++)
             {
-                WatchDog(funcQueue.Dequeue().Invoke());
+                Test test = FuncQueue.Dequeue().Invoke();
+                HasErrors = test.HasError;
 
-                if (HasErrors)
+                if (test.HasError && test.Description == CONST.Error_OsVersionNotSupported)
+                {
+                    FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_WarningRobot] as string,
+                        InfoPanelText: CONST.Error_OsVersionNotSupported, ParentElement: MainWindow.gridContainer,
+                        ChildrenClear: true);
                     break;
+                }
+
+                else if (test.HasError && test.Description == CONST.Error_SettingsFileNotExist)
+                {
+                    FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_Magnifier] as string,
+                        InfoPanelText: CONST.Error_SettingsFileNotExist, ParentElement: MainWindow.gridContainer,
+                        ChildrenClear: true);
+                    break;
+                }
+
+                else if (test.HasError && test.Description == CONST.Error_SettingsFileModified)
+                {
+                    FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_Modify] as string,
+                        InfoPanelText: CONST.Error_SettingsFileModified, ParentElement: MainWindow.gridContainer,
+                        ChildrenClear: true);
+                    break;
+                }
+
+                else if (test.HasError && test.Description == CONST.Error_SettingsFileNotRead)
+                {
+                    FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_OpenBook] as string,
+                        InfoPanelText: CONST.Error_SettingsFileNotRead, ParentElement: MainWindow.gridContainer,
+                        ChildrenClear: true);
+                    break;
+                }
             }
-        }
-
-        private Test TestSettingsFileHash(string filePath)
-        {
-            return new Test()
-            {
-                Result = FileHash.SHA256Compare(filePath, CONST.Settings_Json_Sha256) ? false : true,
-                Description = CONST.Error_SettingsFileModified
-            };
-        }
-
-        private Test TestSettingsFileExist()
-        {
-            return new Test()
-            {
-                Result = File.Exists(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)) ? false :true,
-                Description = CONST.Error_SettingsFileNotExist            
-            };
-        }
-
-        private Test TestOsVersion()
-        {
-            return new Test()
-            {
-                Result = Convert.ToInt32(Environment.OSVersion.Version.Build) >= Convert.ToInt32(CONST.Win10_Build)
-                             && Convert.ToInt32(Environment.OSVersion.Version.Major) == Convert.ToInt32(CONST.Win10_Major)
-                             ? false : true,
-
-                Description = CONST.Error_OsVersionNotSupported
-            };            
         }        
-
-        
     }
 }
 

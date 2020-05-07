@@ -14,13 +14,12 @@ namespace Windows10SetupScript.Classes
             {
                 try
                 {
-                    FileStream fileStream = new FileStream(filePath, FileMode.Open)
+                    using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                     {
-                        Position = 0
-                    };
-
-                    string hash = BitConverter.ToString(sha.ComputeHash(fileStream)).Replace("-", "");
-                    result = hash == CONST.Settings_Json_Sha256 ? true : false;
+                        fileStream.Position = 0;
+                        string hash = BitConverter.ToString(sha.ComputeHash(fileStream)).Replace("-", "");
+                        result = hash == CONST.Settings_Json_Sha256 ? true : false;
+                    }
                 }
                 catch (Exception)
                 {
