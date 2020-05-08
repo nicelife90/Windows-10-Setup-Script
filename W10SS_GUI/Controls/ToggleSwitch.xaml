@@ -232,7 +232,7 @@
                        TextWrapping="NoWrap"
                        Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=StateText}"
                        Height="Auto"                       
-                       Margin="10 7 20 0"/>
+                       Margin="10 10 20 0"/>
 
             </StackPanel>
             

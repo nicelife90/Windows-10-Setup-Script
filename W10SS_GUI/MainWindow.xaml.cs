@@ -22,11 +22,10 @@ namespace W10SS_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private HamburgerCategoryButton lastclickedbutton;        
+        private HamburgerCategoryButton Lastclickedbutton;        
         private ErrorsHelper ErrorsHelper;
-        private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();
-        private uint TogglesCounter = default(uint);
-        private uint activeToggles = default(uint);
+        private List<ToggleSwitch> TogglesSwitches = new List<ToggleSwitch>();        
+        private uint ActiveToggles = default(uint);
         private List<StackPanel> CategoryPanels { get; set; }
         internal List<PowerScript> PowerScriptsData { get; set; }
 
@@ -45,8 +44,7 @@ namespace W10SS_GUI
             FileName = CONST.Sfd_FileName
         };
 
-
-        internal string LastClickedButtonName => lastclickedbutton?.Name as string;
+        internal string LastClickedButtonName => Lastclickedbutton?.Name as string;
 
         internal string AppBaseDir { get; } = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -68,61 +66,44 @@ namespace W10SS_GUI
 
         private void InitializeToggles()
         {
-            //string jsonString = File.ReadAllText(Path.Combine(AppBaseDir, CONST.Settings_Json_File));
-            //List<PowerScript> powerScripts = JsonConvert.DeserializeObject<List<PowerScript>>(jsonString);
+            CategoryPanels.ForEach(panel =>
+            {
+                PowerScriptsData.Where(script => script.Path.StartsWith(panel.Tag as string))
+                                .ToList()
+                                .ForEach(script => CreateToogleSwitch(toggleData: script, parentPanel: panel));                
+            });
 
+            // TODO Check Panel.Children > 0 !!!
+        }
 
-            //for (int i = 0; i < togglesCategoryAndPanels.Keys.Count; i++)
-            //{
-            //    string categoryName = togglesCategoryAndPanels.Keys.ToList()[i];
-            //    StackPanel categoryPanel = togglesCategoryAndPanels[categoryName];
-            //    string psScriptsDir = Path.Combine(AppBaseDir, categoryName);
+        private void CreateToogleSwitch(PowerScript toggleData, StackPanel parentPanel)
+        {
+            ToggleSwitch toggleSwitch = new ToggleSwitch()
+            {
+                Id = toggleData.Id,
+                ScriptPath = File.Exists(toggleData.Path) ? toggleData.Path : null
+            };
 
-            //    List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
-            //        && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-            //                    .Where(f => f.EndsWith(CONST.PS_EXTENSION))
-            //                    .Count() > 0
+            string dictionaryHeaderId = $"TH_{toggleSwitch.Id}";
+            string dictionaryDescriptionId = $"TD_{toggleSwitch.Id}";
 
-            //        ? Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-            //                   .Where(f => f.EndsWith(CONST.PS_EXTENSION))
-            //                   .Select(f => CreateToogleSwitchFromPsFiles(f))
-            //                   .ToList()
-            //        : null;
+            Culture.SetToAllResourceDictionaryKeyValue(resourceID: dictionaryHeaderId,
+                                                       valueEN: toggleData.HeaderEn,
+                                                       valueRU: toggleData.HeaderRu);
 
-            //    togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s =>
-            //    {
-            //        s.IsSwitched += SetButtonsStateIfToggleIsSwitched;
-            //        categoryPanel.Children.Add(s);
-            //    });
+            Culture.SetToAllResourceDictionaryKeyValue(resourceID: dictionaryDescriptionId,
+                                                       valueEN: toggleData.HeaderEn,
+                                                       valueRU: toggleData.HeaderRu);
 
-            //    AddInfoPanelControls(categoryPanel);
-            //}
+            toggleSwitch.SetResourceReference(ToggleSwitch.HeaderProperty, dictionaryHeaderId);
+            toggleSwitch.SetResourceReference(ToggleSwitch.DescriptionProperty, dictionaryDescriptionId);
 
-            //for (int i = 0; i < togglesCategoryAndPanels.Keys.Count; i++)
-            //{
-            //    string categoryName = togglesCategoryAndPanels.Keys.ToList()[i];
-            //    StackPanel categoryPanel = togglesCategoryAndPanels[categoryName];
-            //    string psScriptsDir = Path.Combine(AppBaseDir, categoryName);
-
-            //    List<ToggleSwitch> togglesSwitches = Directory.Exists(psScriptsDir)
-            //        && Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-            //                    .Where(f => f.EndsWith(CONST.PS_EXTENSION))
-            //                    .Count() > 0
-
-            //        ? Directory.EnumerateFiles(psScriptsDir, "*.*", SearchOption.AllDirectories)
-            //                   .Where(f => f.EndsWith(CONST.PS_EXTENSION))
-            //                   .Select(f => CreateToogleSwitchFromPsFiles(f))
-            //                   .ToList()
-            //        : null;
-
-            //    togglesSwitches?.Where(s => s.IsValid == true).ToList().ForEach(s =>
-            //    {
-            //        s.IsSwitched += SetButtonsStateIfToggleIsSwitched;
-            //        categoryPanel.Children.Add(s);
-            //    });
-
-            //    AddInfoPanelControls(categoryPanel);
-            //}
+            if (toggleSwitch.ScriptPath != null)
+            {
+                toggleSwitch.IsSwitched += SetButtonsStateIfToggleIsSwitched;                
+                parentPanel.Children.Add(toggleSwitch);
+                TogglesSwitches.Add(toggleSwitch);
+            }           
         }
 
         private void AddInfoPanelControls(StackPanel panel)
@@ -141,58 +122,19 @@ namespace W10SS_GUI
 
         private void SetButtonsStateIfToggleIsSwitched(object IsChecked, EventArgs e)
         {
-            if ((bool)IsChecked) activeToggles++;            
-            else activeToggles--;
-            HamburgerApplySettings.IsEnabled = activeToggles > 0 ? true : false ;
-            HamburgerSaveSettings.IsEnabled = activeToggles > 0 ? true : false;
-        }
+            if ((bool)IsChecked)
+                ActiveToggles++;            
 
-        private ToggleSwitch CreateToogleSwitchFromPsFiles(string scriptPath)
-        {
-            string dictionaryHeaderID = $"TH_{TogglesCounter}";
-            string dictionaryDescriptionID = $"TD_{TogglesCounter}";
-            string[] arrayLines = new string[4];
+            else
+                ActiveToggles--;
 
-            ToggleSwitch toggleSwitch = new ToggleSwitch()
-            {
-                ScriptPath = scriptPath
-            };
-
-            try
-            {
-                using (StreamReader streamReader = new StreamReader(scriptPath, Encoding.UTF8))
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        string textLine = streamReader.ReadLine();
-                        toggleSwitch.IsValid = textLine.StartsWith("#") ? true : false;
-                        arrayLines[i] = textLine.Replace("# ", "");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                // Do Nothing
-            }
-
-            string[] keys = { dictionaryHeaderID, dictionaryDescriptionID };
-            string[] valuesEN = { arrayLines[0], arrayLines[1] };
-            string[] valuesRU = { arrayLines[2], arrayLines[3]};
-
-            Culture.SetCultureDictionaryKeyValue(CONST.LANG_EN, keys, valuesEN);
-            Culture.SetCultureDictionaryKeyValue(CONST.LANG_RU, keys, valuesRU);            
-
-            toggleSwitch.SetResourceReference(ToggleSwitch.HeaderProperty, dictionaryHeaderID);
-            toggleSwitch.SetResourceReference(ToggleSwitch.DescriptionProperty, dictionaryDescriptionID);
-
-            TogglesCounter++;
-            TogglesSwitches.Add(toggleSwitch);
-            return toggleSwitch;
-        }
+            HamburgerApplySettings.IsEnabled = ActiveToggles > 0 ? true : false ;
+            HamburgerSaveSettings.IsEnabled = ActiveToggles > 0 ? true : false;
+        }        
 
         internal void SetActivePanel(HamburgerCategoryButton button)
         {
-            lastclickedbutton = button;
+            Lastclickedbutton = button;
             CategoryPanels.ForEach(p => p.Visibility = p.Tag == button.Tag ? Visibility.Visible : Visibility.Collapsed);
             textTogglesHeader.Text = Resources[button.Name] as string;
             scrollTogglesCategoryPrivacy.ScrollToTop();

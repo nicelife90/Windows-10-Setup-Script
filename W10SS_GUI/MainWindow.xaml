@@ -11,9 +11,9 @@
         MinHeight="{StaticResource windowMinHeight}" MinWidth="{StaticResource windowMinWidth}"
         Width="{StaticResource windowMinWidth}" FontFamily="{StaticResource fontWindow}"
         FontSize="{DynamicResource windowFontSize}" WindowStartupLocation="CenterScreen" 
-        SnapsToDevicePixels="True" ResizeMode="CanResize" SizeToContent="Height"
-        ShowInTaskbar="True" Background="{DynamicResource colorWindowBackground}"
-        Foreground="{DynamicResource colorWindowForeground}" Initialized="Window_Initialized">
+        SnapsToDevicePixels="True" ResizeMode="CanResize" ShowInTaskbar="True" 
+        Background="{DynamicResource colorWindowBackground}" Foreground="{DynamicResource colorWindowForeground}" 
+        Initialized="Window_Initialized">
 
     <Window.Style>
         <Style TargetType="{x:Type Window}">

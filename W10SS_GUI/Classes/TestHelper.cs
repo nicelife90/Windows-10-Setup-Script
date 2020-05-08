@@ -53,7 +53,7 @@ namespace Windows10SetupScript.Classes
                 MainWindow.PowerScriptsData = JsonConvert.DeserializeObject<List<PowerScript>>(jsonData);
                 result = false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 result = true;
             }

@@ -36,5 +36,11 @@ namespace Windows10SetupScript.Classes
                 dictionary[keys[i]] = values[i];
             }
         }
+
+        internal static void SetToAllResourceDictionaryKeyValue(string resourceID, string valueEN, string valueRU)
+        {
+            resourceDictionaryEn[resourceID] = valueEN;
+            resourceDictionaryRu[resourceID] = valueRU;
+        }
     }
 }
