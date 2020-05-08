@@ -92,8 +92,8 @@ namespace W10SS_GUI
                                                        valueRU: toggleData.HeaderRu);
 
             Culture.SetToAllResourceDictionaryKeyValue(resourceID: dictionaryDescriptionId,
-                                                       valueEN: toggleData.HeaderEn,
-                                                       valueRU: toggleData.HeaderRu);
+                                                       valueEN: toggleData.DescriptionEn,
+                                                       valueRU: toggleData.DescriptionRu);
 
             toggleSwitch.SetResourceReference(ToggleSwitch.HeaderProperty, dictionaryHeaderId);
             toggleSwitch.SetResourceReference(ToggleSwitch.DescriptionProperty, dictionaryDescriptionId);
