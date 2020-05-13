@@ -101,6 +101,24 @@ namespace W10SS_GUI.Controls
         public static readonly DependencyProperty StateTextProperty =
             DependencyProperty.Register("StateText", typeof(string), typeof(ToggleSwitch), new PropertyMetadata(default(string)));
 
+
+
+        public Visibility DescriptionVisibility
+        {
+            get { return (Visibility)GetValue(DescriptionVisibilityProperty); }
+            set { SetValue(DescriptionVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DescriptionVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DescriptionVisibilityProperty =
+            DependencyProperty.Register("DescriptionVisibility", typeof(Visibility), typeof(ToggleSwitch), new PropertyMetadata(SetTextDescriptionVisibility));
+
+        private static void SetTextDescriptionVisibility(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = (ToggleSwitch)d;
+            toggleSwitch.textToggleSwitchDescription.Visibility = (Visibility)e.NewValue;
+        }
+
         public EventHandler IsSwitched;
 
         private void ToggleSwitch_Click(object sender, RoutedEventArgs e)

@@ -215,7 +215,8 @@
                        TextTrimming="WordEllipsis"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"                       
-                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Description}"/>
+                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Description}"
+                       Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DescriptionVisibility}"/>
 
             <StackPanel Orientation="Horizontal">
                 

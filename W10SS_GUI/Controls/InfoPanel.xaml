@@ -14,16 +14,14 @@
             <Setter Property="Margin" Value="10"/>
         </Style>
         <Style TargetType="StackPanel">
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Orientation" Value="Vertical"/>            
         </Style>
     </UserControl.Resources>
 
-    <Grid Name="gridInfoPanel"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Center">
+    <Grid Name="gridInfoPanel">        
 
         <StackPanel Name="panelIfoPanel">            
 

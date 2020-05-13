@@ -70,10 +70,14 @@ namespace W10SS_GUI
             {
                 PowerScriptsData.Where(script => script.Path.StartsWith(panel.Tag as string))
                                 .ToList()
-                                .ForEach(script => CreateToogleSwitch(toggleData: script, parentPanel: panel));                
-            });
+                                .ForEach(script => CreateToogleSwitch(toggleData: script, parentPanel: panel));
 
-            // TODO Check Panel.Children > 0 !!!
+                //if (panel.Children.Count == 0)
+                //    ErrorsHelper.SetInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_WarningTriangle] as string,
+                //                                      InfoPanelText: CONST.Error_NoPsFilesFound,
+                //                                      ParentElement: panel,
+                //                                      ChildrenClear: true);
+            });            
         }
 
         private void CreateToogleSwitch(PowerScript toggleData, StackPanel parentPanel)
@@ -84,41 +88,32 @@ namespace W10SS_GUI
                 ScriptPath = File.Exists(toggleData.Path) ? toggleData.Path : null
             };
 
-            string dictionaryHeaderId = $"TH_{toggleSwitch.Id}";
-            string dictionaryDescriptionId = $"TD_{toggleSwitch.Id}";
-
-            Culture.SetToAllResourceDictionaryKeyValue(resourceID: dictionaryHeaderId,
-                                                       valueEN: toggleData.HeaderEn,
-                                                       valueRU: toggleData.HeaderRu);
-
-            Culture.SetToAllResourceDictionaryKeyValue(resourceID: dictionaryDescriptionId,
-                                                       valueEN: toggleData.DescriptionEn,
-                                                       valueRU: toggleData.DescriptionRu);
-
-            toggleSwitch.SetResourceReference(ToggleSwitch.HeaderProperty, dictionaryHeaderId);
-            toggleSwitch.SetResourceReference(ToggleSwitch.DescriptionProperty, dictionaryDescriptionId);
+            if (toggleData.DescriptionEn.Length == 0 || toggleData.DescriptionRu.Length == 0)
+            {
+                toggleSwitch.DescriptionVisibility = Visibility.Collapsed;
+            }
 
             if (toggleSwitch.ScriptPath != null)
             {
+                string dictionaryHeaderId = $"TH_{toggleSwitch.Id}";
+                string dictionaryDescriptionId = $"TD_{toggleSwitch.Id}";
+
+                Culture.SetToAllResourceDictionaryKeyValue(resourceID: dictionaryHeaderId,
+                                                           valueEN: toggleData.HeaderEn,
+                                                           valueRU: toggleData.HeaderRu);
+
+                Culture.SetToAllResourceDictionaryKeyValue(resourceID: dictionaryDescriptionId,
+                                                           valueEN: toggleData.DescriptionEn,
+                                                           valueRU: toggleData.DescriptionRu);
+
+                toggleSwitch.SetResourceReference(ToggleSwitch.HeaderProperty, dictionaryHeaderId);
+                toggleSwitch.SetResourceReference(ToggleSwitch.DescriptionProperty, dictionaryDescriptionId);
+
                 toggleSwitch.IsSwitched += SetButtonsStateIfToggleIsSwitched;                
                 parentPanel.Children.Add(toggleSwitch);
                 TogglesSwitches.Add(toggleSwitch);
             }           
-        }
-
-        private void AddInfoPanelControls(StackPanel panel)
-        {
-            if (panel.Children.Count == 0)
-            {
-                InfoPanel info = new InfoPanel
-                {
-                    Icon = Application.Current.Resources[CONST.InfoPanel_WarningTriangle] as string                    
-                };
-
-                info.SetResourceReference(InfoPanel.TextProperty, CONST.Error_NoPsFilesFound);
-                panel.Children.Add(info);                
-            }
-        }
+        }        
 
         private void SetButtonsStateIfToggleIsSwitched(object IsChecked, EventArgs e)
         {
@@ -233,6 +228,18 @@ namespace W10SS_GUI
                 //TODO Save Settings Logics !!!
                 throw new NotImplementedException();
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CategoryPanels.ForEach(panel =>
+            {
+                if (panel.Children.Count == 0)
+                    ErrorsHelper.SetInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_WarningTriangle] as string,
+                                                      InfoPanelText: CONST.Error_NoPsFilesFound,
+                                                      ParentElement: panel,
+                                                      ChildrenClear: true);
+            });
         }
     }
 }

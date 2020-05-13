@@ -28,5 +28,6 @@
     <system:String x:Key="Error.SettingsFileNotExist">File Settings.json not found</system:String>
     <system:String x:Key="Error.SettingsFileModified">File Settings.json has been modified</system:String>
     <system:String x:Key="Error.SettingsFileNotRead">File Settings.json cannot be read</system:String>
+    <system:String x:Key="Error.NewtonsoftJsonFileNotExist">File Newtonsoft.Json.dll not found</system:String>
 
 </ResourceDictionary>

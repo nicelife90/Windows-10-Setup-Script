@@ -64,6 +64,15 @@ namespace Windows10SetupScript.Classes
                 Description = CONST.Error_SettingsFileNotRead
             };
         }
+
+        internal static Test NewtonsoftJsonExist(string filePath)
+        {
+            return new Test()
+            {
+                HasError = File.Exists(filePath) ? false : true,
+                Description = CONST.Error_NewtonsoftJsonFileNotExist
+            };
+        }
     }
 
     

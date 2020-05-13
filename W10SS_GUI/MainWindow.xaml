@@ -10,10 +10,10 @@
         Name="Window" Title="{StaticResource textWindowTitle}"
         MinHeight="{StaticResource windowMinHeight}" MinWidth="{StaticResource windowMinWidth}"
         Width="{StaticResource windowMinWidth}" FontFamily="{StaticResource fontWindow}"
-        FontSize="{DynamicResource windowFontSize}" WindowStartupLocation="CenterScreen" 
+        FontSize="{StaticResource windowFontSize}" WindowStartupLocation="CenterScreen" 
         SnapsToDevicePixels="True" ResizeMode="CanResize" ShowInTaskbar="True" 
         Background="{DynamicResource colorWindowBackground}" Foreground="{DynamicResource colorWindowForeground}" 
-        Initialized="Window_Initialized">
+        Initialized="Window_Initialized" Loaded="Window_Loaded">
 
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -236,7 +236,7 @@
 
                     <StackPanel Name="panelTogglesCategoryPrivacy"
                             Tag="{StaticResource tagCategoryPrivacy}"                            
-                            Visibility="Collapsed" />
+                            Visibility="Collapsed"/>
 
                     <StackPanel Name="panelTogglesCategoryUi"
                             Tag="{StaticResource tagCategoryUi}"
@@ -272,9 +272,9 @@
 
                     <StackPanel Name="panelTogglesCategoryContextMenu"
                             Tag="{StaticResource tagCategoryContextMenu}"
-                            Visibility="Collapsed">
+                            Visibility="Collapsed"/>
 
-                    </StackPanel>
+
 
                 </StackPanel>
 

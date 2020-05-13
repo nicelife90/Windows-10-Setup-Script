@@ -15,21 +15,28 @@ namespace Windows10SetupScript.Classes
     class ErrorsHelper
     {
         private MainWindow MainWindow;
+        private Queue<Func<Test>> FuncQueue = new Queue<Func<Test>>();
         public bool HasErrors { get; private set; } = false;
                         
         public Action FixErrors { get; private set;}
 
-        private Queue<Func<Test>> FuncQueue = new Queue<Func<Test>>();
-
+        public void SetInfoPanelControls(string InfoPanelIcon, string InfoPanelText, Panel ParentElement, bool ChildrenClear)
+        {
+            AddInfoPanelControls(InfoPanelIcon, InfoPanelText, ParentElement, ChildrenClear);            
+        }
+        
         private void AddInfoPanelControls(string InfoPanelIcon, string InfoPanelText, Panel ParentElement, bool ChildrenClear)
         {
-            InfoPanel infoPanel = new InfoPanel();
-            infoPanel.Icon = InfoPanelIcon;
+            InfoPanel infoPanel = new InfoPanel
+            {
+                Icon = InfoPanelIcon
+            };
+
             infoPanel.SetResourceReference(InfoPanel.TextProperty, InfoPanelText);            
 
             if (ChildrenClear)
                 ParentElement.Children.Clear();
-
+            
             ParentElement.Children.Add(infoPanel);            
         }
         
@@ -43,6 +50,7 @@ namespace Windows10SetupScript.Classes
         private void FillingQueue()
         {
             FuncQueue.Enqueue(() => Test.OsVersion());
+            FuncQueue.Enqueue(() => Test.NewtonsoftJsonExist(Path.Combine(MainWindow.AppBaseDir, CONST.Newtonsoft_Json_File)));
             FuncQueue.Enqueue(() => Test.SettingsJsonExist(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)));
             FuncQueue.Enqueue(() => Test.SettingsJsonHash(Path.Combine(MainWindow.AppBaseDir, CONST.Settings_Json_File)));
             FuncQueue.Enqueue(() => Test.SettingsJsonReadData(MainWindow));
@@ -61,6 +69,14 @@ namespace Windows10SetupScript.Classes
                 {
                     FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_WarningRobot] as string,
                         InfoPanelText: CONST.Error_OsVersionNotSupported, ParentElement: MainWindow.gridContainer,
+                        ChildrenClear: true);
+                    break;
+                }
+
+                if (test.HasError && test.Description == CONST.Error_NewtonsoftJsonFileNotExist)
+                {
+                    FixErrors = () => AddInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_Magnifier] as string,
+                        InfoPanelText: CONST.Error_NewtonsoftJsonFileNotExist, ParentElement: MainWindow.gridContainer,
                         ChildrenClear: true);
                     break;
                 }
