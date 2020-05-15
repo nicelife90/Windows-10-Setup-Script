@@ -44,7 +44,7 @@ namespace Windows10SetupScript.Classes
         internal static readonly int Win10_Build = 17763;
 
         internal static readonly string Settings_Json_File = "Settings.json";
-        internal static readonly string Settings_Json_Sha256 = "CEA314D7E47DF51F956CE5F8D0952DC052E11D3B897150AE762ED19854E1B5A7";
+        internal static readonly string Settings_Json_Sha256 = "9F68D54C63E207D0566AF1976026CCB2FEEE45D8F378D2EDF15CA20A8E5B63CB";
 
         internal static readonly string Newtonsoft_Json_File = "Newtonsoft.Json.dll";
 

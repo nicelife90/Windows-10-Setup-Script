@@ -68,15 +68,9 @@ namespace W10SS_GUI
         {
             CategoryPanels.ForEach(panel =>
             {
-                PowerScriptsData.Where(script => script.Path.StartsWith(panel.Tag as string))
+                PowerScriptsData.Where(script => script.Path.Contains(panel.Tag as string))
                                 .ToList()
-                                .ForEach(script => CreateToogleSwitch(toggleData: script, parentPanel: panel));
-
-                //if (panel.Children.Count == 0)
-                //    ErrorsHelper.SetInfoPanelControls(InfoPanelIcon: Application.Current.Resources[CONST.InfoPanel_WarningTriangle] as string,
-                //                                      InfoPanelText: CONST.Error_NoPsFilesFound,
-                //                                      ParentElement: panel,
-                //                                      ChildrenClear: true);
+                                .ForEach(script => CreateToogleSwitch(toggleData: script, parentPanel: panel));                
             });            
         }
 
@@ -88,10 +82,9 @@ namespace W10SS_GUI
                 ScriptPath = File.Exists(toggleData.Path) ? toggleData.Path : null
             };
 
-            if (toggleData.DescriptionEn.Length == 0 || toggleData.DescriptionRu.Length == 0)
-            {
-                toggleSwitch.DescriptionVisibility = Visibility.Collapsed;
-            }
+            toggleSwitch.DescriptionVisibility = toggleData.DescriptionEn?.Length > 0
+                                               ? Visibility.Visible
+                                               : Visibility.Collapsed;            
 
             if (toggleSwitch.ScriptPath != null)
             {

@@ -211,7 +211,7 @@
                     Height="{StaticResource togglesCategoryPanelHeaderHeight}"
                     Orientation="Horizontal"
                     VerticalAlignment="Top"
-                    Background="{DynamicResource colorCategoryPanelHeaderBackground}">
+                    Background="Transparent">
 
                 <TextBlock Name="textTogglesHeader" 
                        FontSize="{StaticResource fontSizeTogglesCategoryPanelHeader}"
