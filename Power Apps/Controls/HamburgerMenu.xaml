@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="Power_App.Controls.HamburgerMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Power_App.Controls"            
+             mc:Ignorable="d">
+    <Grid>        
+        <Canvas Name="CanvasHamburger"      
+                Width="{StaticResource Controls.HamburgerPanel.MaxWidth}"
+                MaxWidth="{StaticResource Controls.HamburgerPanel.MaxWidth}">
+            <Canvas.Background>
+                <SolidColorBrush Color="{DynamicResource Color.HamburgerButton.Background}"/>
+            </Canvas.Background>
+
+            <!--#region Panel Hamburger Top Container-->
+            <StackPanel Canvas.Top="0" Canvas.Left="0" 
+                        Width="{Binding ElementName=CanvasHamburger, Path=Width}">
+
+                <local:HamburgerIconButton Tag="{StaticResource Tag.Privacy}"
+                                           Icon="{StaticResource Icon.Privacy}"
+                                           Text="{DynamicResource LocalizedText.Privacy}"/>
+
+                <local:HamburgerIconButton Tag="{StaticResource Tag.Ui}"
+                                           Icon="{StaticResource Icon.Ui}"
+                                           Text="{DynamicResource LocalizedText.Ui}"/>
+
+                <local:HamburgerIconButton Tag="{StaticResource Tag.Ui}"
+                                           Icon="{StaticResource Icon.ContextMenu}"
+                                           Text="{DynamicResource LocalizedText.ContextMenu}"/>
+
+                <local:HamburgerIconButton Tag="{StaticResource Tag.StartMenu}"
+                                           Icon="{StaticResource Icon.StartMenu}"
+                                           Text="{DynamicResource LocalizedText.StartMenu}"/>
+
+                <local:HamburgerIconButton Tag="{StaticResource Tag.System}"
+                                           Icon="{StaticResource Icon.System}"
+                                           Text="{DynamicResource LocalizedText.System}"/>
+
+                <local:HamburgerPathButton Tag="{StaticResource Tag.TaskSheduler}"
+                                           Icon="{StaticResource Icon.TaskSheduler}"
+                                           Text="{DynamicResource LocalizedText.TaskScheduler}"/>
+
+                <local:HamburgerIconButton Tag="{StaticResource Tag.Security}"
+                                           Icon="{StaticResource Icon.Security}"
+                                           Text="{DynamicResource LocalizedText.Security}"/>
+
+                <local:HamburgerPathButton Tag="{StaticResource Tag.Game}"
+                                           Icon="{StaticResource Icon.Game}"
+                                           Text="{DynamicResource LocalizedText.Game}"/>
+
+                <local:HamburgerIconButton Tag="{StaticResource Tag.Uwp}"
+                                           Icon="{StaticResource Icon.Uwp}"
+                                           Text="{DynamicResource LocalizedText.Uwp}"/>
+
+                <local:HamburgerPathButton Tag="{StaticResource Tag.OneDrive}"
+                                           Icon="{StaticResource Icon.OneDrive}"
+                                           Text="{DynamicResource LocalizedText.OneDrive}"/>
+            </StackPanel>
+            
+            <!--#endregion Panel Hamburger Top Container-->
+
+            <!--#region Panel Hamburger Bottom Container-->
+            <StackPanel Canvas.Bottom="0" Canvas.Left="0">
+
+            </StackPanel>
+            <!--#endregion Panel Hamburger Bottom Container-->
+        </Canvas>
+    </Grid>
+    
+        
+
+</UserControl>

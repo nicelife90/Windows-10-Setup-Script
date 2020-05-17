@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Power_Apps.Themes">
+    
+    <SolidColorBrush x:Key="Color.Window.Background" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="Color.Window.Foreground" Color="#000000"/>
+
+    <Color x:Key="Color.HamburgerButton.Background">#353535</Color>
+    <Color x:Key="Color.HamburgerButton.Hover">#626262</Color>
+    <SolidColorBrush x:Key="Color.HamburgerButton.Foreground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.HamburgerButton.Disabled">#848484</SolidColorBrush>    
+
+</ResourceDictionary>

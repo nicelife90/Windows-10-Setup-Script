@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:Power_App.Localization">
+
+    <system:String x:Key="LocalizedText.Privacy">Конфиденциальность</system:String>
+    <system:String x:Key="LocalizedText.Ui">Внешний вид</system:String>
+    <system:String x:Key="LocalizedText.ContextMenu">Контекстное меню</system:String>
+    <system:String x:Key="LocalizedText.StartMenu">Меню "Пуск"</system:String>
+    <system:String x:Key="LocalizedText.System">Система</system:String>
+    <system:String x:Key="LocalizedText.TaskScheduler">Планировщик задач</system:String>
+    <system:String x:Key="LocalizedText.Security">Безопасность</system:String>
+    <system:String x:Key="LocalizedText.Game">Игры</system:String>
+    <system:String x:Key="LocalizedText.Uwp">UWP приложения</system:String>
+    <system:String x:Key="LocalizedText.OneDrive">OneDrive</system:String>
+
+</ResourceDictionary>
