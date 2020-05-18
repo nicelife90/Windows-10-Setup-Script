@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="GridHamburgerStyle" TargetType="Grid">
-            <Setter Property="Width" Value="{StaticResource Controls.HamburgerPanel.MaxWidth}"/>
+            <Setter Property="Width" Value="{StaticResource Controls.Hamburger.MaxWidth}"/>
             <Setter Property="Height" Value="{StaticResource Controls.HamburgerButton.Height}"/>
         </Style>
 
@@ -62,36 +62,13 @@
         </Grid.Background>
         <Grid.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <ColorAnimation Storyboard.TargetName="GridHamburgerBackgroundBrush"
-                                        Storyboard.TargetProperty="Color"
-                                        Duration="0:0:0.5" 
-                                        To="{DynamicResource Color.HamburgerButton.Hover}" />
-                    </Storyboard>
-                </BeginStoryboard>
+                <BeginStoryboard Storyboard="{StaticResource Animation.HamburgerButton.MouseEnter}"/>
             </EventTrigger>
             <EventTrigger RoutedEvent="MouseLeave">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <ColorAnimation Storyboard.TargetName="GridHamburgerBackgroundBrush"
-                                        Storyboard.TargetProperty="Color"
-                                        Duration="0:0:1" 
-                                        BeginTime="0:0:0.5"
-                                        To="{DynamicResource Color.HamburgerButton.Background}" />
-                    </Storyboard>
-                </BeginStoryboard>
+                <BeginStoryboard Storyboard="{StaticResource Animation.HamburgerButton.MouseLeave}"/>
             </EventTrigger>
-            <EventTrigger RoutedEvent="MouseLeftButtonDown">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <ThicknessAnimation Storyboard.TargetName="GridContainer"
-                                                Storyboard.TargetProperty="Margin" 
-                                                Duration="0:0:0.5" 
-                                                From="0 0 0 0" To="0 10 0 0" 
-                                                SpeedRatio="3" AutoReverse="True"/>
-                    </Storyboard>
-                </BeginStoryboard>
+            <EventTrigger RoutedEvent="MouseLeftButtonUp">
+                <BeginStoryboard Storyboard="{StaticResource Animation.HamburgerButton.MouseLeftButtonDown}"/>
             </EventTrigger>
         </Grid.Triggers>
         <Grid Name="GridContainer">

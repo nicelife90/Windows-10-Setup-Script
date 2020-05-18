@@ -5,69 +5,114 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Power_App.Controls"            
              mc:Ignorable="d">
-    <Grid>        
-        <Canvas Name="CanvasHamburger"      
-                Width="{StaticResource Controls.HamburgerPanel.MaxWidth}"
-                MaxWidth="{StaticResource Controls.HamburgerPanel.MaxWidth}">
+    <Grid>
+        <Canvas Name="Hamburger"
+                MinWidth="{StaticResource Controls.Hamburger.MinWidth}"
+                Width="{StaticResource Controls.Hamburger.MinWidth}"
+                MaxWidth="{StaticResource Controls.Hamburger.MaxWidth}"
+                local:HamburgerButton.MenuClick="Hamburger_MenuClick">
             <Canvas.Background>
                 <SolidColorBrush Color="{DynamicResource Color.HamburgerButton.Background}"/>
             </Canvas.Background>
 
-            <!--#region Panel Hamburger Top Container-->
-            <StackPanel Canvas.Top="0" Canvas.Left="0" 
-                        Width="{Binding ElementName=CanvasHamburger, Path=Width}">
+            <local:HamburgerButton x:Name="HamburgerMenuButton"
+                                   Tag="{StaticResource Tag.HamburgerMenu}"
+                                   Icon="{StaticResource Icon.HamburgerMenu}"                                   
+                                   Canvas.Top="0" Canvas.Left="0"/>
 
-                <local:HamburgerIconButton Tag="{StaticResource Tag.Privacy}"
-                                           Icon="{StaticResource Icon.Privacy}"
-                                           Text="{DynamicResource LocalizedText.Privacy}"/>
+            <local:HamburgerIconButton Tag="{StaticResource Tag.Privacy}"
+                                       Icon="{StaticResource Icon.Privacy}"
+                                       Text="{DynamicResource LocalizedText.Privacy}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="50" Canvas.Left="0"/>
 
-                <local:HamburgerIconButton Tag="{StaticResource Tag.Ui}"
-                                           Icon="{StaticResource Icon.Ui}"
-                                           Text="{DynamicResource LocalizedText.Ui}"/>
+            <local:HamburgerIconButton Tag="{StaticResource Tag.Ui}"
+                                       Icon="{StaticResource Icon.Ui}"
+                                       Text="{DynamicResource LocalizedText.Ui}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="100" Canvas.Left="0"/>
 
-                <local:HamburgerIconButton Tag="{StaticResource Tag.Ui}"
-                                           Icon="{StaticResource Icon.ContextMenu}"
-                                           Text="{DynamicResource LocalizedText.ContextMenu}"/>
+            <local:HamburgerIconButton Tag="{StaticResource Tag.Ui}"
+                                       Icon="{StaticResource Icon.ContextMenu}"
+                                       Text="{DynamicResource LocalizedText.ContextMenu}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="150" Canvas.Left="0"/>
 
-                <local:HamburgerIconButton Tag="{StaticResource Tag.StartMenu}"
-                                           Icon="{StaticResource Icon.StartMenu}"
-                                           Text="{DynamicResource LocalizedText.StartMenu}"/>
+            <local:HamburgerIconButton Tag="{StaticResource Tag.StartMenu}"
+                                       Icon="{StaticResource Icon.StartMenu}"
+                                       Text="{DynamicResource LocalizedText.StartMenu}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="200" Canvas.Left="0"/>
 
-                <local:HamburgerIconButton Tag="{StaticResource Tag.System}"
-                                           Icon="{StaticResource Icon.System}"
-                                           Text="{DynamicResource LocalizedText.System}"/>
+            <local:HamburgerIconButton Tag="{StaticResource Tag.System}"
+                                       Icon="{StaticResource Icon.System}"
+                                       Text="{DynamicResource LocalizedText.System}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="250" Canvas.Left="0"/>
 
-                <local:HamburgerPathButton Tag="{StaticResource Tag.TaskSheduler}"
-                                           Icon="{StaticResource Icon.TaskSheduler}"
-                                           Text="{DynamicResource LocalizedText.TaskScheduler}"/>
+            <local:HamburgerPathButton Tag="{StaticResource Tag.TaskSheduler}"
+                                       Icon="{StaticResource Icon.TaskSheduler}"
+                                       Text="{DynamicResource LocalizedText.TaskScheduler}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="300" Canvas.Left="0"/>
 
-                <local:HamburgerIconButton Tag="{StaticResource Tag.Security}"
-                                           Icon="{StaticResource Icon.Security}"
-                                           Text="{DynamicResource LocalizedText.Security}"/>
+            <local:HamburgerIconButton Tag="{StaticResource Tag.Security}"
+                                       Icon="{StaticResource Icon.Security}"
+                                       Text="{DynamicResource LocalizedText.Security}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="350" Canvas.Left="0"/>
 
-                <local:HamburgerPathButton Tag="{StaticResource Tag.Game}"
-                                           Icon="{StaticResource Icon.Game}"
-                                           Text="{DynamicResource LocalizedText.Game}"/>
+            <local:HamburgerPathButton Tag="{StaticResource Tag.Game}"
+                                       Icon="{StaticResource Icon.Game}"
+                                       Text="{DynamicResource LocalizedText.Game}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="400" Canvas.Left="0"/>
 
-                <local:HamburgerIconButton Tag="{StaticResource Tag.Uwp}"
-                                           Icon="{StaticResource Icon.Uwp}"
-                                           Text="{DynamicResource LocalizedText.Uwp}"/>
+            <local:HamburgerIconButton Tag="{StaticResource Tag.Uwp}"
+                                       Icon="{StaticResource Icon.Uwp}"
+                                       Text="{DynamicResource LocalizedText.Uwp}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="450" Canvas.Left="0"/>
 
-                <local:HamburgerPathButton Tag="{StaticResource Tag.OneDrive}"
-                                           Icon="{StaticResource Icon.OneDrive}"
-                                           Text="{DynamicResource LocalizedText.OneDrive}"/>
-            </StackPanel>
-            
-            <!--#endregion Panel Hamburger Top Container-->
+            <local:HamburgerPathButton Tag="{StaticResource Tag.OneDrive}"
+                                       Icon="{StaticResource Icon.OneDrive}"
+                                       Text="{DynamicResource LocalizedText.OneDrive}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Top="500" Canvas.Left="0"/>            
 
-            <!--#region Panel Hamburger Bottom Container-->
-            <StackPanel Canvas.Bottom="0" Canvas.Left="0">
+            <local:HamburgerPathButton Tag="{StaticResource Tag.GitHub}"
+                                       Icon="{StaticResource Icon.GitHub}"
+                                       Text="{DynamicResource LocalizedText.GitHub}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Bottom="200" Canvas.Left="0"/>
 
-            </StackPanel>
-            <!--#endregion Panel Hamburger Bottom Container-->
+            <local:HamburgerPathButton Tag="{StaticResource Tag.LanguageSettings}"
+                                       Icon="{StaticResource Icon.LanguageSettings}"
+                                       Text="{DynamicResource LocalizedText.LanguageSettings}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Bottom="150" Canvas.Left="0"/>
+
+            <local:HamburgerPathButton Tag="{StaticResource Tag.LoadSettings}"
+                                       Icon="{StaticResource Icon.LoadSettings}"
+                                       Text="{DynamicResource LocalizedText.LoadSettings}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Bottom="100" Canvas.Left="0"/>
+
+            <local:HamburgerPathButton Tag="{StaticResource Tag.SaveSettings}"
+                                       Icon="{StaticResource Icon.SaveSettings}"
+                                       Text="{DynamicResource LocalizedText.SaveSettings}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Bottom="50" Canvas.Left="0"
+                                       IsEnabled="False"/>
+
+            <local:HamburgerPathButton Tag="{StaticResource Tag.ApplySettings}"
+                                       Icon="{StaticResource Icon.ApplySettings}"
+                                       Text="{DynamicResource LocalizedText.ApplySettings}"
+                                       Width="{Binding ElementName=Hamburger, Path=ActualWidth}"
+                                       Canvas.Bottom="0" Canvas.Left="0"
+                                       IsEnabled="False"/>
+
         </Canvas>
     </Grid>
-    
-        
 
 </UserControl>

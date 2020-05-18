@@ -23,6 +23,6 @@ namespace Power_Apps
         public MainWindow()
         {
             InitializeComponent();
-        }
+        }        
     }
 }

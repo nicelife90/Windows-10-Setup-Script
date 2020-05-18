@@ -3,6 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:Power_App.Localization">
 
+    <system:String x:Key="LocalizedText.AppTitle">Power App — тонкая настройка ОС и автоматизация рутинных задач</system:String>
     <system:String x:Key="LocalizedText.Privacy">Конфиденциальность</system:String>
     <system:String x:Key="LocalizedText.Ui">Внешний вид</system:String>
     <system:String x:Key="LocalizedText.ContextMenu">Контекстное меню</system:String>
@@ -13,5 +14,10 @@
     <system:String x:Key="LocalizedText.Game">Игры</system:String>
     <system:String x:Key="LocalizedText.Uwp">UWP приложения</system:String>
     <system:String x:Key="LocalizedText.OneDrive">OneDrive</system:String>
-
+    <system:String x:Key="LocalizedText.GitHub">GitHub</system:String>
+    <system:String x:Key="LocalizedText.LanguageSettings">English</system:String>
+    <system:String x:Key="LocalizedText.LoadSettings">Импортировать</system:String>
+    <system:String x:Key="LocalizedText.SaveSettings">Сохранить</system:String>
+    <system:String x:Key="LocalizedText.ApplySettings">Применить</system:String>
+    
 </ResourceDictionary>

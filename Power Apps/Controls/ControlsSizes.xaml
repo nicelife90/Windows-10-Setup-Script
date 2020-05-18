@@ -3,12 +3,15 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:Power_Apps.Controls">
 
-    <system:Double x:Key="Controls.HamburgerButton.Height">60</system:Double>
+    <system:Double x:Key="Controls.Window.MinHeight">838</system:Double>
+    
+    <system:Double x:Key="Controls.HamburgerButton.Height">50</system:Double>
     <system:Double x:Key="Controls.HamburgerButton.IconSize">24</system:Double>
     <system:Double x:Key="Controls.HamburgerButton.IconTextSize">20</system:Double>
     <system:Double x:Key="Controls.HamburgerButton.TextSize">14</system:Double>
 
-    <system:Double x:Key="Controls.HamburgerPanel.MaxWidth">230</system:Double>
+    <system:Double x:Key="Controls.Hamburger.MinWidth">50</system:Double>
+    <system:Double x:Key="Controls.Hamburger.MaxWidth">230</system:Double>
 
     
 

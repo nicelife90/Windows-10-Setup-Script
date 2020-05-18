@@ -10,18 +10,22 @@
         SnapsToDevicePixels="True" ResizeMode="CanResize" ShowInTaskbar="True" 
         Background="{DynamicResource Color.Window.Background}" 
         Foreground="{DynamicResource Color.Window.Foreground}"        
-        Title="Power App" Height="450" Width="800">
+        Title="{DynamicResource LocalizedText.AppTitle}" 
+        MinHeight="{StaticResource Controls.Window.MinHeight}"
+        Width="800">
+    
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
             <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
         </Style>
     </Window.Style>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <uc:HamburgerMenu/>
+        <uc:HamburgerMenu x:Name="HamburgerMenu"/>
     </Grid>
 </Window>

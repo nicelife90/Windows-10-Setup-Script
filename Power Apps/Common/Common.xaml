@@ -6,6 +6,7 @@
     <FontFamily x:Key="Font.Roboto">"./Fonts/Roboto-Regular.ttf"</FontFamily>
     <FontFamily x:Key="Font.SegoeMDL2Assets">Segoe MDL2 Assets</FontFamily>
 
+    <system:String x:Key="Tag.HamburgerMenu">HamburgerMenu</system:String>
     <system:String x:Key="Tag.Privacy">Privacy</system:String>
     <system:String x:Key="Tag.Ui">Ui</system:String>
     <system:String x:Key="Tag.ContextMenu">ContextMenu</system:String>
@@ -16,4 +17,42 @@
     <system:String x:Key="Tag.Game">Game</system:String>
     <system:String x:Key="Tag.Uwp">Uwp</system:String>
     <system:String x:Key="Tag.OneDrive">OneDrive</system:String>
+    <system:String x:Key="Tag.GitHub">GitHub</system:String>
+    <system:String x:Key="Tag.LanguageSettings">LanguageSettings</system:String>
+    <system:String x:Key="Tag.LoadSettings">LoadSettings</system:String>
+    <system:String x:Key="Tag.SaveSettings">SaveSettings</system:String>
+    <system:String x:Key="Tag.ApplySettings">ApplySettings</system:String>
+
+    <Storyboard x:Key="Animation.HamburgerButton.MouseEnter">
+        <ColorAnimation Storyboard.TargetName="GridHamburgerBackgroundBrush" 
+                        Storyboard.TargetProperty="Color" 
+                        Duration="0:0:0.5"  
+                        To="{DynamicResource Color.HamburgerButton.Hover}" />
+    </Storyboard>
+
+    <Storyboard x:Key="Animation.HamburgerButton.MouseLeave">
+        <ColorAnimation Storyboard.TargetName="GridHamburgerBackgroundBrush" 
+                        Storyboard.TargetProperty="Color" 
+                        Duration="0:0:1" 
+                        BeginTime="0:0:0.5"
+                        To="{DynamicResource Color.HamburgerButton.Background}" />
+    </Storyboard>
+
+    <Storyboard x:Key="Animation.HamburgerButton.MouseLeftButtonDown">
+        <ThicknessAnimation Storyboard.TargetName="GridContainer" 
+                            Storyboard.TargetProperty="Margin" 
+                            Duration="0:0:0.5" 
+                            From="0 0 0 0" 
+                            To="0 10 0 0" 
+                            SpeedRatio="3" 
+                            AutoReverse="True"/>
+    </Storyboard>
+
+    <Storyboard x:Key="Animation.HamburgerMenuButton.MouseLeftButtonDown">
+        <DoubleAnimation Storyboard.TargetName="Hamburger"
+                         Storyboard.TargetProperty="Width"
+                         To="{DynamicResource Controls.Hamburger.MinWidth}"
+                         Duration="0:0:0.5"/>
+    </Storyboard>
+
 </ResourceDictionary>
