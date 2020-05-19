@@ -20,9 +20,24 @@ namespace Power_App.Controls
     /// </summary>
     public partial class HamburgerPathButton : UserControl
     {
+        public static RoutedEvent HamburgerMouseEnterEvent = EventManager.RegisterRoutedEvent("HamburgerMouseEnter", RoutingStrategy.Bubble,
+                                                                                        typeof(RoutedEventHandler), typeof(HamburgerPathButton));
+
+        public event RoutedEventHandler HamburgerMouseEnter
+        {
+            add { AddHandler(HamburgerMouseEnterEvent, value); }
+            remove { RemoveHandler(HamburgerMouseEnterEvent, value); }
+        }
+
         public HamburgerPathButton()
         {
             InitializeComponent();
+        }
+
+        private void Hamburger_MouseEnter(object sender, MouseEventArgs e)
+        {
+            RoutedEventArgs routedArgs = new RoutedEventArgs(HamburgerMouseEnterEvent, this);
+            RaiseEvent(routedArgs);
         }
 
         public string Text
@@ -43,10 +58,6 @@ namespace Power_App.Controls
 
         // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(Geometry), typeof(HamburgerPathButton), new PropertyMetadata(default(Geometry)));
-
-
-
-
+            DependencyProperty.Register("Icon", typeof(Geometry), typeof(HamburgerPathButton), new PropertyMetadata(default(Geometry)));        
     }
 }

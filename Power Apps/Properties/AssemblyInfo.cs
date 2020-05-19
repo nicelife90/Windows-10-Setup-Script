@@ -7,11 +7,11 @@ using System.Windows;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Power App")]
-[assembly: AssemblyDescription("Set of tweaks for OS fine-tuning and automating the routine tasks")]
+[assembly: AssemblyTitle("Set of tweaks for Windows 10 fine-tuning and automating the routine tasks")]
+[assembly: AssemblyDescription("PowerApp")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Power App")]
+[assembly: AssemblyProduct("PowerApp")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

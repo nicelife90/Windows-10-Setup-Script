@@ -10,10 +10,17 @@
                 MinWidth="{StaticResource Controls.Hamburger.MinWidth}"
                 Width="{StaticResource Controls.Hamburger.MinWidth}"
                 MaxWidth="{StaticResource Controls.Hamburger.MaxWidth}"
-                local:HamburgerButton.MenuClick="Hamburger_MenuClick">
+                local:HamburgerButton.MenuClick="Hamburger_MenuClick"
+                local:HamburgerIconButton.HamburgerMouseEnter="HamburgerIconButton_MouseEnter"
+                local:HamburgerPathButton.HamburgerMouseEnter="HamburgerPathButton_MouseEnter">
             <Canvas.Background>
                 <SolidColorBrush Color="{DynamicResource Color.HamburgerButton.Background}"/>
             </Canvas.Background>
+
+            <local:HamburgerSelector x:Name="HamburgerSelector"
+                                     Canvas.Top="50"
+                                     Canvas.Left="0"
+                                     Panel.ZIndex="10"/>
 
             <local:HamburgerButton x:Name="HamburgerMenuButton"
                                    Tag="{StaticResource Tag.HamburgerMenu}"

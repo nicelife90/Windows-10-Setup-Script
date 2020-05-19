@@ -49,10 +49,10 @@
     </Storyboard>
 
     <Storyboard x:Key="Animation.HamburgerMenuButton.MouseLeftButtonDown">
-        <DoubleAnimation Storyboard.TargetName="Hamburger"
-                         Storyboard.TargetProperty="Width"
+        <DoubleAnimation Storyboard.TargetProperty="Width"
                          To="{DynamicResource Controls.Hamburger.MinWidth}"
-                         Duration="0:0:0.5"/>
+                         Duration="0:0:0.5"
+                         SpeedRatio="3"/>
     </Storyboard>
 
 </ResourceDictionary>

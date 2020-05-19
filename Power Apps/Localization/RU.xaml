@@ -3,7 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:Power_App.Localization">
 
-    <system:String x:Key="LocalizedText.AppTitle">Power App — тонкая настройка ОС и автоматизация рутинных задач</system:String>
+    <system:String x:Key="LocalizedText.AppTitle">PowerApp — тонкая настройка Windows 10 и автоматизация рутинных задач</system:String>
     <system:String x:Key="LocalizedText.Privacy">Конфиденциальность</system:String>
     <system:String x:Key="LocalizedText.Ui">Внешний вид</system:String>
     <system:String x:Key="LocalizedText.ContextMenu">Контекстное меню</system:String>

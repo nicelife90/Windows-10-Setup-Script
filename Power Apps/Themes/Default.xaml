@@ -8,6 +8,8 @@
     <Color x:Key="Color.HamburgerButton.Background">#353535</Color>
     <Color x:Key="Color.HamburgerButton.Hover">#626262</Color>
     <SolidColorBrush x:Key="Color.HamburgerButton.Foreground">#FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="Color.HamburgerButton.Disabled">#848484</SolidColorBrush>    
+    <SolidColorBrush x:Key="Color.HamburgerButton.Disabled">#848484</SolidColorBrush>
+
+    <SolidColorBrush x:Key="Color.HamburgerSelector.Background">#0078d7</SolidColorBrush>
 
 </ResourceDictionary>

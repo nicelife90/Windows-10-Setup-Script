@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:local="clr-namespace:Power_Apps.Controls">
+                    xmlns:local="clr-namespace:Power_Apps.Controls"
+                    xmlns:system1="http://schemas.microsoft.com/netfx/2009/xaml/presentation">
 
     <system:Double x:Key="Controls.Window.MinHeight">838</system:Double>
     
@@ -13,6 +14,7 @@
     <system:Double x:Key="Controls.Hamburger.MinWidth">50</system:Double>
     <system:Double x:Key="Controls.Hamburger.MaxWidth">230</system:Double>
 
+    <system:Double x:Key="Controls.HamburgerSelector.Width">5</system:Double>
+    <system1:Thickness x:Key="Controls.HamburgerSelector.Margin">0, 10, 0, 10</system1:Thickness>
     
-
 </ResourceDictionary>

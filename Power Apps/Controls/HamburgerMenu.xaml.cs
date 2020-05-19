@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Power_App.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,31 +22,33 @@ namespace Power_App.Controls
     /// </summary>
     public partial class HamburgerMenu : UserControl
     {
-        private Storyboard storyboardHamburgerWidth;
-        private DoubleAnimation animationHamburgerWidth;
-
-        private double hamburgerMaxWidth = (double) Application.Current.Resources["Controls.Hamburger.MaxWidth"];
-        private double hamburgerMinWidth = (double)Application.Current.Resources["Controls.Hamburger.MinWidth"];
-
         public HamburgerMenu()
         {
-            InitializeComponent();
-            Initializevariables();
-        }
-
-        private void Initializevariables()
-        {
-            storyboardHamburgerWidth = TryFindResource("Animation.HamburgerMenuButton.MouseLeftButtonDown") as Storyboard;                
-            animationHamburgerWidth = storyboardHamburgerWidth.Children.First() as DoubleAnimation;
-        }
+            InitializeComponent();         
+        }        
 
         private void Hamburger_MenuClick(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => Dispatcher.Invoke(() =>
-            {
-                animationHamburgerWidth.To = Hamburger.ActualWidth == hamburgerMinWidth ? hamburgerMaxWidth : hamburgerMinWidth;
-                storyboardHamburgerWidth.Begin(Hamburger);
-            }));
+            AnimationHelper.ShowDoubleAnimation(storyboardName: "Animation.HamburgerMenuButton.MouseLeftButtonDown",
+                                                 animationTo: Hamburger.ActualWidth == ResourceHelper.HamburgerMaxWidthValue ? ResourceHelper.HamburgerMinWidthValue : ResourceHelper.HamburgerMaxWidthValue,
+                                                 animatedElement: Hamburger,
+                                                 dispatcher: Dispatcher);
+        }
+
+        private void HamburgerIconButton_MouseEnter(object sender, RoutedEventArgs e)
+        {
+            HamburgerIconButton sourceButton = e.OriginalSource as HamburgerIconButton;
+            sourceButton.ToolTip = Hamburger.ActualWidth == ResourceHelper.HamburgerMinWidthValue
+                                   ? ControlHelper.SetToolTipContent(sourceButton.Text)
+                                   : null;
+        }        
+
+        private void HamburgerPathButton_MouseEnter(object sender, RoutedEventArgs e)
+        {
+            HamburgerPathButton sourceButton = e.OriginalSource as HamburgerPathButton;
+            sourceButton.ToolTip = Hamburger.ActualWidth == ResourceHelper.HamburgerMinWidthValue
+                                   ? ControlHelper.SetToolTipContent(sourceButton.Text)
+                                   : null;
         }
     }
 }

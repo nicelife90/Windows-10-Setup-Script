@@ -21,7 +21,8 @@ namespace Power_App.Controls
     /// </summary>
     public partial class HamburgerButton : UserControl
     {
-        public static readonly RoutedEvent MenuClickEvent;
+        public static readonly RoutedEvent MenuClickEvent = EventManager.RegisterRoutedEvent("MenuClick", RoutingStrategy.Bubble,
+                                                              typeof(RoutedEventHandler), typeof(HamburgerButton));
 
         public event RoutedEventHandler MenuClick
         {
@@ -31,13 +32,7 @@ namespace Power_App.Controls
         public HamburgerButton()
         {
             InitializeComponent();            
-        }
-
-        static HamburgerButton()
-        {
-            MenuClickEvent = EventManager.RegisterRoutedEvent("MenuClick", RoutingStrategy.Bubble,
-                                                              typeof(RoutedEventHandler), typeof(HamburgerButton));
-        }
+        }        
 
         public string Icon
         {
@@ -51,7 +46,7 @@ namespace Power_App.Controls
 
         private void HamburgerButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            RoutedEventArgs routedArgs = new RoutedEventArgs(HamburgerButton.MenuClickEvent, this);
+            RoutedEventArgs routedArgs = new RoutedEventArgs(MenuClickEvent, this);
             RaiseEvent(routedArgs);
         }        
     }
