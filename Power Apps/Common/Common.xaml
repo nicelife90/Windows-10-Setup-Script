@@ -55,4 +55,14 @@
                          SpeedRatio="3"/>
     </Storyboard>
 
+    <Storyboard x:Key="Animation.HamburgerSelector.Move">
+        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)"                         
+                         To="{DynamicResource Controls.Hamburger.MinWidth}"
+                         Duration="0:0:1">      
+            <DoubleAnimation.EasingFunction>
+                <BackEase EasingMode="EaseIn" Amplitude="0.3"/>                
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </Storyboard>
+
 </ResourceDictionary>

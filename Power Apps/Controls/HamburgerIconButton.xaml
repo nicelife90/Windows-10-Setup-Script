@@ -46,7 +46,8 @@
     </UserControl.Resources>
     <Grid Name="GridHamburger"          
           Style="{StaticResource GridHamburgerStyle}"
-          MouseEnter="Hamburger_MouseEnter">
+          MouseEnter="HamburgerIconButton_MouseEnter"
+          MouseLeftButtonDown="HamburgerIconButton_MouseLeftButtonDown">
         <Grid.Background>
             <SolidColorBrush x:Name="GridHamburgerBackgroundBrush" 
                              Color="{DynamicResource Color.HamburgerButton.Background}"/>

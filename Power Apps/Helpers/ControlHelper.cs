@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Power_App.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,14 @@ namespace Power_App.Helpers
 {
     internal static class ControlHelper
     {
-        internal static ToolTip SetToolTipContent(string tooltipText)
+        internal static void SetToolTipContent(dynamic clickedButton, bool condition)
         {
-            return new ToolTip()
-            {
-                Content = tooltipText
-            };
+            clickedButton.ToolTip = condition ? clickedButton.Text : null;            
+        }
+        
+        internal static Point GetMainWindowRelativePoint(dynamic control)
+        {
+            return control.TranslatePoint(new Point(0, 0), Application.Current.MainWindow);
         }
     }
 }

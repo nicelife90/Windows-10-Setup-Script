@@ -6,6 +6,7 @@
         xmlns:uc="clr-namespace:Power_App.Controls"        
         xmlns:local="clr-namespace:Power_Apps"
         mc:Ignorable="d"
+        Name="AppWindow"
         WindowStartupLocation="CenterScreen" 
         SnapsToDevicePixels="True" ResizeMode="CanResize" ShowInTaskbar="True" 
         Background="{DynamicResource Color.Window.Background}" 

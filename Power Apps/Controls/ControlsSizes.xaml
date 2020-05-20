@@ -14,7 +14,7 @@
     <system:Double x:Key="Controls.Hamburger.MinWidth">50</system:Double>
     <system:Double x:Key="Controls.Hamburger.MaxWidth">230</system:Double>
 
-    <system:Double x:Key="Controls.HamburgerSelector.Width">5</system:Double>
+    <system:Double x:Key="Controls.HamburgerSelector.Width">3</system:Double>
     <system1:Thickness x:Key="Controls.HamburgerSelector.Margin">0, 10, 0, 10</system1:Thickness>
     
 </ResourceDictionary>

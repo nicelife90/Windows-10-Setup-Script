@@ -20,13 +20,22 @@ namespace Power_App.Controls
     /// </summary>
     public partial class HamburgerPathButton : UserControl
     {
-        public static RoutedEvent HamburgerMouseEnterEvent = EventManager.RegisterRoutedEvent("HamburgerMouseEnter", RoutingStrategy.Bubble,
+        public static new RoutedEvent MouseEnterEvent = EventManager.RegisterRoutedEvent("MouseEnter", RoutingStrategy.Bubble,
                                                                                         typeof(RoutedEventHandler), typeof(HamburgerPathButton));
 
-        public event RoutedEventHandler HamburgerMouseEnter
+        public static new RoutedEvent MouseLeftButtonDownEvent = EventManager.RegisterRoutedEvent("MouseLeftButtonDown", RoutingStrategy.Bubble,
+                                                                                        typeof(RoutedEventHandler), typeof(HamburgerPathButton));
+
+        public new event RoutedEventHandler MouseEnter
         {
-            add { AddHandler(HamburgerMouseEnterEvent, value); }
-            remove { RemoveHandler(HamburgerMouseEnterEvent, value); }
+            add { AddHandler(MouseEnterEvent, value); }
+            remove { RemoveHandler(MouseEnterEvent, value); }
+        }
+
+        public new event RoutedEventHandler MouseLeftButtonDown
+        {
+            add { AddHandler(MouseLeftButtonDownEvent, value); }
+            remove { RemoveHandler(MouseLeftButtonDownEvent, value); }
         }
 
         public HamburgerPathButton()
@@ -34,9 +43,15 @@ namespace Power_App.Controls
             InitializeComponent();
         }
 
-        private void Hamburger_MouseEnter(object sender, MouseEventArgs e)
+        private void HamburgerPathButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            RoutedEventArgs routedArgs = new RoutedEventArgs(HamburgerMouseEnterEvent, this);
+            RoutedEventArgs routedArgs = new RoutedEventArgs(MouseEnterEvent, this);
+            RaiseEvent(routedArgs);
+        }
+
+        private void HamburgerPathButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            RoutedEventArgs routedArgs = new RoutedEventArgs(MouseLeftButtonDownEvent, this);
             RaiseEvent(routedArgs);
         }
 
@@ -58,6 +73,7 @@ namespace Power_App.Controls
 
         // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(Geometry), typeof(HamburgerPathButton), new PropertyMetadata(default(Geometry)));        
+            DependencyProperty.Register("Icon", typeof(Geometry), typeof(HamburgerPathButton), new PropertyMetadata(default(Geometry)));
+             
     }
 }

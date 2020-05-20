@@ -27,28 +27,33 @@ namespace Power_App.Controls
             InitializeComponent();         
         }        
 
-        private void Hamburger_MenuClick(object sender, RoutedEventArgs e)
-        {
+        private void HamburgerButton_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {            
             AnimationHelper.ShowDoubleAnimation(storyboardName: "Animation.HamburgerMenuButton.MouseLeftButtonDown",
                                                  animationTo: Hamburger.ActualWidth == ResourceHelper.HamburgerMaxWidthValue ? ResourceHelper.HamburgerMinWidthValue : ResourceHelper.HamburgerMaxWidthValue,
                                                  animatedElement: Hamburger,
-                                                 dispatcher: Dispatcher);
-        }
-
-        private void HamburgerIconButton_MouseEnter(object sender, RoutedEventArgs e)
-        {
-            HamburgerIconButton sourceButton = e.OriginalSource as HamburgerIconButton;
-            sourceButton.ToolTip = Hamburger.ActualWidth == ResourceHelper.HamburgerMinWidthValue
-                                   ? ControlHelper.SetToolTipContent(sourceButton.Text)
-                                   : null;
+                                                 dispatcher: Dispatcher);            
         }        
 
-        private void HamburgerPathButton_MouseEnter(object sender, RoutedEventArgs e)
+        private void Hamburger_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            HamburgerPathButton sourceButton = e.OriginalSource as HamburgerPathButton;
-            sourceButton.ToolTip = Hamburger.ActualWidth == ResourceHelper.HamburgerMinWidthValue
-                                   ? ControlHelper.SetToolTipContent(sourceButton.Text)
-                                   : null;
+            RoutedEventHelper.StopEvent(e);
+            ShowHamburgerSelectorAnimation(e.OriginalSource);
+        }
+
+        private void ShowHamburgerSelectorAnimation(dynamic clickedButton)
+        {
+            AnimationHelper.ShowDoubleAnimation(storyboardName: "Animation.HamburgerSelector.Move",
+                                                 animationTo: (ControlHelper.GetMainWindowRelativePoint(clickedButton)).Y,
+                                                 animatedElement: HamburgerSelector,
+                                                 dispatcher: Dispatcher);           
+        }
+
+        private void Hamburger_MouseEnter(object sender, RoutedEventArgs e)
+        {
+            RoutedEventHelper.StopEvent(e);
+            ControlHelper.SetToolTipContent(clickedButton: e.OriginalSource, 
+                                            condition: Hamburger.ActualWidth == ResourceHelper.HamburgerMinWidthValue);
         }
     }
 }

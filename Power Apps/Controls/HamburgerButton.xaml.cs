@@ -21,14 +21,21 @@ namespace Power_App.Controls
     /// </summary>
     public partial class HamburgerButton : UserControl
     {
-        public static readonly RoutedEvent MenuClickEvent = EventManager.RegisterRoutedEvent("MenuClick", RoutingStrategy.Bubble,
-                                                              typeof(RoutedEventHandler), typeof(HamburgerButton));
+        public static new readonly RoutedEvent MouseLeftButtonDownEvent = EventManager.RegisterRoutedEvent("MouseLeftButtonDown", RoutingStrategy.Bubble,
+                                                              typeof(RoutedEventHandler), typeof(HamburgerButton));        
 
-        public event RoutedEventHandler MenuClick
+        public new event RoutedEventHandler MouseLeftButtonDown
         {
-            add { AddHandler(MenuClickEvent, value); }
-            remove { RemoveHandler(MenuClickEvent, value); }
+            add { AddHandler(MouseLeftButtonDownEvent, value); }
+            remove { RemoveHandler(MouseLeftButtonDownEvent, value); }
         }
+
+        private void HamburgerButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            RoutedEventArgs routedArgs = new RoutedEventArgs(MouseLeftButtonDownEvent, this);
+            RaiseEvent(routedArgs);
+        }
+
         public HamburgerButton()
         {
             InitializeComponent();            
@@ -42,12 +49,6 @@ namespace Power_App.Controls
 
         // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(string), typeof(HamburgerButton), new PropertyMetadata(default(string)));
-
-        private void HamburgerButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            RoutedEventArgs routedArgs = new RoutedEventArgs(MenuClickEvent, this);
-            RaiseEvent(routedArgs);
-        }        
+            DependencyProperty.Register("Icon", typeof(string), typeof(HamburgerButton), new PropertyMetadata(default(string)));              
     }
 }

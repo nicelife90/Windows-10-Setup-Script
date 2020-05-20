@@ -7,12 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Name="PanelSelector"
-                Background="Transparent" 
-                Width="{StaticResource Controls.HamburgerSelector.Width}" 
-                MinHeight="{StaticResource Controls.HamburgerButton.Height}">
+          Background="Transparent" 
+          Width="{StaticResource Controls.HamburgerSelector.Width}"          
+          Height="{StaticResource Controls.HamburgerButton.Height}">
 
         <Border Margin="{StaticResource Controls.HamburgerSelector.Margin}"
                 Background="{DynamicResource Color.HamburgerSelector.Background}"/>
-        
+
     </Grid>
 </UserControl>
