@@ -27,6 +27,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <uc:HamburgerMenu x:Name="HamburgerMenu"/>
+        <uc:HamburgerMenu x:Name="HamburgerMenu"
+                          Grid.Column="0"/>
+        <uc:LoadingPanel Grid.Column="1"
+                         Text="Загрузка данных"/>
     </Grid>
 </Window>

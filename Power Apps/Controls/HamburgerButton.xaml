@@ -53,8 +53,7 @@
                 <BeginStoryboard Storyboard="{StaticResource Animation.HamburgerButton.MouseLeftButtonDown}"/>
             </EventTrigger>
         </Grid.Triggers>
-        <Grid Name="GridContainer">         
-
+        <Grid Name="GridContainer">
             <TextBlock Style="{StaticResource TextBlockIconStyle}"                       
                        Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Icon}"/>            
         </Grid>

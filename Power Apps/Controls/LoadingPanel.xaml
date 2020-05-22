@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Power_App.Controls.LoadingPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Power_App.Controls"
+             mc:Ignorable="d">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Animation.Indicator.ThreeDots.Loaded}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <UserControl.Resources>        
+        <Style TargetType="Ellipse">
+            <Setter Property="Fill" Value="{DynamicResource Color.Indicator.ThreeDots.Ellipse.Background}"/>
+            <Setter Property="Width" Value="{StaticResource Controls.LoadingPanelEllipse.Width}"/>
+            <Setter Property="Height" Value="{StaticResource Controls.LoadingPanelEllipse.Height}"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="0" ScaleY="0"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0, 20, 0, 0"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{DynamicResource Color.Indicator.ThreeDots.Text.Foreground}"/>
+            <Setter Property="FontFamily" Value="{StaticResource Font.Roboto}"/>            
+            <Setter Property="FontSize" Value="{StaticResource Controls.LoadingPanelEllipse.TextSize}"/>            
+            <Setter Property="MaxWidth" Value="{StaticResource Controls.LoadingPanelEllipse.Text.MaxWidth }"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>            
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Name="GridLoadingPanel"
+          Background="{DynamicResource Color.Indicator.ThreeDots.Background}">
+        
+        <StackPanel Name="PanelContainer"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+            <Grid Name="GridThreeDots" 
+                  HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Ellipse Name="Dot0" Grid.Column="0"/>
+                <Ellipse Name="Dot1" Grid.Column="2"/>
+                <Ellipse Name="Dot2" Grid.Column="4"/>
+            </Grid>
+            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Text}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

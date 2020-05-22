@@ -28,7 +28,8 @@ namespace Power_App.Controls
         }        
 
         private void HamburgerButton_MouseLeftButtonDown(object sender, RoutedEventArgs e)
-        {            
+        {
+            RoutedEventHelper.StopEvent(e);
             AnimationHelper.ShowDoubleAnimation(storyboardName: "Animation.HamburgerMenuButton.MouseLeftButtonDown",
                                                  animationTo: Hamburger.ActualWidth == ResourceHelper.HamburgerMaxWidthValue ? ResourceHelper.HamburgerMinWidthValue : ResourceHelper.HamburgerMaxWidthValue,
                                                  animatedElement: Hamburger,

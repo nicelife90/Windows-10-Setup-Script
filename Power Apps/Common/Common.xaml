@@ -58,11 +58,59 @@
     <Storyboard x:Key="Animation.HamburgerSelector.Move">
         <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)"                         
                          To="{DynamicResource Controls.Hamburger.MinWidth}"
-                         Duration="0:0:1">      
+                         Duration="0:0:0.3">      
             <DoubleAnimation.EasingFunction>
                 <BackEase EasingMode="EaseIn" Amplitude="0.3"/>                
             </DoubleAnimation.EasingFunction>
         </DoubleAnimation>
+    </Storyboard>
+
+    <Storyboard x:Key="Animation.Indicator.ThreeDots.Loaded" 
+                RepeatBehavior="Forever" 
+                BeginTime="00:00:00">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Dot0" 
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.600" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="0"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Dot1" 
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+            <LinearDoubleKeyFrame KeyTime="0:0:0.250" Value="0"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.750" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.850" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.350" Value="0"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Dot2" 
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="0"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.000" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.600" Value="0"/>
+        </DoubleAnimationUsingKeyFrames>
+
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Dot0" 
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+            <LinearDoubleKeyFrame KeyTime="0:0:0.000" Value="0"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.600" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="0"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Dot1" 
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+            <LinearDoubleKeyFrame KeyTime="0:0:0.250" Value="0"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.750" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.850" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.350" Value="0"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Dot2" 
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+            <LinearDoubleKeyFrame KeyTime="0:0:0.500" Value="0"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.000" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.100" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:1.600" Value="0"/>
+        </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
 </ResourceDictionary>
