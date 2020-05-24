@@ -25,11 +25,14 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>            
         </Grid.ColumnDefinitions>
         <uc:HamburgerMenu x:Name="HamburgerMenu"
                           Grid.Column="0"/>
-        <uc:LoadingPanel Grid.Column="1"
-                         Text="Загрузка данных"/>
+
+        <uc:TogglePanel Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Header="Отключить cлужбы для отдельных пользователей"
+                        Description="Пользовательские службы выполняются в контексте безопасности учетной записи пользователя: это обеспечивает более эффективное управление ресурсами, чем предыдущий способ запуска этих служб в проводнике"/>        
     </Grid>
 </Window>

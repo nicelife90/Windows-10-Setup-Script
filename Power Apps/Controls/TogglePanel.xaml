@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Power_App.Controls.TogglePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Power_App.Controls"
+             mc:Ignorable="d"
+             MaxWidth="{StaticResource Controls.TogglePanel.MaxWidth}"
+             MaxHeight="{StaticResource Controls.TogglePanel.MaxHeight}">
+    <UserControl.Resources>
+        <Style x:Key="TextBlockHeaderStyle" TargetType="TextBlock">
+            <Setter Property="MaxHeight" Value="{StaticResource Controls.TogglePanel.Header.MaxHeight}"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="{StaticResource Font.Lato}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{DynamicResource Color.TogglePanel.Header}"/>            
+        </Style>
+        <Style x:Key="TextBlockDescriptionStyle" TargetType="TextBlock">
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="MaxHeight" Value="{StaticResource Controls.TogglePanel.Description.MaxHeight}"/>
+            <Setter Property="Margin" Value="5, 0, 5, 5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="{StaticResource Font.Roboto}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="{DynamicResource Color.TogglePanel.Description}"/>
+        </Style>
+        <Style TargetType="{x:Type local:ToggleSwitch}">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </UserControl.Resources>
+
+        <StackPanel Grid.Column="1" Margin="5">
+
+        <TextBlock Style="{StaticResource TextBlockHeaderStyle}" 
+                   Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Header}"/>
+
+            <TextBlock Style="{StaticResource TextBlockDescriptionStyle}" 
+                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Description}"/>
+
+            <local:ToggleSwitch/>
+        </StackPanel>
+   
+</UserControl>

@@ -16,4 +16,15 @@
     <SolidColorBrush x:Key="Color.Indicator.ThreeDots.Ellipse.Background">#353535</SolidColorBrush>
     <SolidColorBrush x:Key="Color.Indicator.ThreeDots.Text.Foreground">#353535</SolidColorBrush>
 
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Border">#FF333333</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Background">#FFFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Background.Checked">#00B0FF</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Background.MouseOver">#FFFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Ellipse">#FF333333</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Ellipse.Checked">#FFFFFFFF</SolidColorBrush>
+
+    <SolidColorBrush x:Key="Color.TogglePanel.Icon">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.TogglePanel.Header">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.TogglePanel.Description">#333333</SolidColorBrush>
+
 </ResourceDictionary>

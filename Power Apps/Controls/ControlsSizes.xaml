@@ -22,4 +22,9 @@
     <system:Double x:Key="Controls.LoadingPanelEllipse.TextSize">16</system:Double>
     <system:Double x:Key="Controls.LoadingPanelEllipse.Text.MaxWidth">380</system:Double>
 
+    <system:Double x:Key="Controls.TogglePanel.MaxWidth">500</system:Double>
+    <system:Double x:Key="Controls.TogglePanel.MaxHeight">150</system:Double>
+    <system:Double x:Key="Controls.TogglePanel.Header.MaxHeight">51</system:Double>
+    <system:Double x:Key="Controls.TogglePanel.Description.MaxHeight">44</system:Double>
+
 </ResourceDictionary>
