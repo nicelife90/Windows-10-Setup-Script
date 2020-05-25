@@ -11,7 +11,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Common/Common.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Resources/Icons.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Localization/RU.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

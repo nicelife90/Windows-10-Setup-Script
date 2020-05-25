@@ -23,8 +23,11 @@
     <system:Double x:Key="Controls.LoadingPanelEllipse.Text.MaxWidth">380</system:Double>
 
     <system:Double x:Key="Controls.TogglePanel.MaxWidth">500</system:Double>
-    <system:Double x:Key="Controls.TogglePanel.MaxHeight">150</system:Double>
-    <system:Double x:Key="Controls.TogglePanel.Header.MaxHeight">51</system:Double>
-    <system:Double x:Key="Controls.TogglePanel.Description.MaxHeight">44</system:Double>
+    <system:Double x:Key="Controls.TogglePanel.MaxHeight">170</system:Double>
+    <system:Double x:Key="Controls.TogglePanel.Header.MaxHeight">55</system:Double>
+    <system:Double x:Key="Controls.TogglePanel.Description.MaxHeight">50</system:Double>
+
+    <GridLength x:Key="Controls.CategoryPanel.Header.Height">50</GridLength>
+    <GridLength x:Key="Controls.CategoryPanel.Footer.Height">10</GridLength>
 
 </ResourceDictionary>

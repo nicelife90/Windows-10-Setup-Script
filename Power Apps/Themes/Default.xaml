@@ -18,7 +18,8 @@
 
     <SolidColorBrush x:Key="Color.ToggleSwitch.Border">#FF333333</SolidColorBrush>
     <SolidColorBrush x:Key="Color.ToggleSwitch.Background">#FFFFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="Color.ToggleSwitch.Background.Checked">#00B0FF</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Border.Checked">#0078d7</SolidColorBrush>
+    <SolidColorBrush x:Key="Color.ToggleSwitch.Background.Checked">#0078d7</SolidColorBrush>
     <SolidColorBrush x:Key="Color.ToggleSwitch.Background.MouseOver">#FFFFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="Color.ToggleSwitch.Ellipse">#FF333333</SolidColorBrush>
     <SolidColorBrush x:Key="Color.ToggleSwitch.Ellipse.Checked">#FFFFFFFF</SolidColorBrush>

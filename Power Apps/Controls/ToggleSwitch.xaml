@@ -52,7 +52,7 @@
                             <Border x:Name="normalBorder" Opacity="1" BorderThickness="2" CornerRadius="10"
 										BorderBrush="{TemplateBinding BorderBrush}" Background="{DynamicResource Color.ToggleSwitch.Background}"/>
                             <Border x:Name="checkedBorder" Opacity="0" BorderThickness="2" CornerRadius="10"
-										BorderBrush="{StaticResource  RadioButton.Checked.Border}" Background="{DynamicResource Color.ToggleSwitch.Background.Checked}"/>
+										BorderBrush="{DynamicResource Color.ToggleSwitch.Border.Checked}" Background="{DynamicResource Color.ToggleSwitch.Background.Checked}"/>
                             <Border x:Name="hoverBorder" Opacity="0" BorderThickness="2" CornerRadius="10"
 										BorderBrush="{StaticResource RadioButton.MouseOver.Border}" Background="{DynamicResource Color.ToggleSwitch.Background.MouseOver}"/>
                             <Border x:Name="pressedBorder" Opacity="0" BorderThickness="2" CornerRadius="10"
@@ -168,5 +168,6 @@
         </Style>
     </UserControl.Resources>
     
-    <ToggleButton Name="toggleSwitch"/>    
+    <ToggleButton Name="toggleSwitch"
+                  Click="ToggleSwitch_Click"/>    
 </UserControl>

@@ -20,9 +20,24 @@ namespace Power_App.Controls
     /// </summary>
     public partial class ToggleSwitch : UserControl
     {
+        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent("Click", RoutingStrategy.Bubble,
+                                                typeof(RoutedEventHandler), typeof(ToggleSwitch));
+
+        public event RoutedEventHandler Click
+        {
+            add { AddHandler(ClickEvent, value); }
+            remove { AddHandler(ClickEvent, value); }
+        }
+
         public ToggleSwitch()
         {
             InitializeComponent();
+        }
+
+        private void ToggleSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            RoutedEventArgs routedArgs = new RoutedEventArgs(ClickEvent, this);
+            RaiseEvent(routedArgs);
         }
     }
 }

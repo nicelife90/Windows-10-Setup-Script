@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Power_App.Controls.CategoryPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Power_App.Controls"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="{StaticResource Font.Lato}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="5, 0, 0, 0"/>
+        </Style>
+        <Style TargetType="ScrollViewer">
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource Controls.CategoryPanel.Header.Height}"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="{StaticResource Controls.CategoryPanel.Footer.Height}"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=Header}"/>
+
+        <ScrollViewer x:Name="CategoryPanelScrollViewer">
+
+            <StackPanel x:Name="ToggleContent"/>
+
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

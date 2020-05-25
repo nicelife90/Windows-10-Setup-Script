@@ -11,9 +11,10 @@
         SnapsToDevicePixels="True" ResizeMode="CanResize" ShowInTaskbar="True" 
         Background="{DynamicResource Color.Window.Background}" 
         Foreground="{DynamicResource Color.Window.Foreground}"        
-        Title="{DynamicResource LocalizedText.AppTitle}" 
+        Title="{DynamicResource LocalizedText.AppTitle}"
+        Icon="PowerApp.ico"
         MinHeight="{StaticResource Controls.Window.MinHeight}"
-        Width="800">
+        Width="800">    
     
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -25,14 +26,16 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>            
         </Grid.ColumnDefinitions>
+        
         <uc:HamburgerMenu x:Name="HamburgerMenu"
                           Grid.Column="0"/>
 
-        <uc:TogglePanel Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left"
-                        Header="Отключить cлужбы для отдельных пользователей"
-                        Description="Пользовательские службы выполняются в контексте безопасности учетной записи пользователя: это обеспечивает более эффективное управление ресурсами, чем предыдущий способ запуска этих служб в проводнике"/>        
+        <Grid x:Name="GridCategoryContent"
+              Grid.Column="2"/>
+
     </Grid>
+    
 </Window>
