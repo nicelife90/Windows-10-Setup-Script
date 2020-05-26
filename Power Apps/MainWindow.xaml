@@ -31,10 +31,10 @@
         </Grid.ColumnDefinitions>
         
         <uc:HamburgerMenu x:Name="HamburgerMenu"
-                          Grid.Column="0"/>        
+                          Grid.Column="0"/>
 
         <Grid x:Name="GridCategoryContent"
-              Grid.Column="2"/>        
+              Grid.Column="2"/>
 
     </Grid>
     
