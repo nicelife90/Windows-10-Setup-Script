@@ -13,9 +13,9 @@
         Foreground="{DynamicResource Color.Window.Foreground}"        
         Title="{DynamicResource LocalizedText.AppTitle}"
         Icon="PowerApp.ico"
-        MinHeight="{StaticResource Controls.Window.MinHeight}"
+        Height="{StaticResource Controls.Window.MinHeight}"
         Width="800">    
-    
+
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
@@ -31,10 +31,10 @@
         </Grid.ColumnDefinitions>
         
         <uc:HamburgerMenu x:Name="HamburgerMenu"
-                          Grid.Column="0"/>
+                          Grid.Column="0"/>        
 
         <Grid x:Name="GridCategoryContent"
-              Grid.Column="2"/>
+              Grid.Column="2"/>        
 
     </Grid>
     

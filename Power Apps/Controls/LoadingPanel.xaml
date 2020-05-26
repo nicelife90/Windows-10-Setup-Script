@@ -4,14 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Power_App.Controls"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Background="{DynamicResource Color.Window.Background}">
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard Storyboard="{StaticResource Animation.Indicator.ThreeDots.Loaded}"/>
         </EventTrigger>
     </UserControl.Triggers>
 
-    <UserControl.Resources>        
+    <UserControl.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
         <Style TargetType="Ellipse">
             <Setter Property="Fill" Value="{DynamicResource Color.Indicator.ThreeDots.Ellipse.Background}"/>
             <Setter Property="Width" Value="{StaticResource Controls.LoadingPanelEllipse.Width}"/>
@@ -28,20 +33,15 @@
             <Setter Property="FontStyle" Value="Normal"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Foreground" Value="{DynamicResource Color.Indicator.ThreeDots.Text.Foreground}"/>
-            <Setter Property="FontFamily" Value="{StaticResource Font.Roboto}"/>            
+            <Setter Property="FontFamily" Value="{StaticResource Font.Lato}"/>            
             <Setter Property="FontSize" Value="{StaticResource Controls.LoadingPanelEllipse.TextSize}"/>            
             <Setter Property="MaxWidth" Value="{StaticResource Controls.LoadingPanelEllipse.Text.MaxWidth }"/>
             <Setter Property="TextWrapping" Value="Wrap"/>            
         </Style>
     </UserControl.Resources>
 
-    <Grid Name="GridLoadingPanel"
-          Background="{DynamicResource Color.Indicator.ThreeDots.Background}">
-        
-        <StackPanel Name="PanelContainer"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-
+    <Grid Name="GridLoadingPanel">        
+        <StackPanel Name="PanelContainer">
             <Grid Name="GridThreeDots" 
                   HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>

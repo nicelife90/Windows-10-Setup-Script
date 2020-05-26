@@ -1,6 +1,7 @@
 ﻿using Power_App.Helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace Power_Apps
@@ -24,6 +26,10 @@ namespace Power_Apps
         public MainWindow()
         {
             InitializeComponent();
+            //byte[] ob = Power_App.Properties.Resources.ResourceManager.GetObject("SettingsJson") as byte[];
+            //string str = Encoding.UTF8.GetString(ob);
+
+
         }                
     }
 }

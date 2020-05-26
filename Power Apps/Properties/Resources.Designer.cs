@@ -59,5 +59,15 @@ namespace Power_App.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] SettingsJson {
+            get {
+                object obj = ResourceManager.GetObject("SettingsJson", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

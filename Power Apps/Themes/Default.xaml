@@ -11,8 +11,7 @@
     <SolidColorBrush x:Key="Color.HamburgerButton.Disabled">#848484</SolidColorBrush>
 
     <SolidColorBrush x:Key="Color.HamburgerSelector.Background">#0078d7</SolidColorBrush>    
-
-    <SolidColorBrush x:Key="Color.Indicator.ThreeDots.Background">Transparent</SolidColorBrush>
+    
     <SolidColorBrush x:Key="Color.Indicator.ThreeDots.Ellipse.Background">#353535</SolidColorBrush>
     <SolidColorBrush x:Key="Color.Indicator.ThreeDots.Text.Foreground">#353535</SolidColorBrush>
 
