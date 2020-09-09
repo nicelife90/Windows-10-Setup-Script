@@ -1229,7 +1229,7 @@ if ((Get-CimInstance -ClassName Win32_ComputerSystem).PCSystemType -ne 2)
 
 # Set the default input method to the English language
 # Установить метод ввода по умолчанию на английский язык
-Set-WinDefaultInputMethodOverride "0409:00000409"
+Set-WinDefaultInputMethodOverride "1009:00011009"
 
 # Turn on Windows Sandbox
 # Включить Windows Sandbox
